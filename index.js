@@ -36,7 +36,7 @@ app.get("/", async(req, res) => {
 
 
 app.use((req, res) => {
-    res.status(404).redirect("notFound");
+    res.status(404).json("ERROR");
   });
 
 app.listen(process.env.PORT || 3000, () => {
