@@ -21,7 +21,7 @@ mongoose.connect(DB, {
 .then(()=>console.log('DB connection successful!'));
 
 // const TestUser =new User({
-//     name:'Boobyshake',
+//     name:'Abhishek',
 //     email:'abhish@0101.io',
 //     password:'hello1234'
 // });
