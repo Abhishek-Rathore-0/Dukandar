@@ -64,6 +64,11 @@ app.get("/", async(req, res) => {
   res.render("home");
 });
 
+app.get("/s", async(req, res) => { 
+  res.render("shopkeeper");
+});
+
+
 
 app.use((req, res) => {
     res.status(404).json("ERROR");
