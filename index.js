@@ -62,7 +62,7 @@ mongoose.connect(DB, {
 
 app.get("/", async(req, res) => { 
   res.render("home");
-})
+});
 
 
 app.use((req, res) => {
