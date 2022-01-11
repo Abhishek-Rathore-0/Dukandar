@@ -6,7 +6,8 @@ const app = express();
 const path = require("path");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
-const User = require("./models/user");
+const User = require("./models/userModel");
+const jwt = require("jsonwebtoken");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -20,9 +21,9 @@ mongoose.connect(DB, {
 .then(()=>console.log('DB connection successful!'));
 
 // const TestUser =new User({
-//     Name:'Abhishek',
-//     Email:'abhish@0101',
-//     Password:'hello'
+//     name:'Abhishek',
+//     email:'abhish@0101.io',
+//     password:'hello1234'
 // });
 // TestUser.save().then(doc => {
 //     console.log(doc);
@@ -30,8 +31,37 @@ mongoose.connect(DB, {
 //     console.log(err);
 // })
 
-app.get("/", async(req, res) => {
-    res.render("home");
+// const TestUser = await User.create({
+//     name:'Abhishek_',
+//     email:'abhish@101.io',
+//     password:'hello1234'
+// });
+
+//Login after insert.
+// const token = jwt.sign({id:"id_login" }, process.env.JWT_SECRET, {expiresIn:90d});
+
+//Login 
+// const email = "abhish@0101.io";
+// const password = "hello1234";
+
+// if(!email || !password){
+//     console.log('email and pass isnot empty.')
+// }
+
+// const user = await User.findOne({email}).select('+password');
+
+// if(!user || !(await user.correctPassword(password, user.password))){
+//   console.log('Please enter correct details');
+// }
+// else{
+// const token = jwt.sign({id:"user._id" }, process.env.JWT_SECRET, {expiresIn:90d});
+// console.log('success log')
+// }
+
+
+
+app.get("/", async(req, res) => { 
+  res.render("home");
 })
 
 
