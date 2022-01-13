@@ -8,11 +8,22 @@ const ejs = require("ejs");
 const mongoose = require("mongoose");
 const User = require("./models/userModel");
 const jwt = require("jsonwebtoken");
+const viewRouter = require('./routes/viewRoutes');
+const userRouter = require('./routes/userRoutes');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const cors = require("cors");
+
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static("public"));
+// app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(cors());
 
 mongoose.connect(DB, {
     useNewUrlParser: true,
@@ -20,54 +31,12 @@ mongoose.connect(DB, {
 })
 .then(()=>console.log('DB connection successful!'));
 
-// const TestUser =new User({
-//     name:'Abhishek',
-//     email:'abhish@0101.io',
-//     password:'hello1234'
-// });
-// TestUser.save().then(doc => {
-//     console.log(doc);
-// }).catch(err => {
-//     console.log(err);
-// })
-
-// const TestUser = await User.create({
-//     name:'Abhishek_',
-//     email:'abhish@101.io',
-//     password:'hello1234'
-// });
-
-//Login after insert.
-// const token = jwt.sign({id:"id_login" }, process.env.JWT_SECRET, {expiresIn:90d});
-
-//Login 
-// const email = "abhish@0101.io";
-// const password = "hello1234";
-
-// if(!email || !password){
-//     console.log('email and pass isnot empty.')
-// }
-
-// const user = await User.findOne({email}).select('+password');
-
-// if(!user || !(await user.correctPassword(password, user.password))){
-//   console.log('Please enter correct details');
-// }
-// else{
-// const token = jwt.sign({id:"user._id" }, process.env.JWT_SECRET, {expiresIn:90d});
-// console.log('success log')
-// }
 
 
 
-app.get("/", async(req, res) => { 
-  res.render("home");
-});
 
-app.get("/s", async(req, res) => { 
-  res.render("shopkeeper");
-});
-
+app.use('/api/users',userRouter);
+app.use('/',viewRouter);
 
 
 app.use((req, res) => {
