@@ -13,3 +13,11 @@
 .inp:focus {
   box-shadow: none;
 }
+
+.right {
+  color: black;
+  text-decoration: none;
+}
+.right:hover {
+  color: #495057;
+}
