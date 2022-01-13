@@ -5,7 +5,7 @@ export const login = async (email, password) => {
     try {
       const res = await axios({
         method: 'POST',
-        url: 'api/users/login',
+        url: 'http://localhost:3000/api/users/login',
         data: {
           email,
           password
@@ -19,7 +19,7 @@ export const login = async (email, password) => {
         }, 1500);
       }
     } catch (err) {
-      showAlert('error', err.response.data.message);
+      alert('error');
     }
   };
 
@@ -27,7 +27,7 @@ export const login = async (email, password) => {
     try {
       const res = await axios({
         method: 'GET',
-        url: '/api/users/logout'
+        url: 'http://localhost:3000/api/users/logout'
       });
       if ((res.data.status = 'success')) location.reload(true);
     } catch (err) {
@@ -36,4 +36,27 @@ export const login = async (email, password) => {
     }
   };
   
-   
+  
+export const signup = async (name, email, password) => {
+  try {
+    const res = await axios({
+      method: 'POST',
+      url: 'http://localhost:3000/api/users/signup',
+      data: {
+        name,
+        email,
+        password
+      }
+    });
+
+    if (res.data.status === 'success') {
+      alert('Craeted successful.');
+      console.log(res.data);
+      window.setTimeout(() => {
+        location.assign('/s/');
+      }, 1500);
+    }
+  } catch (err) {
+    alert('error');
+  }
+}; 
