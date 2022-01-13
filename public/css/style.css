@@ -1,0 +1,15 @@
+.inp {
+  border: none;
+  color: #495057 !important ;
+  background-color: white !important;
+  border-radius: 0%;
+  border-bottom: 1px solid;
+  padding: 0 !important;
+  padding: 5px 10px;
+  outline: none !important;
+}
+
+.btn-close:focus,
+.inp:focus {
+  box-shadow: none;
+}

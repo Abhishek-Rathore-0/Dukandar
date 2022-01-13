@@ -5,7 +5,7 @@ const authController = require('../controllers/authController');
 const router = express.Router();
 
 
-router.get("/", viewsController.home);
+router.get("/", authController.isLoggedIn,viewsController.home);
   
 router.get("/s",authController.isLoggedIn, viewsController.shopkeeper);
 

@@ -15,7 +15,7 @@ export const login = async (email, password) => {
       if (res.data.status === 'success') {
         alert('success');
         window.setTimeout(() => {
-          location.assign('/s/');
+          location.assign('/');
         }, 1500);
       }
     } catch (err) {
@@ -53,7 +53,7 @@ export const signup = async (name, email, password) => {
       alert('Craeted successful.');
       console.log(res.data);
       window.setTimeout(() => {
-        location.assign('/s/');
+        location.assign('/');
       }, 1500);
     }
   } catch (err) {

@@ -1,7 +1,7 @@
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Dukandar</a>
+          <a class="navbar-brand" href="#">___</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -30,9 +30,82 @@
               </li>
             </ul>
             
+            <%if(!user){ %> 
             <a class="btn btn-outline-success" style="margin-right: 10px;" href="/s">Become a seller</a>
-            <button class="btn btn-outline-success">Shop now</button>
-            
+            <a class="btn btn-outline-success" aria-current="page" href="#login" data-bs-toggle="modal">Login</a>
+              <% }else{ %> 
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">hi, <%=user.name %> </a>
+                <a class="logout-btn btn btn-outline-success" style="margin-right: 10px;">Logout</a>
+              <% } %> 
           </div>
         </div>
       </nav>
+
+      <section class="log" style="margin-top: 0px;">
+        <div class="modal fade" id="login" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1" >
+          <div class="modal-dialog modal-dialog-centered rounded-0" style="max-width: 400px;">
+            <div class="modal-content" style="border-radius: 10px;">
+              <div class="modal-header border-0">
+                <h3>Log IN</h3>
+                <button type="button" class="btn-close  " style="margin-top: -48px;" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  <div>
+                      <form class="px-4 py-3 form">
+                        <div class="mb-3">
+                          <label for="exampleDropdownFormEmail1" class="form-label label">Email address</label>
+                          <input type="email" class="form-control inp" id="email" name="Email1" placeholder="Enter your email">
+                        </div>
+                        <div class="mb-3 mt-5">
+                          <label for="exampleDropdownFormPassword1" class="form-label label">Password</label>
+                          <input type="password" class="form-control inp" id="password" name="Password1" placeholder="Enter your password">
+                        </div>
+                        <div class="text-center  mt-5">
+                          <button class="button">LOGIN</button>
+                        </div>
+                      </form>
+                      
+                      <div class="modal-body" style="text-align: right; ">
+                        <a class="right" data-bs-target="#signup" data-bs-toggle="modal" data-bs-dismiss="modal">New around here? Sign up</a><br>
+                        <a class="right" style="text-align: right;" data-bs-target="#forget" data-bs-toggle="modal" data-bs-dismiss="modal">Forgot password?</a>
+                      </div>
+                    </div>
+              </div>
+           
+            </div>
+          </div>
+        </div>
+        
+        <div class="modal fade" id="signup" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+          <div class="modal-dialog modal-dialog-centered rounded-0" style="max-width: 400px;">
+            <div class="modal-content" style="border-radius: 10px;">
+              <div class="modal-header border-0">
+                <h3>Sign UP</h3>
+                <button type="button" class="btn-close  " style="margin-top: -48px;" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                
+                <form class="px-4 py-3 form-sign">
+                  <div class="mb-3">
+                    <label for="exampleDropdownName1" class="form-label label">Name</label>
+                    <input type="text" class="form-control inp" required id="sname" name="Name" placeholder="Enter your name">
+                  </div>
+                  <div class="mb-3 mt-4">
+                    <label for="exampleDropdownFormEmail1" class="form-label label">Email address</label>
+                    <input type="email" class="form-control inp" required id="semail" name="Email" placeholder="Enter your email">
+                  </div>
+                  <div class="mb-3 mt-4">
+                    <label for="exampleDropdownFormPassword1" class="form-label label">Password</label>
+                    <input type="password" class="form-control inp" required id="spassword" name="Password" placeholder="Enter your password">
+                  </div>
+                  <div class="text-center  mt-4">
+                    <button class="button">SIGNUP</button>
+                  </div>
+                  <div class="modal-body mt-4" style="text-align: right; ">
+                    <a class="right" data-bs-target="#login" data-bs-toggle="modal" data-bs-dismiss="modal">Already a member? Log in</a><br>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
