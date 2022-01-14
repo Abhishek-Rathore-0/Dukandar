@@ -8796,7 +8796,7 @@ var login = /*#__PURE__*/function () {
             res = _context.sent;
 
             if (res.data.status === 'success') {
-              alert('success');
+              alert("Login successful");
               window.setTimeout(function () {
                 location.assign('/');
               }, 1500);
@@ -8808,7 +8808,7 @@ var login = /*#__PURE__*/function () {
           case 7:
             _context.prev = 7;
             _context.t0 = _context["catch"](0);
-            alert('error');
+            alert(_context.t0.response.data.message);
 
           case 10:
           case "end":
@@ -9232,7 +9232,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "14950" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "1463" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

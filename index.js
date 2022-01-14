@@ -6,13 +6,12 @@ const app = express();
 const path = require("path");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
-const User = require("./models/userModel");
-const jwt = require("jsonwebtoken");
 const viewRouter = require('./routes/viewRoutes');
 const userRouter = require('./routes/userRoutes');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cors = require("cors");
+const AppError = require('./utils/appError');
 
 
 app.set("view engine", "ejs");
@@ -32,16 +31,12 @@ mongoose.connect(DB, {
 .then(()=>console.log('DB connection successful!'));
 
 
-
-
-
 app.use('/api/users',userRouter);
 app.use('/',viewRouter);
 
-
-app.use((req, res) => {
-    res.status(404).json("ERROR");
-  });
+app.all('*', (req, res, next) => {
+  next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
+});
 
 app.listen(process.env.PORT || 3000, () => {
   console.log("Listening on port 3000");
