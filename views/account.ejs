@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+    <%- include('partials/head') %> 
+    <body style="background-color: white">
+        <%- include('partials/navbar') %>     
+        
+        <main class="main">
+        <div class="user-view">
+            <nav class="user-view__menu">
+                <ul class="side-nav">
+                    <li class="side-nav--active">
+                        <a href="#">Settings</a>
+                    </li>
+                    <li>
+                        <a href="#">My Orders</a>
+                    </li>
+                    <li>
+                        <a href="#">My reviews</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="user-view__content">
+                <div class="user_view__form-container">
+                    <h2 class="heading-secondary ma-bt-md">Your account settings</h2>
+                    
+                    <form class="form form-user-data">
+                        <div class="form__group">
+                            <label class="form__label" for="name"> Name</label>
+                            <input type="text" class="form__input" id="name" required value="<%=user.name%>">
+                            
+                            <label class="form__label" for="email">Email address</label>
+                            <input type="email" class="form__input" id="email" required value="<%=user.email%>">
+                            <div class="form__group right">
+                                <button class="btn btn--small btn--green"> Save settings</button>
+                            </div>
+                        </div>
+            
+            
+                    </form>
+            
+            
+                </div>
+            </div>
+
+        </div>
+    </main>
+    <script src="/js/bundle.js"></script>
+    </body>
+</html>
+
+<!-- 
+        .user-view__form-container
+          h2.heading-secondary.ma-bt-md Password change
+          form.form.form-user-password
+            .form__group
+              label.form__label(for='password-current') Current password
+              input#password-current.form__input(type='password', placeholder='••••••••', required, minlength='8')
+            .form__group
+              label.form__label(for='password') New password
+              input#password.form__input(type='password', placeholder='••••••••', required, minlength='8')
+            .form__group.ma-bt-lg
+              label.form__label(for='password-confirm') Confirm password
+              input#password-confirm.form__input(type='password', placeholder='••••••••', required, minlength='8')
+            .form__group.right
+              button.btn.btn--small.btn--green.btn--save-password Save password -->

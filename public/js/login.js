@@ -1,11 +1,11 @@
 import axios from "axios";
 
 
-export const login = async (email, password) => {
+export const login = async (email, password, route) => {
     try {
       const res = await axios({
         method: 'POST',
-        url: 'http://localhost:3000/api/users/login',
+        url: 'http://localhost:3000/api/'+route+'/login',
         data: {
           email,
           password
@@ -14,9 +14,7 @@ export const login = async (email, password) => {
   
       if (res.data.status === 'success') {
         alert("Login successful");
-        window.setTimeout(() => {
-          location.assign('/');
-        }, 1500);
+        location.reload(true);
       }
     } catch (err) {
       alert(err.response.data.message);
@@ -37,11 +35,11 @@ export const login = async (email, password) => {
   };
   
   
-export const signup = async (name, email, password) => {
+export const signup = async (name, email, password, route) => {
   try {
     const res = await axios({
       method: 'POST',
-      url: 'http://localhost:3000/api/users/signup',
+      url: 'http://localhost:3000/api/'+route+'/signup',
       data: {
         name,
         email,
@@ -51,10 +49,7 @@ export const signup = async (name, email, password) => {
 
     if (res.data.status === 'success') {
       alert('Craeted successful.');
-      console.log(res.data);
-      window.setTimeout(() => {
-        location.assign('/');
-      }, 1500);
+      location.reload(true);
     }
   } catch (err) {
     alert('error');

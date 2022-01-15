@@ -1,7 +1,7 @@
 const crypto = require('crypto');
 const { promisify } = require('util');
 const jwt = require('jsonwebtoken');
-const User = require('./../models/userModel');
+const Agent = require('./../models/agentModel');
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
 
@@ -11,9 +11,9 @@ const signToken = id => {
     }); 
   };
 
-const createSendToken = (user, statusCode, req, res) => {
+const createSendToken = (agent, statusCode, req, res) => {
 
-  const token = signToken(user._id);
+  const token = signToken(agent._id);
   
   res.cookie('jwt', token, {
     expires: new Date(
@@ -23,25 +23,25 @@ const createSendToken = (user, statusCode, req, res) => {
     secure: req.secure || req.headers['x-forwarded-proto'] === 'https'
   });
   
-  user.password = undefined;
+  agent.password = undefined;
   
   res.status(statusCode).json({
   status: 'success',
     token,
     data: {
-      user
+        agent
     }
   });
 };
 
 exports.signup = catchAsync(async (req, res, next) => {
-  const newUser = await User.create({
+  const newAgent = await Agent.create({
     name: req.body.name,
     email: req.body.email,
     password: req.body.password
   });
     
-  createSendToken(newUser, 201, req, res);
+  createSendToken(newAgent, 201, req, res);
 });
   
 exports.login = catchAsync(async (req, res, next) => {
@@ -51,15 +51,15 @@ exports.login = catchAsync(async (req, res, next) => {
     return next(new AppError('Please provide email and password!', 400));
   }
 
-  // 2) Check if user exists && password is correct
-  const user = await User.findOne({ email }).select('+password');
+  // 2) Check if Agent exists && password is correct
+  const agent = await Agent.findOne({ email }).select('+password');
   
-  if (!user || !(await user.correctPassword(password, user.password))) {
+  if (!agent || !(await agent.correctPassword(password, agent.password))) {
     return next(new AppError('Incorrect email or password', 401));
   }
   
   // 3) If everything ok, send token to client
-  createSendToken(user, 200, req, res);
+  createSendToken(agent, 200, req, res);
 });
   
 exports.logout = (req, res) => {
@@ -72,7 +72,7 @@ exports.logout = (req, res) => {
   
 exports.isLoggedIn = async (req, res, next) => {
    
-  res.locals.user =''
+  res.locals.agent =''
   if (req.cookies.jwt) {
     
     try { 
@@ -83,21 +83,21 @@ exports.isLoggedIn = async (req, res, next) => {
         process.env.JWT_SECRET
       );
   
-      //Check if user exists
-      const currentUser = await User.findById(decoded.id);
+      //Check if agent exists
+      const currentAgent = await Agent.findById(decoded.id);
         
-      if (!currentUser) {
+      if (!currentAgent) {
         return next();
       }
       
-      //Check if user changed password after the token was issued
-      if (currentUser.changedPasswordAfter(decoded.iat)) {
+      //Check if Agent changed password after the token was issued
+      if (currentAgent.changedPasswordAfter(decoded.iat)) {
         return next(
-          new AppError('User recently changed password! Please log in again.', 401)
+          new AppError('Agent recently changed password! Please log in again.', 401)
         );
       }
     
-      res.locals.user = currentUser;
+      res.locals.agent = currentAgent;
         
       return next();
     
@@ -120,26 +120,26 @@ exports.protect = catchAsync(async (req, res, next) => {
   // 2) Verification token
   const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
 
-  // 3) Check if user still exists
-  const currentUser = await User.findById(decoded.id);
-  if (!currentUser) {
+  // 3) Check if Agent still exists
+  const currentAgent = await Agent.findById(decoded.id);
+  if (!currentAgent) {
     return next(
       new AppError(
-        'The user belonging to this token does no longer exist.',
+        'The Agent belonging to this token does no longer exist.',
         401
       )
     );
   }
 
-  // 4) Check if user changed password after the token was issued
-  if (currentUser.changedPasswordAfter(decoded.iat)) {
+  // 4) Check if Agent changed password after the token was issued
+  if (currentAgent.changedPasswordAfter(decoded.iat)) {
     return next(
-      new AppError('User recently changed password! Please log in again.', 401)
+      new AppError('Agent recently changed password! Please log in again.', 401)
     );
   }
 
   // GRANT ACCESS TO PROTECTED ROUTE
-  req.user = currentUser;
-  res.locals.user = currentUser;
+  req.agent = currentAgent;
+  res.locals.agent = currentAgent;
   next();
 });

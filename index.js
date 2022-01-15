@@ -8,6 +8,7 @@ const ejs = require("ejs");
 const mongoose = require("mongoose");
 const viewRouter = require('./routes/viewRoutes');
 const userRouter = require('./routes/userRoutes');
+const agentRouter = require('./routes/agentRoutes');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cors = require("cors");
@@ -32,6 +33,7 @@ mongoose.connect(DB, {
 
 
 app.use('/api/users',userRouter);
+app.use('/api/agents',agentRouter);
 app.use('/',viewRouter);
 
 app.all('*', (req, res, next) => {

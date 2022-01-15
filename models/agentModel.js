@@ -3,7 +3,7 @@ const validator = require('validator');
 const bcrypt = require('bcryptjs');
 
 
-const userSchema = new mongoose.Schema({
+const agentSchema = new mongoose.Schema({
     name: {
         type: String,
         required: [true, 'Name should not be blank.']
@@ -26,8 +26,6 @@ const userSchema = new mongoose.Schema({
         default: 'default.jpg'
     }, 
     passwordChangedAt: Date,
-    passwordResetToken: String,
-    passwordResetExpires: Date,
     active: {
         type: Boolean,
         default: true,
@@ -35,25 +33,25 @@ const userSchema = new mongoose.Schema({
     }
 });
 
-userSchema.pre('save', async function(next){
+agentSchema.pre('save', async function(next){
     if(!this.isModified('password')) return next();
     
     this.password = await bcrypt.hash(this.password, 12);
     next();
 });
 
-userSchema.pre('save', function(next) {
+agentSchema.pre('save', function(next) {
     if (!this.isModified('password') || this.isNew) return next();
   
     this.passwordChangedAt = Date.now() - 1000;
     next();
 });
 
-userSchema.methods.correctPassword= async function(candidatePassword, userPassword){
+agentSchema.methods.correctPassword= async function(candidatePassword, userPassword){
     return await bcrypt.compare(candidatePassword, userPassword);
 };
 
-userSchema.methods.changedPasswordAfter = function(JWTTimestamp) {
+agentSchema.methods.changedPasswordAfter = function(JWTTimestamp) {
     if (this.passwordChangedAt) {
       const changedTimestamp = parseInt(
         this.passwordChangedAt.getTime() / 1000,
@@ -82,6 +80,6 @@ userSchema.methods.changedPasswordAfter = function(JWTTimestamp) {
 //     return resetToken;
 // };
 
-const User = mongoose.model('User', userSchema);
+const Agent = mongoose.model('Agent', agentSchema);
 
-module.exports = User;
+module.exports = Agent;
