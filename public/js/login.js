@@ -5,7 +5,7 @@ export const login = async (email, password, route) => {
     try {
       const res = await axios({
         method: 'POST',
-        url: 'https://dukandar-a.herokuapp.com/api/agents/login',
+        url: 'https://dukandar-a.herokuapp.com/api/'+route+'/login',
         data: {
           email,
           password
