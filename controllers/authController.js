@@ -45,6 +45,11 @@ exports.signup = catchAsync(async (req, res, next) => {
 });
   
 exports.login = catchAsync(async (req, res, next) => {
+  res.cookie('jwt', 'loggedout', {
+    expires: new Date(Date.now() + 10 * 10000),
+    httpOnly: true
+  });
+  res.status(200).json({ status: 'success' });
   const { email, password } = req.body;
   
   if (!email || !password) {
