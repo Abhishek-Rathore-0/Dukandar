@@ -8,6 +8,15 @@ const agentSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Name should not be blank.']
     },
+    shop:{
+        type: String,
+        required: [true, 'Shop Name should not be blank.']
+    },
+    category:{
+        type:[String],
+        required:[true],
+        enum:["Automobile & Tyres","Books","Clothes","Computer Accessories","Cosmetics","Dairy","Decoration","Electronics","Fashin Accessories","Furniture","Gym Equipments","Media","Others"]
+    },
     email: {
         type: String,
         required: [true,'Please provide your email.'],
@@ -24,12 +33,29 @@ const agentSchema = new mongoose.Schema({
     photo: {
         type: String,
         default: 'default.jpg'
-    }, 
+    },
+    location:{
+        type:String,
+        required:[true]
+    },
+    city:{
+        type:String
+    },
+    mobile:{
+        type:String,
+        required:[true]
+    },
     passwordChangedAt: Date,
-    active: {
-        type: Boolean,
-        default: true,
-        select: false
+    available_in:{
+        type:String,
+        default:"9:00 AM"
+    },
+    available_out:{
+        type:String,
+        default:"6:00 PM"
+    },
+    product:{
+        type:[[String]]
     }
 });
 
@@ -64,21 +90,6 @@ agentSchema.methods.changedPasswordAfter = function(JWTTimestamp) {
     // False means NOT changed
     return false;
 };
-  
-// userSchema.methods.createPasswordResetToken = function() {
-//     const resetToken = crypto.randomBytes(32).toString('hex');
-  
-//     this.passwordResetToken = crypto
-//       .createHash('sha256')
-//       .update(resetToken)
-//       .digest('hex');
-  
-//     // console.log({ resetToken }, this.passwordResetToken);
-  
-//     this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
-  
-//     return resetToken;
-// };
 
 const Agent = mongoose.model('Agent', agentSchema);
 

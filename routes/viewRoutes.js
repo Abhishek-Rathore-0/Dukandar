@@ -7,11 +7,12 @@ const router = express.Router();
 
 
 router.get("/", authController.isLoggedIn,viewsController.home);
-  
-router.get("/agent",authController1.isLoggedIn, viewsController.shopkeeper);
-
 router.get("/account",authController.protect, viewsController.account);
 
+router.get("/agent",authController1.isLoggedIn, viewsController.shopkeeper);
+router.get("/agent/signup",authController1.isLoggedIn, viewsController.signup);
+router.get("/agent/account", authController1.protect, viewsController.agentaccount);
+router.get("/agent/products", authController1.protect, viewsController.products)
   
 module.exports = router;
   
