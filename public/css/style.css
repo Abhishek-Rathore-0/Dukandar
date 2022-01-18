@@ -25,18 +25,21 @@
 #categories {
   width: 80%;
   margin: 10% auto;
+  display: flex;
 }
 
 #categories div {
   padding: 2%;
-
+  display: inline-block;
 }
 
 #popular-stores {
   width: 80%;
   margin: 0 auto;
+  display: flex;
 }
 
 #popular-stores div {
   padding: 2%;
+  display: inline-block;
 }

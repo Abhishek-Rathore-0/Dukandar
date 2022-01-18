@@ -12,6 +12,9 @@ router.get("/agent",authController1.isLoggedIn, viewsController.shopkeeper);
 
 router.get("/account",authController.protect, viewsController.account);
 
+router.get("/index", authController.isLoggedIn, (req,res) => {
+    res.render('index')
+});
   
 module.exports = router;
   
