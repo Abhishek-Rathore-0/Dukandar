@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+    <%- include('partials/head') %> 
+    <body style="background-color: white" class="mx-5">
+        <%- include('partials_agent/navbar') %>  
+
+        <div class="row align-items-center mt-5">   
+            <h2 class="heading-secondary ma-bt-md">Your account settings</h2>
+                        
+            <div class="col-sm-7">
+             `   <div class="user-view__content">
+                    <div class="user_view__form-container">
+                        <form class="form--updateAgent">
+                        <div class="px-4 py-3">
+                            <div class="mb-3 row">
+                                
+                                <div class="col-sm-5">
+                                    <label class="form-label label">Name</label>
+                                    <input type="text" class="form-control inp" required id="aname" name="Name" value="<%=agent.name%>">
+                                    <% console.log(agent.product[1][1]) %> 
+                                </div>
+                            
+                                <div class="col-sm-6">
+                                    <label class="form-label label">Email address</label>
+                                    <input type="email" disabled class="form-control inp" required id="aemail" name="Email" value="<%=agent.email%>">
+                                </div>
+
+                            </div>
+
+                            <div class="mb-3 mt-4 row">
+                                <div class="col-sm-5">
+                                    <% const cate=["Automobile & Tyres","Books","Clothes","Computer Accessories","Cosmetics","Dairy","Decoration","Electronics","Fashin Accessories","Furniture","Gym Equipments","Media","Others"] %> 
+                                    <label class="form-label" for="category">Select Category </label>
+                                    <select name="category" id="acategory" required class="form-control inp" multiple size="5"> 
+                                        
+                                        <% for (var i = 0; i < cate.length; i++) { %>
+                                            <% if(agent.category[0].includes(cate[i])) {%> 
+                                                <option value="<%=cate[i]%>" selected><%=cate[i]%></option>
+                                            <% }else{ %> 
+                                            <option value="<%=cate[i]%>"><%=cate[i]%></option>
+                            
+                                        <% }} %> 
+                                        
+                                    </select>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="form-label label mt-2">Shop Name</label>
+                                    <input type="text" class="form-control inp" required id="ashop" name="shop" value="<%=agent.shop%>">
+                                    <div class="mt-3">
+                                        <label class="form-label label mt-2">Mobile No</label>
+                                        <input type="text" class="form-control inp" required id="amobile" name="mobile" value="<%=agent.mobile%>">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <% let location = agent.location.split(',');%> 
+                            <% let add=location[0];let l=location.length; %> 
+                            <% for(let i=1; i<(l-3);i++) {%> 
+                            <% add=add+","+location[i]; }%> 
+                                
+                            <div class="col-sm-11 row">
+                                <label class="form-label label mt-2">Location</label>
+                                <div class="col-sm-5">
+                                    <input type="text" class="form-control inp" required id="alocation1" name="location" value="<%=add%>">
+                                </div>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control inp" required id="alocation2" name="location" value="<%=location[l-3].trim()%>">
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control inp" required id="alocation3" name="location" value="<%=location[l-2].trim()%>">
+                                </div>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control inp" required id="alocation4" name="location" value="<%=location[l-1].trim()%>">
+                                </div>
+                                
+                            </div>
+                            
+                            
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <img
+                      class="img-fluid"
+                      src="/image/agents/<%=agent.photo%> "
+                      style="max-width: 80%; height: auto"
+                    />
+                    <div class="mt-5">
+                        <label for="aphoto" class="mb-2"> Change Shop photo</label>
+                        <input type="file" accept="image/*" class="form-control inp" id="aphoto" name="aphoto">
+                    </div>
+                </div>
+                <div class="mt-5 text-center">
+                    <button class="col-sm-3 btn btn-outline-success">Change</button>
+                </div>
+                </form>
+            </div>
+        <script src="/js/bundle.js"></script>
+    </body>
+</html>

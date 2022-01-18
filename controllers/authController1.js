@@ -5,6 +5,7 @@ const Agent = require('./../models/agentModel');
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
 
+
 const signToken = id => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {
       expiresIn: process.env.JWT_EXPIRES_IN
@@ -35,12 +36,10 @@ const createSendToken = (agent, statusCode, req, res) => {
 };
 
 exports.signup = catchAsync(async (req, res, next) => {
-  const newAgent = await Agent.create({
-    name: req.body.name,
-    email: req.body.email,
-    password: req.body.password
-  });
-    
+
+  if (req.file) req.body.photo = req.file.filename;
+
+  const newAgent = await Agent.create(req.body);
   createSendToken(newAgent, 201, req, res);
 });
   
