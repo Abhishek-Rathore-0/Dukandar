@@ -1,5 +1,5 @@
 require("dotenv").config();
-const DB=process.env.DATABASE;
+const DB=process.env.DATABASE.replace('<password>',process.env.DBPASSWORD);
 
 const express = require("express");
 const app = express();
