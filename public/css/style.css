@@ -21,4 +21,22 @@
 .right:hover {
   color: #495057;
 }
-/* -------------- */
+
+#categories {
+  width: 80%;
+  margin: 10% auto;
+}
+
+#categories div {
+  padding: 2%;
+
+}
+
+#popular-stores {
+  width: 80%;
+  margin: 0 auto;
+}
+
+#popular-stores div {
+  padding: 2%;
+}
