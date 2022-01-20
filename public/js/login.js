@@ -1,7 +1,7 @@
 import axios from "axios";
 
-//url="http://localhost:3000/";
-url="https://dukandar-a.herokuapp.com/";
+//const url="http://localhost:3000/";
+const url="https://dukandar-a.herokuapp.com/";
 
 export const login = async (email, password, route) => {
     try {
