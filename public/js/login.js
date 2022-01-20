@@ -1,11 +1,13 @@
 import axios from "axios";
 
+//url="http://localhost:3000/";
+url="https://dukandar-a.herokuapp.com/";
 
 export const login = async (email, password, route) => {
     try {
       const res = await axios({
         method: 'POST',
-        url: process.env.API_PATH+'api/'+route+'/login',
+        url: url+'api/'+route+'/login',
         data: {
           email,
           password
@@ -31,7 +33,7 @@ export const login = async (email, password, route) => {
     try {
       const res = await axios({
         method: 'GET',
-        url: process.env.API_PATH+'api/users/logout'
+        url: url+'api/users/logout'
       });
       if ((res.data.status = 'success')) {
         window.setTimeout(() => {
@@ -48,7 +50,7 @@ export const signup = async (name, email, password, route) => {
   try {
     const res = await axios({
       method: 'POST',
-      url: process.env.API_PATH+'api/'+route+'/signup',
+      url: url+'api/'+route+'/signup',
       data: {
         name,
         email,
@@ -72,7 +74,7 @@ export const signup1 = async(data, route) =>{
        
     const res = await axios({
       method: 'POST',
-      url: process.env.API_PATH+'api/'+route+'/signup',
+      url: url+'api/'+route+'/signup',
       data
     });
     
@@ -92,7 +94,7 @@ export const updatea = async(data) =>{
        
     const res = await axios({
       method: 'PATCH',
-      url: process.env.API_PATH+'api/agents/update',
+      url: url+'api/agents/update',
       data
     });
     
