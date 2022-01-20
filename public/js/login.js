@@ -1,13 +1,10 @@
 import axios from "axios";
 
-//const url="http://localhost:3000/";
-const url="https://dukandar-a.herokuapp.com/";
-
 export const login = async (email, password, route) => {
     try {
       const res = await axios({
         method: 'POST',
-        url: url+'api/'+route+'/login',
+        url: 'api/'+route+'/login',
         data: {
           email,
           password
@@ -33,7 +30,7 @@ export const login = async (email, password, route) => {
     try {
       const res = await axios({
         method: 'GET',
-        url: url+'api/users/logout'
+        url: 'api/users/logout'
       });
       if ((res.data.status = 'success')) {
         window.setTimeout(() => {
@@ -50,7 +47,7 @@ export const signup = async (name, email, password, route) => {
   try {
     const res = await axios({
       method: 'POST',
-      url: url+'api/'+route+'/signup',
+      url: 'api/'+route+'/signup',
       data: {
         name,
         email,
@@ -74,7 +71,7 @@ export const signup1 = async(data, route) =>{
        
     const res = await axios({
       method: 'POST',
-      url: url+'api/'+route+'/signup',
+      url: 'api/'+route+'/signup',
       data
     });
     
@@ -94,7 +91,7 @@ export const updatea = async(data) =>{
        
     const res = await axios({
       method: 'PATCH',
-      url: url+'api/agents/update',
+      url: 'api/agents/update',
       data
     });
     

@@ -8774,9 +8774,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//const url="http://localhost:3000/";
-var url = "https://dukandar-a.herokuapp.com/";
-
 var login = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(email, password, route) {
     var res;
@@ -8788,7 +8785,7 @@ var login = /*#__PURE__*/function () {
             _context.next = 3;
             return (0, _axios.default)({
               method: 'POST',
-              url: url + 'api/' + route + '/login',
+              url: 'api/' + route + '/login',
               data: {
                 email: email,
                 password: password
@@ -8840,7 +8837,7 @@ var logout = /*#__PURE__*/function () {
             _context2.next = 3;
             return (0, _axios.default)({
               method: 'GET',
-              url: url + 'api/users/logout'
+              url: 'api/users/logout'
             });
 
           case 3:
@@ -8887,7 +8884,7 @@ var signup = /*#__PURE__*/function () {
             _context3.next = 3;
             return (0, _axios.default)({
               method: 'POST',
-              url: url + 'api/' + route + '/signup',
+              url: 'api/' + route + '/signup',
               data: {
                 name: name,
                 email: email,
@@ -8939,7 +8936,7 @@ var signup1 = /*#__PURE__*/function () {
             _context4.next = 3;
             return (0, _axios.default)({
               method: 'POST',
-              url: url + 'api/' + route + '/signup',
+              url: 'api/' + route + '/signup',
               data: data
             });
 
@@ -8987,7 +8984,7 @@ var updatea = /*#__PURE__*/function () {
             _context5.next = 3;
             return (0, _axios.default)({
               method: 'PATCH',
-              url: url + 'api/agents/update',
+              url: 'api/agents/update',
               data: data
             });
 
