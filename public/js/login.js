@@ -22,6 +22,7 @@ export const login = async (email, password, route) => {
         }, 1500);
       }
     } catch (err) {
+      console.log(err.response);
       alert(err.response.data.message);
     }
   };
@@ -62,7 +63,7 @@ export const signup = async (name, email, password, route) => {
       }, 150);
     }
   } catch (err) {
-    alert('error');
+    alert('error'+err.response.data.message);
   }
 }; 
 
@@ -82,7 +83,7 @@ export const signup1 = async(data, route) =>{
       }, 150);
     }
   } catch (err) {
-    alert('error'+err);
+    alert(err.response.data.message);
   }
 }
 
@@ -102,6 +103,6 @@ export const updatea = async(data) =>{
       }, 150);
     }
   } catch (err) {
-    alert('error'+err);
+    alert(err.response.data.message);
   }
 }
