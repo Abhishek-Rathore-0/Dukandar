@@ -16,7 +16,7 @@
                   </li>
                   
                   <li class="nav-item">
-                    <a class="nav-link <%=!agent?' disabled':''%>" href="/agent/products" <%-!agent? "tabindex='-1' aria-disabled='true'":""%>>Products</a>
+                    <a class="nav-link <%=!agent?' disabled':''%>" href="/agent-products" <%-!agent? "tabindex='-1' aria-disabled='true'":""%>>Products</a>
                   </li>
                   
                   <li class="nav-item">
@@ -24,7 +24,7 @@
                   </li>
                   
                   <li class="nav-item">
-                    <a class="nav-link <%=!agent?' disabled':''%>" href="/agent/account" <%-!agent? "tabindex='-1' aria-disabled='true'":""%>>Me</a>
+                    <a class="nav-link <%=!agent?' disabled':''%>" href="/agent-account" <%-!agent? "tabindex='-1' aria-disabled='true'":""%>>Me</a>
                   </li>
                   
 
@@ -32,7 +32,7 @@
                 <%if(!agent){ %> 
                   
                 <a class="btn btn-outline-success" style="margin-right: 10px;" aria-current="page" href="#login" data-bs-toggle="modal">Login</a>
-                <a class="btn btn-outline-success" href="/agent/signup">SignUp</a>
+                <a class="btn btn-outline-success" href="/agent-signup">SignUp</a>
                 
                 <% }else{ %> 
                   <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Hi, <%=agent.name %> </a>

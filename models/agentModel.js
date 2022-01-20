@@ -14,8 +14,7 @@ const agentSchema = new mongoose.Schema({
     },
     category:{
         type:[String],
-        required:[true],
-        enum:["Automobile & Tyres","Books","Clothes","Computer Accessories","Cosmetics","Dairy","Decoration","Electronics","Fashin Accessories","Furniture","Gym Equipments","Media","Others"]
+        required:[true]
     },
     email: {
         type: String,

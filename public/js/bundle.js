@@ -8984,7 +8984,7 @@ var updatea = /*#__PURE__*/function () {
             _context5.next = 3;
             return (0, _axios.default)({
               method: 'PATCH',
-              url: 'api/agent/update',
+              url: 'api/agents/update',
               data: data
             });
 
@@ -8998,15 +8998,16 @@ var updatea = /*#__PURE__*/function () {
               }, 150);
             }
 
-            _context5.next = 10;
+            _context5.next = 11;
             break;
 
           case 7:
             _context5.prev = 7;
             _context5.t0 = _context5["catch"](0);
+            console.log(_context5.t0.response);
             alert(_context5.t0.response.data.message);
 
-          case 10:
+          case 11:
           case "end":
             return _context5.stop();
         }

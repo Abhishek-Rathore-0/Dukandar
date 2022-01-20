@@ -92,7 +92,7 @@ export const updatea = async(data) =>{
        
     const res = await axios({
       method: 'PATCH',
-      url: 'api/agent/update',
+      url: 'api/agents/update',
       data
     });
     
@@ -103,6 +103,7 @@ export const updatea = async(data) =>{
       }, 150);
     }
   } catch (err) {
+    console.log(err.response);
     alert(err.response.data.message);
   }
 }
