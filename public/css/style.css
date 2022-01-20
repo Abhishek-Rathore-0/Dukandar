@@ -24,8 +24,13 @@
 
 #categories {
   width: 80%;
-  margin: 10% auto;
+  margin: 3% auto;
   display: flex;
+}
+
+#categories h1 {
+  text-align: center;
+  margin: auto;
 }
 
 #categories div {
@@ -33,15 +38,34 @@
   display: inline-block;
 }
 
+#categories div img {
+  width: 100%;
+  margin: 0 auto;
+}
+
+figcaption {
+  text-align: center;
+}
+
 #popular-stores {
   width: 80%;
-  margin: 0 auto;
+  margin: 3% auto;
   display: flex;
 }
 
 #popular-stores div {
   padding: 2%;
   display: inline-block;
+  text-align: center;
+}
+
+#popular-stores div img {
+  width: 100%;
+}
+
+#footer {
+  width: 80%;
+  margin: 0 auto;
 }
 
 .error {
