@@ -5,7 +5,7 @@ export const login = async (email, password, route) => {
     try {
       const res = await axios({
         method: 'POST',
-        url: 'http://localhost:3000/api/'+route+'/login',
+        url: process.env.API_PATH+'api/'+route+'/login',
         data: {
           email,
           password
@@ -31,7 +31,7 @@ export const login = async (email, password, route) => {
     try {
       const res = await axios({
         method: 'GET',
-        url: 'http://localhost:3000/api/users/logout'
+        url: process.env.API_PATH+'api/users/logout'
       });
       if ((res.data.status = 'success')) {
         window.setTimeout(() => {
@@ -48,7 +48,7 @@ export const signup = async (name, email, password, route) => {
   try {
     const res = await axios({
       method: 'POST',
-      url: 'http://localhost:3000/api/'+route+'/signup',
+      url: process.env.API_PATH+'api/'+route+'/signup',
       data: {
         name,
         email,
@@ -72,7 +72,7 @@ export const signup1 = async(data, route) =>{
        
     const res = await axios({
       method: 'POST',
-      url: 'http://localhost:3000/api/'+route+'/signup',
+      url: process.env.API_PATH+'api/'+route+'/signup',
       data
     });
     
@@ -92,7 +92,7 @@ export const updatea = async(data) =>{
        
     const res = await axios({
       method: 'PATCH',
-      url: 'http://localhost:3000/api/agents/update',
+      url: process.env.API_PATH+'api/agents/update',
       data
     });
     
