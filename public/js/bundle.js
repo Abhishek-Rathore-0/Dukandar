@@ -8984,7 +8984,7 @@ var updatea = /*#__PURE__*/function () {
             _context5.next = 3;
             return (0, _axios.default)({
               method: 'PATCH',
-              url: 'api/agents/update',
+              url: 'api/agent/update',
               data: data
             });
 
@@ -9428,7 +9428,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "13927" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "8576" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
