@@ -13,6 +13,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cors = require("cors");
 const AppError = require('./utils/appError');
+const globalErrorHandler = require('./controllers/errorController');
 
 
 app.set("view engine", "ejs");
@@ -39,6 +40,8 @@ app.use('/',viewRouter);
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
+
+app.use(globalErrorHandler);
 
 app.listen(process.env.PORT || 3000, () => {
   console.log("Listening on port 3000");

@@ -33,7 +33,7 @@ exports.uploadUserPhoto = upload.single('photo');
 exports.resizeUserPhoto = catchAsync(async (req, res, next) => {
   if (!req.file) return next();
 
-  req.file.filename = `agent-${req.body.name}-${Date.now()}.jpeg`;
+  req.file.filename = `agent-${req.body.name}.jpeg`;
   
   const a=await sharp(req.file.buffer)
     .toFormat('jpeg')

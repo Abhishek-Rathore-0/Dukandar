@@ -8785,7 +8785,7 @@ var login = /*#__PURE__*/function () {
             _context.next = 3;
             return (0, _axios.default)({
               method: 'POST',
-              url: 'http://localhost:3000/api/' + route + '/login',
+              url: 'api/' + route + '/login',
               data: {
                 email: email,
                 password: password
@@ -8802,15 +8802,16 @@ var login = /*#__PURE__*/function () {
               }, 1500);
             }
 
-            _context.next = 10;
+            _context.next = 11;
             break;
 
           case 7:
             _context.prev = 7;
             _context.t0 = _context["catch"](0);
+            console.log(_context.t0.response);
             alert(_context.t0.response.data.message);
 
-          case 10:
+          case 11:
           case "end":
             return _context.stop();
         }
@@ -8836,7 +8837,7 @@ var logout = /*#__PURE__*/function () {
             _context2.next = 3;
             return (0, _axios.default)({
               method: 'GET',
-              url: 'http://localhost:3000/api/users/logout'
+              url: 'api/users/logout'
             });
 
           case 3:
@@ -8883,7 +8884,7 @@ var signup = /*#__PURE__*/function () {
             _context3.next = 3;
             return (0, _axios.default)({
               method: 'POST',
-              url: 'http://localhost:3000/api/' + route + '/signup',
+              url: 'api/' + route + '/signup',
               data: {
                 name: name,
                 email: email,
@@ -8907,7 +8908,7 @@ var signup = /*#__PURE__*/function () {
           case 7:
             _context3.prev = 7;
             _context3.t0 = _context3["catch"](0);
-            alert('error');
+            alert('error' + _context3.t0.response.data.message);
 
           case 10:
           case "end":
@@ -8935,7 +8936,7 @@ var signup1 = /*#__PURE__*/function () {
             _context4.next = 3;
             return (0, _axios.default)({
               method: 'POST',
-              url: 'http://localhost:3000/api/' + route + '/signup',
+              url: 'api/' + route + '/signup',
               data: data
             });
 
@@ -8955,7 +8956,7 @@ var signup1 = /*#__PURE__*/function () {
           case 7:
             _context4.prev = 7;
             _context4.t0 = _context4["catch"](0);
-            alert('error' + _context4.t0);
+            alert(_context4.t0.response.data.message);
 
           case 10:
           case "end":
@@ -8983,7 +8984,7 @@ var updatea = /*#__PURE__*/function () {
             _context5.next = 3;
             return (0, _axios.default)({
               method: 'PATCH',
-              url: 'http://localhost:3000/api/agents/update',
+              url: 'api/agents/update',
               data: data
             });
 
@@ -8997,15 +8998,16 @@ var updatea = /*#__PURE__*/function () {
               }, 150);
             }
 
-            _context5.next = 10;
+            _context5.next = 11;
             break;
 
           case 7:
             _context5.prev = 7;
             _context5.t0 = _context5["catch"](0);
-            alert('error' + _context5.t0);
+            console.log(_context5.t0.response);
+            alert(_context5.t0.response.data.message);
 
-          case 10:
+          case 11:
           case "end":
             return _context5.stop();
         }
@@ -9427,7 +9429,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "10344" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "8576" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

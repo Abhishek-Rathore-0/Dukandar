@@ -5,7 +5,7 @@ export const login = async (email, password, route) => {
     try {
       const res = await axios({
         method: 'POST',
-        url: 'http://localhost:3000/api/'+route+'/login',
+        url: 'api/'+route+'/login',
         data: {
           email,
           password
@@ -22,6 +22,7 @@ export const login = async (email, password, route) => {
         }, 1500);
       }
     } catch (err) {
+      console.log(err.response);
       alert(err.response.data.message);
     }
   };
@@ -30,7 +31,7 @@ export const login = async (email, password, route) => {
     try {
       const res = await axios({
         method: 'GET',
-        url: 'http://localhost:3000/api/users/logout'
+        url: 'api/users/logout'
       });
       if ((res.data.status = 'success')) {
         window.setTimeout(() => {
@@ -47,7 +48,7 @@ export const signup = async (name, email, password, route) => {
   try {
     const res = await axios({
       method: 'POST',
-      url: 'http://localhost:3000/api/'+route+'/signup',
+      url: 'api/'+route+'/signup',
       data: {
         name,
         email,
@@ -62,7 +63,7 @@ export const signup = async (name, email, password, route) => {
       }, 150);
     }
   } catch (err) {
-    alert('error');
+    alert('error'+err.response.data.message);
   }
 }; 
 
@@ -71,7 +72,7 @@ export const signup1 = async(data, route) =>{
        
     const res = await axios({
       method: 'POST',
-      url: 'http://localhost:3000/api/'+route+'/signup',
+      url: 'api/'+route+'/signup',
       data
     });
     
@@ -82,7 +83,7 @@ export const signup1 = async(data, route) =>{
       }, 150);
     }
   } catch (err) {
-    alert('error'+err);
+    alert(err.response.data.message);
   }
 }
 
@@ -91,7 +92,7 @@ export const updatea = async(data) =>{
        
     const res = await axios({
       method: 'PATCH',
-      url: 'http://localhost:3000/api/agents/update',
+      url: 'api/agents/update',
       data
     });
     
@@ -102,6 +103,7 @@ export const updatea = async(data) =>{
       }, 150);
     }
   } catch (err) {
-    alert('error'+err);
+    console.log(err.response);
+    alert(err.response.data.message);
   }
 }
