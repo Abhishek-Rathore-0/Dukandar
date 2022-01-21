@@ -1,9 +1,194 @@
 <!DOCTYPE html>
 <%- include('partials/head') %> 
-<body style="background-color: white" class="mx-5">
+<body style="background-color:white" class="mx-5">
     <%- include('partials_agent/navbar') %>  
 
+    <div class="navbar navbar-expand-lg navbar-light bg-none">
+        <div class="container col-lg-8 col-md-12 col-sm-12">
+          <table class="table text-center table-dark table-hover" id="userData">
+            <thead>
+              <tr>
+                <th colspan="1" style="text-align: start">Show</th>
+                <th colspan="7" style="text-align: start">
+                  <select
+                    name="showfilter"
+                    style="
+                      background-color: #343a40;
+                      color: white;
+                      border: none;
+                      outline: none;"
+                    onchange="showitem();"
+                    id="showfilter"
+                  >
+                    <option value="all" selected>All</option>
+                    <option value="tshirt">T-Shirt</option>
+                    <option value="hoodie">Hoodie</option>
+                    <option value="cap">Cap</option>
+                    <option value="mask">Mask</option>
+                    <option value="brooch">Brooch</option>
+                  </select>
+                </th>
+              </tr>
+              
+      
+                <tr style="height: 30px; vertical-align: middle">
+                    <th scope="col">#</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Product Image</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Product Description</th>
+                    <th scope="col">Product Size</th>
+                    <th scope="col">Unit Price</th>
+                    <th scope="col">Update</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% let i=1; %> 
+                <% for(let prod of prodlist){ %> 
+                <tr style="vertical-align: middle;" class="<%=prod.pCategory %> hide" >
+                  <th scope="row"><span class="<%='no'+prod.pCategory%> "><%=i %> </span></th>
+                  <% i++; %> 
+                  <td style="text-transform: capitalize;"><%=prod.pCategory %> </td>
+                  <td>
+                    <img
+                      src="<%=prod.pImage %>" 
+                      alt="Product Image"
+                      style="width: 8vmin; border-radius: 1vmin"
+                    />
+                  </td>
+                  <td><%=prod.pName %></td>
+                  <td><%=prod.pDescription %></td>
+                  <% if(["tshirt", "hoodie"].includes(prod.pCategory)) {%> 
+                    <td>S/M/L/XL/XXL</td>
+                  <% }else{ %>
+                    <td>-</td>
+                  <% } %>  
+                  <td>₹<%=prod.pPrice %></td>
+                    <td>
+                      <button type="button" data-bs-toggle="modal" onclick="showproduct('<%=prod._id%>','<%=prod.pName%>','<%=prod.pDescription%>','<%=prod.pPrice%>','<%=prod.pCategory%>');" data-bs-target="#updateProduct" class="w-100 mt-1.7 btn btn-success btn-sm">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                    </td>
+                </tr>
+                <% } %> 
+              </tbody>
+            </table>
+          </div>   
+        </div>
+      
 
 
+
+
+    <input
+      type="button"
+      class="btn btn-success"
+      value="Add Product"
+      data-bs-toggle="modal" data-bs-target="#addProduct" 
+    />
+
+
+    <section class="addProduct">
+        <div class="modal fade" id="addProduct" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1" >
+            <div class="modal-dialog modal-dialog-centered" style="max-width: 600px;">
+              <div class="modal-content" style="border-radius: 20px;">
+                <div class="modal-header" style="border-radius: 20px; background-color: #eee;">
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" >
+                  <div class="container">
+                    <div class="row d-flex justify-content-center align-items-center">
+                      <div class="col">
+                        <div class="card shadow-3 border-0">
+                          <div class="row g-0 d-flex justify-content-between">
+                            <div class="col-xl-12">
+                              <div class="card-body p-md-1 text-black addressInputs">
+                                <h3 class="mb-4 text-uppercase text-center" style="letter-spacing: 1.4vmin;">Add Product</h3>
+                  
+                                <div class="row">
+                                  <div class="col-md-12 mb-2">
+      
+                                    <form class="addProduct">
+                                    
+                                    <div class="form-outline">
+                                      <input type="text" id="name" required name="newName" class="form-control form-control-md" />
+                                      <label class="form-label" for="productName">Product Name<span>*</span></label>
+                                    </div>
+                                  </div>
+                                </div>
+                  
+                                <div class="form-outline mb-2">
+                                  <textarea type="text" id="description" required name="newDesc" style="resize: none; box-shadow: none;" class="form-control form-control-md"> </textarea>
+                                  <label class="form-label" for="newDesc">Product Description <span>*</span></label>
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-12 mb-2">
+                                    <div class="form-outline mb-2">
+                                      <input type="text" id="newPrice" oninput="checknum('newPrice');" required name="newPrice" class="form-control form-control-md" />
+                                      <label class="form-label" for="newPrice">Unit Price<span>*</span></label>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-12 mb-2">
+                                    <div class="form-outline mb-2">
+                                      <input type="file" id="newImage" required name="newImage" oninput="checkimg('newImage');"  class="form-control form-control-md" />
+                                      <label class="form-label" for="neImage">Image<span>*</span></label>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-12 mb-2">
+                                    <div class="form-outline mb-2">
+                                        <select
+                                        name="newCategory"
+                                        style="
+                                          color: #343a40;
+                                          border: 1px solid #ccc;
+                                          outline: none;
+                                          width: 100%;
+                                          height: 05vmin;
+                                          padding-left: 20px;
+                                        "
+                                        id="newCategory"
+                                      >
+                                        <option value="category" selected disabled>Select Category</option>
+                                        <option value="tshirt">T-Shirt</option>
+                                        <option value="hoodie">Hoodie</option>
+                                        <option value="cap">Cap</option>
+                                        <option value="mask">Mask</option>
+                                        <option value="brooch">Brooch</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+    
+                                <!-- <div class="row">
+                                    <div class="col-md-12 mb-2">
+                                      <div class="form-outline mb-2" class="checkbox">
+                                        <label for="inclSize"><input type="checkbox" name="inclSize" id="inclSize"> Include Sizes</label>  
+                                      </div>
+                                    </div>
+                                  </div> -->
+                  
+                                <div class="d-flex justify-content-end pt-3">
+                                  <button type="submit" class="btn btn-success btn-lg ms-2"
+                                    style="background-color: #343a40">Add Product</button>
+                                </div>
+                              </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+             
+              </div>
+            </div>
+          </div>  
+      </section>
+    
 
 </body>

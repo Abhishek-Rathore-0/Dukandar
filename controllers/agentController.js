@@ -35,7 +35,7 @@ exports.resizeUserPhoto = catchAsync(async (req, res, next) => {
 
   req.file.filename = `agent-${req.body.name}.jpeg`;
   
-  const a=await sharp(req.file.buffer)
+  await sharp(req.file.buffer)
     .toFormat('jpeg')
     .jpeg({ quality: 90 })
     .toFile(`public/image/agents/${req.file.filename}`);
