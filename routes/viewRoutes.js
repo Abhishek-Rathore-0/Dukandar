@@ -9,9 +9,7 @@ const router = express.Router();
 router.get("/", authController.isLoggedIn,viewsController.home);
 router.get("/account",authController.protect, viewsController.account);
 
-router.get("/index", authController.isLoggedIn, (req,res) => {
-    res.render('index')
-});
+router.get("/index", authController.isLoggedIn,viewsController.index);
 
 router.get("/agent",authController1.isLoggedIn, viewsController.shopkeeper);
 router.get("/agent-signup",authController1.isLoggedIn, viewsController.signup);
