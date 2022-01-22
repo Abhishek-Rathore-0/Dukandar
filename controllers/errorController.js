@@ -47,7 +47,7 @@ const sendError = (err, req, res) => {
   }
   // B) Programming or other unknown error: don't leak error details
   
-  console.error('ERROR 💥', err);
+  console.error('ERROR ', err);
   
   return res.status(err.statusCode).render('error', {
     title: 'Something went wrong!',

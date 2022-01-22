@@ -63,7 +63,7 @@ export const signup = async (name, email, password, route) => {
       }, 150);
     }
   } catch (err) {
-    alert('error'+err.response.data.message);
+    alert(err.response.data.message);
   }
 }; 
 

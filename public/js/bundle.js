@@ -8908,7 +8908,7 @@ var signup = /*#__PURE__*/function () {
           case 7:
             _context3.prev = 7;
             _context3.t0 = _context3["catch"](0);
-            alert('error' + _context3.t0.response.data.message);
+            alert(_context3.t0.response.data.message);
 
           case 10:
           case "end":
