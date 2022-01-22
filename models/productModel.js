@@ -16,7 +16,7 @@ const productSchema = new mongoose.Schema({
     images:{
         type:[String]
     },
-    rs:{
+    price:{
         type:Number,
         required: [true, 'Price should not be given.']
     },

@@ -7,65 +7,33 @@
         <div class="container col-lg-8 col-md-12 col-sm-12">
           <table class="table text-center table-dark table-hover" id="userData">
             <thead>
-              <tr>
-                <th colspan="1" style="text-align: start">Show</th>
-                <th colspan="7" style="text-align: start">
-                  <select
-                    name="showfilter"
-                    style="
-                      background-color: #343a40;
-                      color: white;
-                      border: none;
-                      outline: none;"
-                    onchange="showitem();"
-                    id="showfilter"
-                  >
-                    <option value="all" selected>All</option>
-                    <option value="tshirt">T-Shirt</option>
-                    <option value="hoodie">Hoodie</option>
-                    <option value="cap">Cap</option>
-                    <option value="mask">Mask</option>
-                    <option value="brooch">Brooch</option>
-                  </select>
-                </th>
-              </tr>
               
       
                 <tr style="height: 30px; vertical-align: middle">
                     <th scope="col">#</th>
                     <th scope="col">Category</th>
-                    <th scope="col">Product Image</th>
                     <th scope="col">Product Name</th>
                     <th scope="col">Product Description</th>
-                    <th scope="col">Product Size</th>
                     <th scope="col">Unit Price</th>
+                    <th scope="col">Quantity</th>
                     <th scope="col">Update</th>
                 </tr>
             </thead>
             <tbody>
                 <% let i=1; %> 
-                <% for(let prod of prodlist){ %> 
-                <tr style="vertical-align: middle;" class="<%=prod.pCategory %> hide" >
-                  <th scope="row"><span class="<%='no'+prod.pCategory%> "><%=i %> </span></th>
+                <% for(let product of Products){ %> 
+                  <th scope="row"><span class="no"><%=i %> </span></th>
                   <% i++; %> 
-                  <td style="text-transform: capitalize;"><%=prod.pCategory %> </td>
-                  <td>
-                    <img
-                      src="<%=prod.pImage %>" 
-                      alt="Product Image"
-                      style="width: 8vmin; border-radius: 1vmin"
-                    />
-                  </td>
-                  <td><%=prod.pName %></td>
-                  <td><%=prod.pDescription %></td>
-                  <% if(["tshirt", "hoodie"].includes(prod.pCategory)) {%> 
-                    <td>S/M/L/XL/XXL</td>
-                  <% }else{ %>
-                    <td>-</td>
-                  <% } %>  
-                  <td>₹<%=prod.pPrice %></td>
+                  <td style="text-transform: capitalize;"><%=product.category %> </td>
+                  
+                  <td><%=product.name %></td>
+                  <td><%=product.description %></td>
+                  
+                  <td>₹<%=product.price %></td>
+                  <td><%=product.quantity %></td>
+                  
                     <td>
-                      <button type="button" data-bs-toggle="modal" onclick="showproduct('<%=prod._id%>','<%=prod.pName%>','<%=prod.pDescription%>','<%=prod.pPrice%>','<%=prod.pCategory%>');" data-bs-target="#updateProduct" class="w-100 mt-1.7 btn btn-success btn-sm">
+                      <button type="button" class="w-100 mt-1.7 btn btn-success btn-sm">
                         <i class="fas fa-edit"></i>
                       </button>
                     </td>
