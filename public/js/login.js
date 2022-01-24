@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import {showAlert} from './alert';
 
 export const login = async (email, password, route) => {
     try {
@@ -13,17 +13,16 @@ export const login = async (email, password, route) => {
       });
   
       if (res.data.status === 'success') {
-        alert("Login successful");
+        showAlert('success', 'Logged in successfully!');
         window.setTimeout(() => {
           if(route=="agents")
             location.assign('/agent');
           else
             location.assign('/');
-        }, 1500);
+        }, 1200);
       }
     } catch (err) {
-      console.log(err.response);
-      alert(err.response.data.message);
+      showAlert('error', err.response.data.message);
     }
   };
 
@@ -36,11 +35,10 @@ export const login = async (email, password, route) => {
       if ((res.data.status = 'success')) {
         window.setTimeout(() => {
           location.assign('/');
-        }, 1500);
+        }, 100);
       }
     } catch (err) {
-      console.log(err.response);
-      alert('error');
+      showAlert('error', err.response.data.message);
     }
   };
   
@@ -57,13 +55,13 @@ export const signup = async (name, email, password, route) => {
     });
 
     if (res.data.status === 'success') {
-      alert('Craeted successful.');
+      showAlert('success', 'Craeted successful.');
       window.setTimeout(() => {
         location.assign('/');
-      }, 150);
+      }, 1200);
     }
   } catch (err) {
-    alert(err.response.data.message);
+    showAlert('error', err.response.data.message);
   }
 }; 
 
@@ -77,13 +75,13 @@ export const signup1 = async(data, route) =>{
     });
     
     if (res.data.status === 'success') {
-      alert('Craeted successful.');
+      showAlert('success', 'Craeted successful.');
       window.setTimeout(() => {
         location.assign('/agent');
-      }, 150);
+      }, 1200);
     }
   } catch (err) {
-    alert(err.response.data.message);
+    showAlert('error', err.response.data.message);
   }
 }
 
@@ -96,14 +94,13 @@ export const updatea = async(data) =>{
       data
     });
     
-    if (res.data.status === 'success') {
-      alert('Changed successful.');
+    if (res.data.status === 'success') {  
+      showAlert('success', 'Changed successful.');
       window.setTimeout(() => {
-        location.assign('/agent');
-      }, 150);
+        location.assign('/agent-account');
+      }, 1200);
     }
   } catch (err) {
-    console.log(err.response);
-    alert(err.response.data.message);
+    showAlert('error', err.response.data.message);
   }
 }

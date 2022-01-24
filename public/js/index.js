@@ -1,5 +1,7 @@
 import '@babel/polyfill';
 import {login,logout,signup,signup1,updatea} from './login';
+import {showAlert} from './alert';
+
 
 const loginform = document.querySelector('.form');
 const loginform1 = document.querySelector('.form1');
