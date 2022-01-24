@@ -1,4 +1,4 @@
-const Product = require('../models/productModel');
+const ProductModel = require('../models/productModel');
 
 
 exports.home = async(req, res, next) => { 
@@ -37,10 +37,17 @@ exports.agentaccount = async(req, res, next) =>{
 }
 
 exports.products = async(req, res, next) =>{
-    const Products = await Product.find();
+    const Products = await ProductModel.find();
 
     res.status(200).render('products',{
         title: 'Products',
         Products
+      });
+}
+
+exports.addproduct = async(req, res, next) =>{
+    
+    res.status(200).render('addproduct',{
+        title: 'Products',
       });
 }

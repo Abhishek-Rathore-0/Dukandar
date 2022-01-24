@@ -44,10 +44,8 @@ exports.resizeProductImages = catchAsync(async (req, res, next) => {
   
 
 exports.add = catchAsync(async (req, res, next)=>{
-
-    const newProduct = await Product.create(req.body);
+  const newProduct = await Product.create(req.body);
       
-    console.log("addin");
     res.status(200).json({
         status: 'success',
         data: {

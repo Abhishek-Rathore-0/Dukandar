@@ -22,8 +22,8 @@
                 </tr>
             </thead>
             <tbody>
-                <% let i=1; %> 
-                <% for(let product of Products){ %> 
+              <% let i=1; %> 
+              <% for(let product of Products){ %> 
                   <th scope="row"><span class="no"><%=i %> </span></th>
                   <% i++; %> 
                   <td style="text-transform: capitalize;"><%=product.category %> </td>
@@ -36,7 +36,7 @@
                   <td><%=product.quantity %></td>
                   
                     <td>
-                      <button type="button" class="w-100 mt-1.7 btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#updateProduct">
+                      <button type="button" class="w-100 mt-1.7 btn btn-success btn-sm">
                         <i class="fas fa-edit"></i>
                       </button>
                     </td>
@@ -46,34 +46,12 @@
             </table>
           </div>   
         </div>
-      
-
-
-
-
+    
     <input
       type="button"
       class="btn btn-success"
       value="Add Product"
-      data-bs-toggle="modal" data-bs-target="#addProduct" 
-    />
-
-
-    <section class="updateProduct">
-      <div class="modal fade" id="updateProduct" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1" >
-          <div class="modal-dialog modal-dialog-centered" style="max-width: 600px;">
-            <div class="modal-content" style="border-radius: 20px;">
-              <div class="modal-header" style="border-radius: 20px; background-color: #eee;">
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body" >
-                  
-              </div>
-             
-            </div>
-          </div>
-      </div>  
-    </section>
-    
+      onclick="location.href='/add-product'"
+    />  
 
 </body>
