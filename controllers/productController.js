@@ -53,3 +53,28 @@ exports.add = catchAsync(async (req, res, next)=>{
         }
       });
 });
+
+const filterObj = (obj, ...allowedFields) => {
+  const newObj = {};
+  Object.keys(obj).forEach(el => {
+    if (allowedFields.includes(el)) newObj[el] = obj[el];
+  });
+  return newObj;
+};
+
+exports.update = catchAsync(async(req, res, next) => {
+  const filteredBody = filterObj(req.body, 'name', 'description', 'category', 'price', 'quantity', 'images');
+  
+  //Update product document
+  const updatedProduct = await Product.findByIdAndUpdate(req.body.id, filteredBody, {
+    new: true,
+    runValidators: true
+  });
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      user: updatedProduct
+    }
+  });
+});

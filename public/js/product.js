@@ -19,3 +19,22 @@ export const addProduct = async (data) => {
         showAlert('error', err.response.data.message);
       }
 }
+
+export const updateProduct = async(data) =>{
+  try {
+    const res = await axios({
+      method: 'PATCH',
+      url: 'api/agents/product',
+      data
+    });
+    
+    if (res.data.status === 'success') {  
+      showAlert('success', 'Update Successfully');
+      window.setTimeout(() => {
+        location.assign('/agent-products');
+      }, 1200);
+    }
+  } catch (err) {
+    showAlert('error', err.response.data.message);
+  }
+}

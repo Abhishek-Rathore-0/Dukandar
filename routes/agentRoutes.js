@@ -11,6 +11,7 @@ router.get('/logout', authController1.logout);
 router.patch('/update', authController1.protect, agentController.uploadUserPhoto, agentController.resizeUserPhoto, agentController.update);
 
 router.post('/product', authController1.protect, productController.uploadProductImages, productController.resizeProductImages, productController.add);
+router.patch('/product', authController1.protect, productController.uploadProductImages, productController.resizeProductImages, productController.update);
 
 
 module.exports = router;

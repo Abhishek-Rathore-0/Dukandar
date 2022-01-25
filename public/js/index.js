@@ -1,7 +1,7 @@
 import '@babel/polyfill';
 import {login,logout,signup,signup1,updatea} from './login';
 import {showAlert} from './alert';
-import {addProduct} from './product';
+import {addProduct,updateProduct} from './product';
 
 const loginform = document.querySelector('.form');
 const loginform1 = document.querySelector('.form1');
@@ -10,18 +10,14 @@ const signinform1 = document.querySelector('.form-sign1');
 const logOutBtn = document.querySelector('.logout-btn');
 const aupdate = document.querySelector('.form--updateAgent');
 const addp = document.querySelector('.form--addproduct');
+const updatep = document.querySelector('.form--updateproduct');
 
-function showproduct(pid){
-    console.log(pid);
-    showAlert("success","Id:");
-}
 
 if(loginform)
     loginform.addEventListener('submit', e=>{
         e.preventDefault();
         const email=document.getElementById('email').value;
         const password=document.getElementById('password').value;
-        showproduct("helo");
         login(email,password,"users");
     });
     
@@ -126,4 +122,21 @@ if(addp)
             console.log(file.name);
         });
         addProduct(form);
-})
+    })
+
+if(updatep)
+    updatep.addEventListener('submit',e =>{
+        e.preventDefault();
+        
+        const form = new FormData();
+        form.append('name', document.getElementById('name').value);
+        form.append('description', document.getElementById('description').value);
+        form.append('price', document.getElementById('price').value);
+        form.append('quantity', document.getElementById('quantity').value);
+        form.append('category', document.getElementById('category').value);
+        form.append('id',document.getElementById('pid').value);
+        Array.prototype.forEach.call(document.getElementById('photos').files, function(file) {
+            form.append('images', file);
+        });
+        updateProduct(form);
+    })
