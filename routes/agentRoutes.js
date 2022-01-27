@@ -10,8 +10,9 @@ router.post('/login', authController1.login);
 router.get('/logout', authController1.logout);
 router.patch('/update', authController1.protect, agentController.uploadUserPhoto, agentController.resizeUserPhoto, agentController.update);
 
+router.get('/product', productController.getAll);
 router.post('/product', authController1.protect, productController.uploadProductImages, productController.resizeProductImages, productController.add);
 router.patch('/product', authController1.protect, productController.uploadProductImages, productController.resizeProductImages, productController.update);
-
+router.delete('/product', authController1.protect, productController.delete);
 
 module.exports = router;

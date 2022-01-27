@@ -38,3 +38,23 @@ export const updateProduct = async(data) =>{
     showAlert('error', err.response.data.message);
   }
 }
+
+export const sorting = async(field) =>{
+  try {
+    // const res = await axios({
+    //   method: 'GET',
+    //   url: 'api/agents/product?sort='+field,
+    //   data:field
+    // });
+    
+    // if (res.data.status === 'success') {  
+    //   showAlert('success', 'Update Successfully');
+    //   console.log(res);
+      window.setTimeout(() => {
+        location.assign('/agent-products?sort='+field);
+      }, 100);
+    // }
+  } catch (err) {
+    showAlert('error', err);
+  }
+}

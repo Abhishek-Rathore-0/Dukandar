@@ -1,7 +1,7 @@
 import '@babel/polyfill';
 import {login,logout,signup,signup1,updatea} from './login';
 import {showAlert} from './alert';
-import {addProduct,updateProduct} from './product';
+import {addProduct,updateProduct,sorting} from './product';
 
 const loginform = document.querySelector('.form');
 const loginform1 = document.querySelector('.form1');
@@ -11,7 +11,12 @@ const logOutBtn = document.querySelector('.logout-btn');
 const aupdate = document.querySelector('.form--updateAgent');
 const addp = document.querySelector('.form--addproduct');
 const updatep = document.querySelector('.form--updateproduct');
+const sort = document.getElementById('sort1');
 
+sort.addEventListener('change', e=>{
+    const field = sort.value;
+    sorting(field);
+})
 
 if(loginform)
     loginform.addEventListener('submit', e=>{

@@ -37,11 +37,9 @@ exports.agentaccount = async(req, res, next) =>{
 }
 
 exports.products = async(req, res, next) =>{
-    const Products = await ProductModel.find();
-
+    
     res.status(200).render('products',{
-        title: 'Products',
-        Products
+        title: 'Products'
       });
 }
 

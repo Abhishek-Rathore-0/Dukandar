@@ -9051,7 +9051,7 @@ exports.updatea = updatea;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.updateProduct = exports.addProduct = void 0;
+exports.updateProduct = exports.sorting = exports.addProduct = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -9158,6 +9158,43 @@ var updateProduct = /*#__PURE__*/function () {
 }();
 
 exports.updateProduct = updateProduct;
+
+var sorting = /*#__PURE__*/function () {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(field) {
+    return regeneratorRuntime.wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            try {
+              // const res = await axios({
+              //   method: 'GET',
+              //   url: 'api/agents/product?sort='+field,
+              //   data:field
+              // });
+              // if (res.data.status === 'success') {  
+              //   showAlert('success', 'Update Successfully');
+              //   console.log(res);
+              window.setTimeout(function () {
+                location.assign('/agent-products?sort=' + field);
+              }, 100); // }
+            } catch (err) {
+              (0, _alert.showAlert)('error', err);
+            }
+
+          case 1:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3);
+  }));
+
+  return function sorting(_x3) {
+    return _ref3.apply(this, arguments);
+  };
+}();
+
+exports.sorting = sorting;
 },{"axios":"../../node_modules/axios/index.js","./alert":"alert.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
@@ -9445,6 +9482,11 @@ var logOutBtn = document.querySelector('.logout-btn');
 var aupdate = document.querySelector('.form--updateAgent');
 var addp = document.querySelector('.form--addproduct');
 var updatep = document.querySelector('.form--updateproduct');
+var sort = document.getElementById('sort1');
+sort.addEventListener('change', function (e) {
+  var field = sort.value;
+  (0, _product.sorting)(field);
+});
 if (loginform) loginform.addEventListener('submit', function (e) {
   e.preventDefault();
   var email = document.getElementById('email').value;
@@ -9600,7 +9642,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "12649" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "2658" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

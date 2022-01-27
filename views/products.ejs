@@ -7,7 +7,19 @@
         <div class="container col-lg-9 col-md-12 col-sm-12">
           <table class="table text-center table-dark table-hover" id="userData">
             <thead>
-              
+              <tr>
+                <th>
+                  sort
+                </th>
+                <th>
+                  <select name="sort" id="sort1" required class="inp"> 
+                    <option value="name">Name</option>
+                    <option value="price">Price</option>
+                    <option value="quantity">Quantity</option>
+                            
+                </select>
+                </th>
+              </tr>
       
                 <tr style="height: 30px; vertical-align: middle">
                     <th scope="col">#</th>
@@ -122,15 +134,15 @@
   </footer>   
        
   <script>
-    
-function fill(pid, pname, pdes, pprice, pquantity, pcategory){
-    // console.log(pid);
-    document.getElementById("pid").value=pid;
-    document.getElementById("name").value=pname;
-    document.getElementById("description").value=pdes;
-    document.getElementById("category").value=pcategory;
-    document.getElementById("price").value=pprice;
-    document.getElementById("quantity").value=pquantity;
-}
+      
+    function fill(pid, pname, pdes, pprice, pquantity, pcategory){
+      // console.log(pid);
+      document.getElementById("pid").value=pid;
+      document.getElementById("name").value=pname;
+      document.getElementById("description").value=pdes;
+      document.getElementById("category").value=pcategory;
+      document.getElementById("price").value=pprice;
+      document.getElementById("quantity").value=pquantity;
+    }
   </script>
 </body>
