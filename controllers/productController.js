@@ -95,7 +95,6 @@ exports.delete = catchAsync(async(req,res,next) => {
 
 exports.getAll = catchAsync(async(req, res, next) =>{
   
-
     const features = new APIFeatures(Product.find(), req.query)
       .filter()
       .sort()
@@ -115,7 +114,9 @@ exports.getAll = catchAsync(async(req, res, next) =>{
         }
       });
     }
-    else
+    else{
       res.locals.Products = doc;
+      res.locals.query = req.query;
+    }
     next();
 })

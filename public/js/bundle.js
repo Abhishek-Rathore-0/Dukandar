@@ -9166,17 +9166,9 @@ var sorting = /*#__PURE__*/function () {
         switch (_context3.prev = _context3.next) {
           case 0:
             try {
-              // const res = await axios({
-              //   method: 'GET',
-              //   url: 'api/agents/product?sort='+field,
-              //   data:field
-              // });
-              // if (res.data.status === 'success') {  
-              //   showAlert('success', 'Update Successfully');
-              //   console.log(res);
               window.setTimeout(function () {
                 location.assign('/agent-products?sort=' + field);
-              }, 100); // }
+              }, 100);
             } catch (err) {
               (0, _alert.showAlert)('error', err);
             }
@@ -9483,7 +9475,7 @@ var aupdate = document.querySelector('.form--updateAgent');
 var addp = document.querySelector('.form--addproduct');
 var updatep = document.querySelector('.form--updateproduct');
 var sort = document.getElementById('sort1');
-sort.addEventListener('change', function (e) {
+if (sort) sort.addEventListener('change', function (e) {
   var field = sort.value;
   (0, _product.sorting)(field);
 });
@@ -9642,7 +9634,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "2658" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "7482" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

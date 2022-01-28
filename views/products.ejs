@@ -7,16 +7,15 @@
         <div class="container col-lg-9 col-md-12 col-sm-12">
           <table class="table text-center table-dark table-hover" id="userData">
             <thead>
-              <tr>
+              <tr> 
                 <th>
                   sort
                 </th>
                 <th>
                   <select name="sort" id="sort1" required class="inp"> 
-                    <option value="name">Name</option>
-                    <option value="price">Price</option>
-                    <option value="quantity">Quantity</option>
-                            
+                    <% for(let s of ['name','price','quantity']){ %> 
+                    <option value=<%=s%> <%-query.sort ?query.sort==s?'selected':'':''%>><%-(s && s[0].toUpperCase() + s.slice(1)) || ""%></option>
+                    <% } %> 
                 </select>
                 </th>
               </tr>

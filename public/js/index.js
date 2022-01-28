@@ -13,10 +13,11 @@ const addp = document.querySelector('.form--addproduct');
 const updatep = document.querySelector('.form--updateproduct');
 const sort = document.getElementById('sort1');
 
-sort.addEventListener('change', e=>{
-    const field = sort.value;
-    sorting(field);
-})
+if(sort)
+    sort.addEventListener('change', e=>{
+        const field = sort.value;
+        sorting(field);
+    })
 
 if(loginform)
     loginform.addEventListener('submit', e=>{
