@@ -12,11 +12,17 @@
                   sort
                 </th>
                 <th>
-                  <select name="sort" id="sort1" required class="inp"> 
+                  <select name="sort1" id="sort1" required class="inp"> 
                     <% for(let s of ['name','price','quantity']){ %> 
-                    <option value=<%=s%> <%-query.sort ?query.sort==s?'selected':'':''%>><%-(s && s[0].toUpperCase() + s.slice(1)) || ""%></option>
+                    <option value=<%=s%> <%-query.sort ?query.sort.includes('-')?query.sort.slice(1)==s?'selected':'':query.sort==s?'selected':'':''%>><%-(s && s[0].toUpperCase() + s.slice(1)) || ""%></option>
                     <% } %> 
                 </select>
+                </th>
+                <th>
+                  <select name="sort2" id="sort2" required class="inp"> 
+                    <option value="">Ascending</option>
+                    <option value="-" <%-query.sort ?query.sort.includes('-')?'selected':'':''%>>Descending</option>
+                  </select>
                 </th>
               </tr>
       

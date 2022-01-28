@@ -9474,11 +9474,20 @@ var logOutBtn = document.querySelector('.logout-btn');
 var aupdate = document.querySelector('.form--updateAgent');
 var addp = document.querySelector('.form--addproduct');
 var updatep = document.querySelector('.form--updateproduct');
-var sort = document.getElementById('sort1');
-if (sort) sort.addEventListener('change', function (e) {
-  var field = sort.value;
-  (0, _product.sorting)(field);
-});
+var sort1 = document.getElementById('sort1');
+var sort2 = document.getElementById('sort2');
+
+if (sort1 || sort2) {
+  sort1.addEventListener('change', function (e) {
+    var field = sort2.value + sort1.value;
+    (0, _product.sorting)(field);
+  });
+  sort2.addEventListener('change', function (e) {
+    var field = sort2.value + sort1.value;
+    (0, _product.sorting)(field);
+  });
+}
+
 if (loginform) loginform.addEventListener('submit', function (e) {
   e.preventDefault();
   var email = document.getElementById('email').value;
@@ -9634,7 +9643,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "7482" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "3940" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

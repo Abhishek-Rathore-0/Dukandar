@@ -11,14 +11,21 @@ const logOutBtn = document.querySelector('.logout-btn');
 const aupdate = document.querySelector('.form--updateAgent');
 const addp = document.querySelector('.form--addproduct');
 const updatep = document.querySelector('.form--updateproduct');
-const sort = document.getElementById('sort1');
+const sort1 = document.getElementById('sort1');
+const sort2 = document.getElementById('sort2');
 
-if(sort)
-    sort.addEventListener('change', e=>{
-        const field = sort.value;
+
+if(sort1 || sort2){
+    sort1.addEventListener('change', e=>{
+        const field = sort2.value+sort1.value;
         sorting(field);
     })
-
+    sort2.addEventListener('change',e=>{
+        const field = sort2.value+sort1.value;
+        sorting(field);
+    })
+}
+    
 if(loginform)
     loginform.addEventListener('submit', e=>{
         e.preventDefault();
