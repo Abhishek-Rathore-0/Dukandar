@@ -82,7 +82,6 @@ exports.update = catchAsync(async(req, res, next) => {
 exports.delete = catchAsync(async(req,res,next) => {
   
   const doc = await Product.findByIdAndDelete(req.body.id);
-  console.log(doc);
   if (!doc) {
     return next(new AppError('No document found with that ID', 404));
   }
