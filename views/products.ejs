@@ -53,7 +53,7 @@
                   <td><%=product.quantity %></td>
                   
                     <td>
-                      <button type="button" class="w-100 mt-1.7 btn btn-success btn-sm" onclick="fill('<%=product.id%>','<%=product.name%>','<%=product.description%>','<%=product.price%>','<%=product.quantity%>','<%=product.category%>');" data-bs-target="#updatep" data-bs-toggle="modal" data-bs-dismiss="modal">
+                      <button type="button" class="w-100 mt-1.7 btn btn-secondary btn-sm" onclick="fill('<%=product.id%>','<%=product.name%>','<%=product.description%>','<%=product.price%>','<%=product.quantity%>','<%=product.category%>');" data-bs-target="#updatep" data-bs-toggle="modal" data-bs-dismiss="modal">
                         <i class="fas fa-edit"></i>
                       </button>
                     </td>
@@ -80,7 +80,7 @@
             <button type="button" class="btn-close  " style="margin-top: -48px;" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form class="form--updateproduct">
+            <form class="form--updateproduct" style="display: inline !important;">
             <div class="mb-3 row">
                                 
               <div class="col-sm-5">
@@ -124,11 +124,13 @@
             </div>
 
             <div class="mt-5 text-center">
-              <button class="col-sm-3 btn btn-outline-success">Add</button>
-            </div>
-          
-
-          </form>
+              <button class="col-sm-3 btn btn-outline-success" >Update</button>
+              </form>
+              <form class="form--deleteproduct" style="display: inline !important;">
+                <button class="col-sm-3 btn btn-outline-danger">Delete</button>
+              </div>
+            </form>
+  
           </div>
         </div>
       </div>

@@ -9051,7 +9051,7 @@ exports.updatea = updatea;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.updateProduct = exports.sorting = exports.addProduct = void 0;
+exports.updateProduct = exports.sorting = exports.deleteproduct = exports.addProduct = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -9187,6 +9187,59 @@ var sorting = /*#__PURE__*/function () {
 }();
 
 exports.sorting = sorting;
+
+var deleteproduct = /*#__PURE__*/function () {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(id) {
+    var res;
+    return regeneratorRuntime.wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.prev = 0;
+            _context4.next = 3;
+            return (0, _axios.default)({
+              method: 'DELETE',
+              url: 'api/agents/product',
+              data: {
+                id: id
+              }
+            });
+
+          case 3:
+            res = _context4.sent;
+
+            if (res.data.status === 'success') {
+              (0, _alert.showAlert)('success', 'Delete Successfully');
+              window.setTimeout(function () {
+                location.assign('/agent-products');
+              }, 1200);
+            } else {
+              console.log(res);
+              (0, _alert.showAlert)('error', res.data.status);
+            }
+
+            _context4.next = 10;
+            break;
+
+          case 7:
+            _context4.prev = 7;
+            _context4.t0 = _context4["catch"](0);
+            (0, _alert.showAlert)('error', _context4.t0.response.data.message);
+
+          case 10:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4, null, [[0, 7]]);
+  }));
+
+  return function deleteproduct(_x4) {
+    return _ref4.apply(this, arguments);
+  };
+}();
+
+exports.deleteproduct = deleteproduct;
 },{"axios":"../../node_modules/axios/index.js","./alert":"alert.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
@@ -9473,6 +9526,7 @@ var signinform1 = document.querySelector('.form-sign1');
 var logOutBtn = document.querySelector('.logout-btn');
 var aupdate = document.querySelector('.form--updateAgent');
 var addp = document.querySelector('.form--addproduct');
+var deletep = document.querySelector('.form--deleteproduct');
 var updatep = document.querySelector('.form--updateproduct');
 var sort1 = document.getElementById('sort1');
 var sort2 = document.getElementById('sort2');
@@ -9601,6 +9655,10 @@ if (addp) addp.addEventListener('submit', function (e) {
   });
   (0, _product.addProduct)(form);
 });
+if (deletep) deletep.addEventListener('submit', function (e) {
+  e.preventDefault();
+  (0, _product.deleteproduct)(document.getElementById('pid').value);
+});
 if (updatep) updatep.addEventListener('submit', function (e) {
   e.preventDefault();
   var form = new FormData();
@@ -9643,7 +9701,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "3940" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "4991" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

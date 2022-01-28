@@ -48,3 +48,28 @@ export const sorting = async(field) =>{
     showAlert('error', err);
   }
 }
+
+export const deleteproduct = async(id) =>{
+  try{
+    const res = await axios({
+      method: 'DELETE',
+      url: 'api/agents/product',
+      data:{
+        id
+      }
+    });
+    
+    if (res.data.status === 'success') {  
+      showAlert('success', 'Delete Successfully');
+      window.setTimeout(() => {
+        location.assign('/agent-products');
+      }, 1200);
+    }
+    else{
+      console.log(res);
+      showAlert('error',res.data.status);
+    }
+  }catch(err){
+    showAlert('error', err.response.data.message)
+  }
+}

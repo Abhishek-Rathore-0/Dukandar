@@ -1,7 +1,7 @@
 import '@babel/polyfill';
 import {login,logout,signup,signup1,updatea} from './login';
 import {showAlert} from './alert';
-import {addProduct,updateProduct,sorting} from './product';
+import {addProduct,updateProduct,sorting,deleteproduct} from './product';
 
 const loginform = document.querySelector('.form');
 const loginform1 = document.querySelector('.form1');
@@ -10,6 +10,7 @@ const signinform1 = document.querySelector('.form-sign1');
 const logOutBtn = document.querySelector('.logout-btn');
 const aupdate = document.querySelector('.form--updateAgent');
 const addp = document.querySelector('.form--addproduct');
+const deletep = document.querySelector('.form--deleteproduct');
 const updatep = document.querySelector('.form--updateproduct');
 const sort1 = document.getElementById('sort1');
 const sort2 = document.getElementById('sort2');
@@ -135,6 +136,12 @@ if(addp)
             console.log(file.name);
         });
         addProduct(form);
+    })
+
+if(deletep)
+    deletep.addEventListener('submit',e =>{
+        e.preventDefault();
+        deleteproduct(document.getElementById('pid').value)
     })
 
 if(updatep)
