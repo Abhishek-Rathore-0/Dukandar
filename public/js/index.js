@@ -1,7 +1,7 @@
 import '@babel/polyfill';
 import {login,logout,signup,signup1,updatea} from './login';
 import {showAlert} from './alert';
-import {addProduct,updateProduct,sorting,deleteproduct} from './product';
+import {addProduct,updateProduct,deleteproduct,sortingandsearch} from './product';
 
 const loginform = document.querySelector('.form');
 const loginform1 = document.querySelector('.form1');
@@ -14,17 +14,28 @@ const deletep = document.querySelector('.form--deleteproduct');
 const updatep = document.querySelector('.form--updateproduct');
 const sort1 = document.getElementById('sort1');
 const sort2 = document.getElementById('sort2');
+const searchbtn = document.querySelector('.search');
 
+function ss(){
+    const s= document.getElementById('searchv').value;
+    const search= document.getElementById('condi').value;
+    console.log('hello')
+    let field = "sort=";
+    if(search=="")
+        field = field + sort2.value + sort1.value;
+    else
+        field = field + sort2.value + sort1.value + '&name[regex]='+s;
+    console.log(field)
+    sortingandsearch(field);
+}
 
-if(sort1 || sort2){
-    sort1.addEventListener('change', e=>{
-        const field = sort2.value+sort1.value;
-        sorting(field);
-    })
-    sort2.addEventListener('change',e=>{
-        const field = sort2.value+sort1.value;
-        sorting(field);
-    })
+if(sort1 || sort2 || searchbtn){
+    sort1.addEventListener('change',ss);
+    sort2.addEventListener('change',ss);
+    searchbtn.addEventListener('click',e=>{
+        document.getElementById('condi').value="true";
+        ss();
+    });
 }
     
 if(loginform)

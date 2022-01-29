@@ -24,6 +24,15 @@
                     <option value="-" <%-query.sort ?query.sort.includes('-')?'selected':'':''%>>Descending</option>
                   </select>
                 </th>
+                <th colspan="2">
+                  <input type="hidden" id="condi" value="<%-query.name?query.name.regex:''%>">
+                  <input type="text" value="<%-query.name?query.name.regex:''%>" class="form-control inp" style="background-color: black;" placeholder="Search" name="searchv" id="searchv">
+                </th>
+                <th>
+                  <button type="button" id="search" class="w-100 mt-1.7 btn btn-dark btn-sm search">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </th>
               </tr>
       
                 <tr style="height: 30px; vertical-align: middle">

@@ -39,10 +39,10 @@ export const updateProduct = async(data) =>{
   }
 }
 
-export const sorting = async(field) =>{
+export const sortingandsearch = async(field) =>{
   try {
       window.setTimeout(() => {
-        location.assign('/agent-products?sort='+field);
+        location.assign('/agent-products?'+field);
       }, 100);
   } catch (err) {
     showAlert('error', err);

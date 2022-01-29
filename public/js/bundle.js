@@ -9051,7 +9051,7 @@ exports.updatea = updatea;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.updateProduct = exports.sorting = exports.deleteproduct = exports.addProduct = void 0;
+exports.updateProduct = exports.sortingandsearch = exports.deleteproduct = exports.addProduct = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -9159,7 +9159,7 @@ var updateProduct = /*#__PURE__*/function () {
 
 exports.updateProduct = updateProduct;
 
-var sorting = /*#__PURE__*/function () {
+var sortingandsearch = /*#__PURE__*/function () {
   var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(field) {
     return regeneratorRuntime.wrap(function _callee3$(_context3) {
       while (1) {
@@ -9167,7 +9167,7 @@ var sorting = /*#__PURE__*/function () {
           case 0:
             try {
               window.setTimeout(function () {
-                location.assign('/agent-products?sort=' + field);
+                location.assign('/agent-products?' + field);
               }, 100);
             } catch (err) {
               (0, _alert.showAlert)('error', err);
@@ -9181,12 +9181,12 @@ var sorting = /*#__PURE__*/function () {
     }, _callee3);
   }));
 
-  return function sorting(_x3) {
+  return function sortingandsearch(_x3) {
     return _ref3.apply(this, arguments);
   };
 }();
 
-exports.sorting = sorting;
+exports.sortingandsearch = sortingandsearch;
 
 var deleteproduct = /*#__PURE__*/function () {
   var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(id) {
@@ -9530,15 +9530,24 @@ var deletep = document.querySelector('.form--deleteproduct');
 var updatep = document.querySelector('.form--updateproduct');
 var sort1 = document.getElementById('sort1');
 var sort2 = document.getElementById('sort2');
+var searchbtn = document.querySelector('.search');
 
-if (sort1 || sort2) {
-  sort1.addEventListener('change', function (e) {
-    var field = sort2.value + sort1.value;
-    (0, _product.sorting)(field);
-  });
-  sort2.addEventListener('change', function (e) {
-    var field = sort2.value + sort1.value;
-    (0, _product.sorting)(field);
+function ss() {
+  var s = document.getElementById('searchv').value;
+  var search = document.getElementById('condi').value;
+  console.log('hello');
+  var field = "sort=";
+  if (search == "") field = field + sort2.value + sort1.value;else field = field + sort2.value + sort1.value + '&name[regex]=' + s;
+  console.log(field);
+  (0, _product.sortingandsearch)(field);
+}
+
+if (sort1 || sort2 || searchbtn) {
+  sort1.addEventListener('change', ss);
+  sort2.addEventListener('change', ss);
+  searchbtn.addEventListener('click', function (e) {
+    document.getElementById('condi').value = "true";
+    ss();
   });
 }
 
@@ -9701,7 +9710,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "4991" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "2795" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

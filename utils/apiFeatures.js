@@ -11,9 +11,11 @@ class APIFeatures {
   
       // 1B) Advanced filtering
       let queryStr = JSON.stringify(queryObj);
-      queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, match => `$${match}`);
-  
-      this.query = this.query.find(JSON.parse(queryStr));
+      queryStr = queryStr.replace(/\b(gte|gt|lte|lt|regex)\b/g, match => `$${match}`);
+      
+      const q= JSON.parse(queryStr);
+      
+      this.query = this.query.find(q);
   
       return this;
     }
