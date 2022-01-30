@@ -70,7 +70,7 @@ export const signup1 = async(data, route) =>{
        
     const res = await axios({
       method: 'POST',
-      url: 'api/'+route+'/signup',
+      url: 'api/agents/signup',
       data
     });
     
