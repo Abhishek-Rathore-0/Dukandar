@@ -6,7 +6,6 @@ const productController = require('../controllers/productController');
 
 const router = express.Router();
 
-
 router.get("/", authController.isLoggedIn,viewsController.home);
 router.get("/account",authController.protect, viewsController.account);
 

@@ -93,12 +93,27 @@ exports.delete = catchAsync(async(req,res,next) => {
 })
 
 exports.getAll = catchAsync(async(req, res, next) =>{
-  
-    const features = new APIFeatures(Product.find(), req.query)
+  let features;
+  if(req.user){
+    features = new APIFeatures(Product.find({"city":req.user.city}), req.query)
       .filter()
       .sort()
       .limitFields()
       .paginate();
+  }else if(req.agent){
+    features = new APIFeatures(Product.find({"shopid":req.agent.id}), req.query)
+      .filter()
+      .sort()
+      .limitFields()
+      .paginate();
+  }else{
+    features = new APIFeatures(Product.find({"shopid":req.agent.id}), req.query)
+    .filter()
+    .sort()
+    .limitFields()
+    .paginate();
+  }
+
     // const doc = await features.query.explain();
     const doc = await features.query;
 
