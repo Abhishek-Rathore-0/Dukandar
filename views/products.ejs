@@ -5,7 +5,7 @@
 
     <div class="navbar navbar-expand-lg navbar-light bg-none">
         <div class="container col-lg-9 col-md-12 col-sm-12">
-          <table class="table text-center table-dark table-hover" id="userData">
+          <table class="table text-center table-bordered table-dark table-hover" id="userData">
             <thead>
               <tr> 
                 <th>
@@ -24,6 +24,7 @@
                     <option value="-" <%-query.sort ?query.sort.includes('-')?'selected':'':''%>>Descending</option>
                   </select>
                 </th>
+                <th></th>
                 <th colspan="2">
                   <input type="hidden" id="condi" value="<%-query.name?query.name.regex:''%>">
                   <input type="text" value="<%-query.name?query.name.regex:''%>" class="form-control inp" style="background-color: black;" placeholder="Search" name="searchv" id="searchv">
@@ -44,12 +45,12 @@
                     <th scope="col">Unit Price</th>
 
                     <th scope="col">Quantity</th>
-                    <th scope="col">Edit</th>
                 </tr>
             </thead>
             <tbody>
               <% let i=1; %> 
               <% for(let product of Products){ %> 
+                <tr onclick="fill('<%=product.id%>','<%=product.name%>','<%=product.description%>','<%=product.price%>','<%=product.quantity%>','<%=product.category%>');" data-bs-target="#updatep" data-bs-toggle="modal" data-bs-dismiss="modal">
                   <th scope="row"><span class="no"><%=i %> </span></th>
                   
                   <td style="text-transform: capitalize;"><%=product.category %> </td>
@@ -60,12 +61,6 @@
                   
                   <td>₹<%=product.price %></td>
                   <td><%=product.quantity %></td>
-                  
-                    <td>
-                      <button type="button" class="w-100 mt-1.7 btn btn-secondary btn-sm" onclick="fill('<%=product.id%>','<%=product.name%>','<%=product.description%>','<%=product.price%>','<%=product.quantity%>','<%=product.category%>');" data-bs-target="#updatep" data-bs-toggle="modal" data-bs-dismiss="modal">
-                        <i class="fas fa-edit"></i>
-                      </button>
-                    </td>
                     <% i++; %> 
                 </tr>
                 <% } %> 
