@@ -19,6 +19,8 @@
         </div>
     </div>
 
+    
+
     <div id="categories">
         <div id="col-5">
             <figure>
@@ -52,6 +54,19 @@
         </div>
     </div>
 
+    
+    <h1 id="featured-stores-heading">Items</h1>
+    <div id="featured-stores">
+        <% for(let product of Products){ %> 
+                    
+            <div id="col-4">
+                <img class="d-block center" src="/image/products/<%=product.images[0]%>" style="width: 100px;height: 100px;" alt="Store Image"><br>
+                <strong class="d-block"><%=product.name %></strong>
+                <button>Explore</button>
+            </div>
+        <%}%> 
+    </div>
+    
     <h1 id="featured-stores-heading">Popular General Stores</h1>
     <div id="featured-stores">
         <div id="col-4">
@@ -78,6 +93,19 @@
             <p>Store Details</p>
             <button>Explore</button>
         </div>
+    </div>
+
+    <h1 id="featured-stores-heading">Shops</h1>
+    <div id="featured-stores">
+        <% for(let agent of Agents){ %>       
+            <div id="col-4">
+                <div class="img block d-block" style="width: 110px;height: 110px;">
+                    <img src="/image/agents/<%=agent.photo%> "" style="width: 100px;height: 100px;" alt="Store Image">
+                </div>
+                <strong class="d-block"><%=agent.shop %></strong>
+                <button>Explore</button>
+            </div>
+        <%}%> 
     </div>
 
     <h1 id="featured-stores-heading">Popular Stationery Stores</h1>
@@ -111,7 +139,9 @@
     <h1 id="featured-stores-heading">Popular Restaurants</h1>
     <div id="featured-stores">
         <div id="col-4">
-            <img src="https://www.kindpng.com/picc/m/9-94468_shop-clipart-hd-png-download.png" alt="Store Image">
+            <div class="img" style="width: 100px;height: 100px;">
+                <img src="https://www.kindpng.com/picc/m/9-94468_shop-clipart-hd-png-download.png" alt="Store Image">
+            </div>
             <strong>Store Name</strong>
             <p>Store Details</p>
             <button>Explore</button>

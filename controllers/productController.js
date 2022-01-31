@@ -1,6 +1,7 @@
 const multer = require('multer');
 const sharp = require('sharp');
 const Product = require('./../models/productModel');
+const Agent= require('./../models/agentModel');
 const APIFeatures = require('./../utils/apiFeatures');
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
@@ -107,7 +108,7 @@ exports.getAll = catchAsync(async(req, res, next) =>{
       .limitFields()
       .paginate();
   }else{
-    features = new APIFeatures(Product.find({"shopid":req.agent.id}), req.query)
+    features = new APIFeatures(Product.find(), req.query)
     .filter()
     .sort()
     .limitFields()
@@ -130,6 +131,7 @@ exports.getAll = catchAsync(async(req, res, next) =>{
     }
     else{
       res.locals.Products = doc;
+      res.locals.Agents = await Agent.find();
       res.locals.query = req.query;
     }
     next();
