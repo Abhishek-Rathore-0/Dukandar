@@ -101,7 +101,7 @@ exports.getAll = catchAsync(async(req, res, next) =>{
       .limitFields()
       .paginate();
   }else if(req.agent){
-    features = new APIFeatures(Product.find({"shopid":req.agent.id}), req.query)
+    features = new APIFeatures(Product.find({"shopId":req.agent.id}), req.query)
       .filter()
       .sort()
       .limitFields()
