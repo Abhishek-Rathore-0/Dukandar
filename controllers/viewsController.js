@@ -1,5 +1,5 @@
 const ProductModel = require('../models/productModel');
-const Cart = require('../models/CartModel');
+const Cart = require('../models/cartModel');
 
 exports.home = async(req, res, next) => { 
     res.render("home",{

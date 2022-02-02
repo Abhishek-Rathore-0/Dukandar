@@ -16,8 +16,7 @@ const updatep = document.querySelector('.form--updateproduct');
 const sort1 = document.getElementById('sort1');
 const sort2 = document.getElementById('sort2');
 const searchbtn = document.querySelector('.search');
-const updatec = document.querySelector('.updatec');
-const deletec = document.querySelector('.deletec');
+const pid = document.getElementById('.proId');
 
 function ss(){
     const s= document.getElementById('searchv').value;
@@ -174,19 +173,33 @@ if(updatep)
         updateProduct(form);
     })
 
-if(updatec)
-    updatec.addEventListener('submit',e=>{
-        e.preventDefault();
+// if(updatec)
+//     updatec.forEach.addEventListener('submit',e=>{
+//         e.preventDefault();
        
-        const id=document.getElementById('pid').value;
-        const quantity=document.getElementById('quantity').value;
-        updateC(id,quantity);
-    })
+//         const id=document.getElementById('pid').value;
+//         const quantity=document.getElementById('quantity').value;
+//         updateC(id,quantity);
+//     })
 
-if(deletec)
-    deletec.addEventListener('submit',e=>{
-        e.preventDefault();    
+// if(deletec)
+//     deletec.addEventListener('submit',e=>{
+//         e.preventDefault();    
         
-        const id=document.getElementById('pid').value;
-        deleteC(id);
+//         const id=document.getElementById('pid').value;
+//         deleteC(id);
+//     })
+    
+if(pid){
+    console.log("yea");
+    id=pid.value;
+    let qu = 'qty'+id;
+    const q = document.getElementById(qu);
+    q.value=8;
+    q.addEventListener('change', e=>{
+        const id=pid.value;
+        const q=document.getElementById('quantity').value;
+        console.log("12")
+        updateC(id,q);
     })
+}

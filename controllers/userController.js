@@ -1,5 +1,5 @@
 const Product = require('../models/productModel');
-const Cart=require('../models/CartModel');
+const Cart=require('../models/cartModel');
 const AppError = require('./../utils/appError');
 
 exports.addCart = async(req, res, next)=>{

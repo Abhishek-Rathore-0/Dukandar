@@ -18,7 +18,7 @@
             <% for(let arr of arrayy) { %> 
               
             <div class="card mb-3 col-sm-12" style="border-radius: 20px; max-width: 100%; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
-              <div class="row g-0">
+              <div class="row g-0" onclick="console.log('hello');fill('<%=arr[0]._id%>');">
                 <div class="col-md-4" style="padding: 20px;">
                   <img style="border-radius: 15%;" src="/image/products/<%=arr[0].images[0]%>" class="img-fluid" alt="...">
                 </div>
@@ -31,7 +31,6 @@
                     <p class="card-text"><%= arr[0].description %> </p> 
                     
                     <div class="d-flex justify-content-between">
-                      <form class="col-8 d-flex justify-content-evenly align-items-center updatec">  
                         <label id="qtyLabel" for="Quantity">Qty</label>
                     <select name="Quantity" class="w-25" id="qty<%=arr[0]._id%>">
                       <%for(let no of [1,2,3,4,5,6,7,8,9]){%>
@@ -42,15 +41,12 @@
                           <% } %> 
                       <% } %> 
                     </select>
-                    <button type="submit" class="btn btn-light updateButton" onclick="fill('<%=arr[0]._id%>');">update <i class="fas fa-redo-alt" style="font-size: 80%;"></i></button>
-                    </form>
                     <form class="deletec">
-                    <button type="submit" class="btn btn-light trashButton" onclick="fill('<%=arr[0]._id%>');"><i class="fas fa-trash trash"></i></button>
+                    <button type="submit" class="btn btn-light trashButton"><i class="fas fa-trash trash"></i></button>
                     </form>
                   </div>
                     
-                    
-                    <p class="mt-4 fw-bold" style="font-size: 22px;">Total: ₹<%= arr[0].price*cartItem[i].Quantity %> </p>
+                  <p class="mt-4 fw-bold" style="font-size: 22px;">Total: ₹<%= arr[0].price*cartItem[i].Quantity %> </p>
                   </div>
                 </div>
               </div>
@@ -111,15 +107,16 @@
       
       <% } %>  
       
-      <input type="hidden" id="pid">
+      <input type="hidden" id="proId">
       <input type="hidden" id="quantity">
       
     <%- include('partials/footer') %> 
     <script>
       
-      function fill(pid){
-        document.getElementById("pid").value=pid;
-        const id='qty'+pid;
+      function fill(proId){
+        document.getElementById("proId").value=proId;
+        const id='qty'+proId;
+        console.log(proId);
         document.getElementById("quantity").value=document.getElementById(id).value;
       }
       
