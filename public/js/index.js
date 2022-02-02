@@ -2,7 +2,7 @@ import '@babel/polyfill';
 import {login,logout,signup,signup1,updatea} from './login';
 import {showAlert} from './alert';
 import {addProduct,updateProduct,deleteproduct,sortingandsearch} from './product';
-import {updateC,deleteC} from './cart';
+import {addC,updateC,deleteC} from './cart';
 
 const loginform = document.querySelector('.form');
 const loginform1 = document.querySelector('.form1');
@@ -16,7 +16,6 @@ const updatep = document.querySelector('.form--updateproduct');
 const sort1 = document.getElementById('sort1');
 const sort2 = document.getElementById('sort2');
 const searchbtn = document.querySelector('.search');
-const pid = document.getElementById('.proId');
 
 function ss(){
     const s= document.getElementById('searchv').value;
@@ -172,34 +171,36 @@ if(updatep)
         });
         updateProduct(form);
     })
+//-------------------------------------------------CART-------------------------------------------//
 
-// if(updatec)
-//     updatec.forEach.addEventListener('submit',e=>{
-//         e.preventDefault();
-       
-//         const id=document.getElementById('pid').value;
-//         const quantity=document.getElementById('quantity').value;
-//         updateC(id,quantity);
-//     })
+let cboxa = document.querySelectorAll(".addc");
+cboxa.forEach(box => {
+  box.addEventListener('click', e=>{
+    e.preventDefault();
+    const id=document.getElementById('proId').value;
+    if(id!="")
+        addC(id);
+  });
+});
 
-// if(deletec)
-//     deletec.addEventListener('submit',e=>{
-//         e.preventDefault();    
-        
-//         const id=document.getElementById('pid').value;
-//         deleteC(id);
-//     })
-    
-if(pid){
-    console.log("yea");
-    id=pid.value;
-    let qu = 'qty'+id;
-    const q = document.getElementById(qu);
-    q.value=8;
-    q.addEventListener('change', e=>{
-        const id=pid.value;
-        const q=document.getElementById('quantity').value;
-        console.log("12")
-        updateC(id,q);
-    })
-}
+let cboxu = document.querySelectorAll(".updatec");
+cboxu.forEach(box => {
+  box.addEventListener('change', e=>{
+    const id=document.getElementById('proId').value;
+    const quantity=document.getElementById('quantity').value;
+    if(id!="")
+        updateC(id,quantity);
+  });
+});
+
+let cboxd = document.querySelectorAll(".deletec");
+cboxd.forEach(box => {
+  box.addEventListener('click', e=>{
+    e.preventDefault();
+    const id=document.getElementById('proId').value;
+    console.log('delte');
+    if(id!="")
+        deleteC(id);
+  });
+});
+

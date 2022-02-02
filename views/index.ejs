@@ -59,12 +59,13 @@
     <h1 id="featured-stores-heading">Items</h1>
     <div id="featured-stores" class="d-block">
         <% for(let product of Products){ %> 
-                    
+            <form class="addc">
             <div id="col-4">
                 <img class="d-block center" src="/image/products/<%=product.images[0]%>" style="width: 100px;height: 100px;" alt="Store Image"><br>
                 <strong class="d-block"><%=product.name %></strong>
-                <button>Explore</button>
+                <button onclick="fill('<%=product._id%>');">Explore</button>
             </div>
+            </form>
         <%}%> 
     </div>
     
@@ -193,6 +194,13 @@
     <footer>
         <%- include('partials/footer') %>
     </footer>   
-
+    <input type="hidden" id="proId">
+  <script>
+    
+    function fill(proId){
+      document.getElementById("proId").value=proId;
+    }
+    
+  </script>
 </body>
 </html>

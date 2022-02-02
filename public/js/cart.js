@@ -1,6 +1,23 @@
 import axios from "axios";
 import {showAlert} from './alert';
 
+export const addC = async (id) => {
+  try {
+    const res = await axios({
+      method: 'POST',
+      url: 'api/users/cart/'+id,
+      data:{}
+    });
+
+    if (res.data.status === 'success') {
+      showAlert('success',"Added succesful");
+    }
+  } catch (err) {
+    showAlert('error', err.response.data.message);
+  }
+};
+
+
 export const updateC = async (id, Quantity) => {
     try {
       const res = await axios({
