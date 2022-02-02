@@ -112,7 +112,7 @@ figcaption {
   margin: 0 auto;
 }
 
-/* ----------------------------------Alert Box--------------------------------- */
+/* ---------------------------------------------------Alert Box-------------------------------------------- */
 
 .alert {
   position: fixed;
@@ -136,4 +136,55 @@ figcaption {
 }
 .alert--error {
   background-color: #eb4d4b;
+}
+
+/* --------------------------------------------------------Scroll----------------------------------------------- */
+
+.scrollTop {
+  position: fixed;
+  bottom: 800px;
+  right: 40px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #fff url("/image/up.png");
+  background-size: 40px;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid black;
+  cursor: pointer;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.5s all ease;
+  z-index: 10;
+}
+
+.scrollTop:hover {
+  background-color: #84a4c4;
+}
+
+.scrollTop.active {
+  bottom: 40px;
+  visibility: visible;
+  opacity: 1;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------- */
+.signUp {
+  color: white;
+  background-color: #343a40;
+  padding: 10px 30px;
+  width: 100%;
+  line-height: 20px;
+  text-align: center;
+  height: 40px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.signUp {
+  min-width: 120px !important;
+}
+
+.signUp:hover {
+  color: white;
 }

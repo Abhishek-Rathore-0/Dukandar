@@ -2,6 +2,7 @@ import '@babel/polyfill';
 import {login,logout,signup,signup1,updatea} from './login';
 import {showAlert} from './alert';
 import {addProduct,updateProduct,deleteproduct,sortingandsearch} from './product';
+import {updateC,deleteC} from './cart';
 
 const loginform = document.querySelector('.form');
 const loginform1 = document.querySelector('.form1');
@@ -15,11 +16,12 @@ const updatep = document.querySelector('.form--updateproduct');
 const sort1 = document.getElementById('sort1');
 const sort2 = document.getElementById('sort2');
 const searchbtn = document.querySelector('.search');
+const updatec = document.querySelector('.updatec');
+const deletec = document.querySelector('.deletec');
 
 function ss(){
     const s= document.getElementById('searchv').value;
     const search= document.getElementById('condi').value;
-    console.log('hello')
     let field = "sort=";
     if(search=="")
         field = field + sort2.value + sort1.value;
@@ -170,4 +172,21 @@ if(updatep)
             form.append('images', file);
         });
         updateProduct(form);
+    })
+
+if(updatec)
+    updatec.addEventListener('submit',e=>{
+        e.preventDefault();
+       
+        const id=document.getElementById('pid').value;
+        const quantity=document.getElementById('quantity').value;
+        updateC(id,quantity);
+    })
+
+if(deletec)
+    deletec.addEventListener('submit',e=>{
+        e.preventDefault();    
+        
+        const id=document.getElementById('pid').value;
+        deleteC(id);
     })

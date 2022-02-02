@@ -1,14 +1,49 @@
 const ProductModel = require('../models/productModel');
-
+const Cart = require('../models/CartModel');
 
 exports.home = async(req, res, next) => { 
     res.render("home",{
         title: 'Home'
     });
 }
-exports.index = async(req,res, next) => {
+exports.index = async(req, res, next) => {
     res.render('index',{
         title:'Digital Dukaan'
+    })
+}
+exports.cart= async(req, res, next) => {
+    const userid = req.user.id;
+    const cartItem = await Cart.find({ UserID: userid });
+    
+    let arrayy = [];
+    for (let cart of cartItem) {
+      let cartProduct = await ProductModel.find({ _id: cart.ProductID });
+      arrayy.push(cartProduct);
+    }
+    
+    let subtotal = 0;
+    let i = 0;
+    for (let arr of arrayy) {
+      subtotal = subtotal + arr[0].price * cartItem[i].Quantity;
+      i++;
+    }
+    
+    let shipping = 100;
+    if (subtotal >= 1000 || subtotal == 0) shipping = 0;
+    let tax = subtotal / 10;
+    finaltotal = subtotal + shipping + tax;
+    
+    count = (await Cart.find({ UserID: req.user.id })).length;
+
+    res.render('cart',{
+        title:'cart',
+        count,
+        cartItem: cartItem,
+        arrayy: arrayy,
+        finaltotal,
+        subtotal,
+        shipping,
+        tax
     })
 }
 
