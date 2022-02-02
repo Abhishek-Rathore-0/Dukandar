@@ -1,5 +1,7 @@
 const ProductModel = require('../models/productModel');
 const Cart = require('../models/cartModel');
+const AgentModel = require('../models/agentModel');
+
 
 exports.home = async(req, res, next) => { 
     res.render("home",{
@@ -15,12 +17,18 @@ exports.cart= async(req, res, next) => {
     const userid = req.user.id;
     const cartItem = await Cart.find({ UserID: userid });
     
+    let shopName="";
     let arrayy = [];
     for (let cart of cartItem) {
       let cartProduct = await ProductModel.find({ _id: cart.ProductID });
       arrayy.push(cartProduct);
     }
     
+    if(cartItem.length!=0){
+        let agentp = await AgentModel.find({_id:arrayy[0][0].shopId});
+        shopName=agentp[0].shop;
+    }
+
     let subtotal = 0;
     let i = 0;
     for (let arr of arrayy) {
@@ -43,7 +51,8 @@ exports.cart= async(req, res, next) => {
         finaltotal,
         subtotal,
         shipping,
-        tax
+        tax,
+        shopName
     })
 }
 

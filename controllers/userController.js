@@ -13,6 +13,15 @@ exports.addCart = async(req, res, next)=>{
         });
 
         if (cartfind.length == 0) {
+            const cartItems = await Cart.find();
+            if(cartItems.length !=0){
+                const product1 = await Product.find({_id:cartItems[0].ProductID});
+                const product2 = await Product.find({_id:id});
+                if(product1[0].shopId != product2[0].shopId)
+                    return next(new AppError('Please empty your cart to order from that shop.', 400));
+                    
+            }
+
             const cartobject = new Cart({
                 UserID: userid,
                 ProductID: id,
@@ -30,7 +39,7 @@ exports.addCart = async(req, res, next)=>{
             }
         }
     } else {
-        new AppError('Login first', 400);
+        return next(new AppError('Login first', 400));
     }
     res.status(200).json({ status: 'success' });
 }   

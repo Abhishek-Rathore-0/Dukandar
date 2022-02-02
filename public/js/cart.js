@@ -10,7 +10,7 @@ export const addC = async (id) => {
     });
 
     if (res.data.status === 'success') {
-      showAlert('success',"Added succesful");
+      showAlert('success',"Added succesful",2);
     }
   } catch (err) {
     showAlert('error', err.response.data.message);
