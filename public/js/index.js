@@ -177,9 +177,15 @@ let cboxa = document.querySelectorAll(".addc");
 cboxa.forEach(box => {
   box.addEventListener('click', e=>{
     e.preventDefault();
+    
     const id=document.getElementById('proId').value;
-    if(id!="")
-        addC(id);
+    const urla=document.getElementById('urla');
+    if(id!=""){
+        if(urla)
+            addC(id,urla.value)
+        else
+            addC(id);
+    }    
   });
 });
 
@@ -203,4 +209,3 @@ cboxd.forEach(box => {
         deleteC(id);
   });
 });
-

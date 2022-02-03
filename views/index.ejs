@@ -72,13 +72,13 @@
 
     <h1 id="featured-stores-heading">Shops</h1>
     <div id="featured-stores">
-        <% for(let agent of Agents){ %>       
+        <% for(let agent of Agents){ %>   
             <div id="col-4">
                 <div class="img block d-block" style="height: 110px;">
                     <img src="/image/agents/<%=agent.photo%> "" style="height: 105px;" alt="Store Image">
                 </div>
                 <strong class="d-block"><%=agent.shop %></strong>
-                <button>Explore</button>
+                <button onclick="location.href='/shop/<%=agent._id%>'">Explore</button>
             </div>
         <%}%> 
     </div> -->
@@ -208,11 +208,16 @@
         <%- include('partials/footer') %>
     </footer>   
     <input type="hidden" id="proId">
+    <input type="hidden" id="aid">
   <script>
     
     function fill(proId){
       document.getElementById("proId").value=proId;
     }
+    function fill1(aid){
+      document.getElementById("aid").value=aid;
+    }
+    
     
   </script>
 </body>
