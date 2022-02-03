@@ -9,6 +9,7 @@
             <div class="col-sm-4 col-xl-4 mb-4 ms-0">
               <!-- card body -->
                 <div class="card h-100" style="border-radius: 20px; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
+                    <form class="addc" style="display: inline !important;">
                     <div class="img text-center d-block mt-2 mb-4" style="height: 110px;">
                         <img src="/image/products/<%=product.images[0]%>" class="card-img-top p-3" style="width: 100px;height: 100px;" alt="Store Image"><br>
                     </div>
@@ -21,9 +22,10 @@
                         <p class="card-text" style="font-size: 80%;"> <%= product.description %> </p>
                     
                         <div class="card-footer">
-                            <button type="button" class="Cart w-50"><i class="fas fa-shopping-cart"></i> Cart</button>
+                            <button type="button" class="Cart w-50" onclick="fill('<%=product._id%>');"><i class="fas fa-shopping-cart"></i> Cart</button>
                         </div>
                     </div>
+                    </form>
                 </div>
             </div>
             <% } %> 
@@ -38,5 +40,15 @@
     <footer>
         <%- include('partials/footer') %>
     </footer>   
+
+    <input type="hidden" id="proId">
+    <script>
+    
+    function fill(proId){
+      document.getElementById("proId").value=proId;
+    }
+    
+    </script>
+
 </body>
 </html>
