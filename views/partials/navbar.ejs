@@ -1,7 +1,7 @@
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#"><img src="https://dukandaronline.com/images/dukandar_logo.png" alt=""></a>
+          <a class="navbar-brand" href="#"><img src="/image/logo/Samaan_Mart-removebg-cropped.png" alt="Samaan Mart"></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -24,8 +24,10 @@
             <a class="btn btn-outline-success" style="margin-right: 10px;" href="/agent">Become a seller</a>
             <a class="btn btn-outline-success" aria-current="page" href="#login" data-bs-toggle="modal">Login</a>
               <% }else{ %> 
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">hi, <%=user.name %> </a>
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true" style="text-transform: capitalize;">Hi, <%=user.name %> </a>
                 <a class="logout-btn btn btn-outline-success" style="margin-right: 10px;">Logout</a>
+                <a href="/cart" style="text-decoration: none; font-size: large;"><i class="fas fa-shopping-cart"></i>Cart</a>
+                <a class="btn btn-outline-success" style="margin-right: 10px;" href="/agent">Become a seller</a>
               <% } %> 
           </div>
         </div>

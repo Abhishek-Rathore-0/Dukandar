@@ -20,8 +20,6 @@
         </div>
     </div>
 
-    
-
     <div id="categories">
         <div id="col-5">
             <figure>
@@ -56,7 +54,7 @@
     </div>
 
     
-    <h1 id="featured-stores-heading">Items</h1>
+    <!-- <h1 id="featured-stores-heading">Items</h1>
     <div id="featured-stores">
         <% for(let product of Products){ %> 
             <form class="addc" style="display: inline !important;">
@@ -83,6 +81,19 @@
                 <button>Explore</button>
             </div>
         <%}%> 
+    </div> -->
+
+    <h1 id="featured-stores-heading">Trending Products</h1>
+    <div id="featured-stores">
+        <% let count=0; for(let product of Products){ if(count < 6){ count++; %>
+            <div id="col-6">
+                <img src="/image/products/<%=product.images[0]%>" alt="Product Image">
+                <br>
+                <strong><%=product.name %></strong>
+                <br>
+                <button onclick="fill('<%=product._id%>');">Add To Cart</button>
+            </div>
+        <%}}%> 
     </div>
 
     <h1 id="featured-stores-heading">Popular General Stores</h1>

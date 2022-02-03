@@ -22,6 +22,10 @@
   color: #495057;
 }
 
+.navbar-brand img {
+  height: 100px;
+}
+
 #categories {
   width: 80%;
   margin: 2% auto 0% auto;
@@ -52,15 +56,23 @@ figcaption {
   text-align: center;
 }
 
-#featured-stores div {
+#col-6 {
   padding: 2%;
   display: inline-block;
   text-align: center;
   background: #84a4c4;
 }
 
-#featured-stores div img {
+#col-4 {
+  padding: 2%;
+  display: inline-block;
+  text-align: center;
+  background: #84a4c4;
+}
+
+#col-4 img, #col-6 img {
   width: 100%;
+  height: 70%;
 }
 
 #footer {
