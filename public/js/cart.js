@@ -1,11 +1,11 @@
 import axios from "axios";
 import {showAlert} from './alert';
 
-export const addC = async (id) => {
+export const addC = async (id,urla="") => {
   try {
     const res = await axios({
       method: 'POST',
-      url: 'api/users/cart/'+id,
+      url: urla+'api/users/cart/'+id,
       data:{}
     });
 
@@ -16,7 +16,6 @@ export const addC = async (id) => {
     showAlert('error', err.response.data.message);
   }
 };
-
 
 export const updateC = async (id, Quantity) => {
     try {
@@ -54,4 +53,3 @@ export const deleteC = async (id) => {
       showAlert('error', err.response.data.message);
     }
 };
-

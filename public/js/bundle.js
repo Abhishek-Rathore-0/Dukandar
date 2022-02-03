@@ -9260,40 +9260,43 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var addC = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(id) {
-    var res;
+    var urla,
+        res,
+        _args = arguments;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            _context.prev = 0;
-            _context.next = 3;
+            urla = _args.length > 1 && _args[1] !== undefined ? _args[1] : "";
+            _context.prev = 1;
+            _context.next = 4;
             return (0, _axios.default)({
               method: 'POST',
-              url: 'api/users/cart/' + id,
+              url: urla + 'api/users/cart/' + id,
               data: {}
             });
 
-          case 3:
+          case 4:
             res = _context.sent;
 
             if (res.data.status === 'success') {
-              (0, _alert.showAlert)('success', "Added succesful");
+              (0, _alert.showAlert)('success', "Added succesful", 2);
             }
 
-            _context.next = 10;
+            _context.next = 11;
             break;
 
-          case 7:
-            _context.prev = 7;
-            _context.t0 = _context["catch"](0);
+          case 8:
+            _context.prev = 8;
+            _context.t0 = _context["catch"](1);
             (0, _alert.showAlert)('error', _context.t0.response.data.message);
 
-          case 10:
+          case 11:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 7]]);
+    }, _callee, null, [[1, 8]]);
   }));
 
   return function addC(_x) {
@@ -9847,7 +9850,11 @@ cboxa.forEach(function (box) {
   box.addEventListener('click', function (e) {
     e.preventDefault();
     var id = document.getElementById('proId').value;
-    if (id != "") (0, _cart.addC)(id);
+    var urla = document.getElementById('urla');
+
+    if (id != "") {
+      if (urla) (0, _cart.addC)(id, urla.value);else (0, _cart.addC)(id);
+    }
   });
 });
 var cboxu = document.querySelectorAll(".updatec");
@@ -9895,7 +9902,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "13672" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "4778" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
