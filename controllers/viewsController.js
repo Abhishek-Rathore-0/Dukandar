@@ -1,7 +1,8 @@
 const ProductModel = require('../models/productModel');
 const Cart = require('../models/cartModel');
 const AgentModel = require('../models/agentModel');
-
+const AppError = require('./../utils/appError');
+const ObjectId = require('mongoose').Types.ObjectId;
 
 exports.home = async(req, res, next) => { 
     res.render("home",{
@@ -13,6 +14,28 @@ exports.index = async(req, res, next) => {
         title:'Digital Dukaan'
     })
 }
+
+exports.shop = async(req, res, next)=>{
+    const {id} = req.params;
+    
+    if(ObjectId.isValid(id)){
+        if((String)(new ObjectId(id)) === id){
+            let shopObject = await AgentModel.find({_id:id});
+            console.log(shopObject[0]);
+            if(shopObject.length !=0 ){    
+                let products = await ProductModel.find({shopId:id});
+                console.log(products[0])
+                return res.status(200).render('shop',{
+                    title: shopObject[0].shop,
+                    shop:shopObject[0],
+                    products
+                });
+            }      
+        }
+    }
+    return next(new AppError("Something went wrong",400));     
+}
+
 exports.cart= async(req, res, next) => {
     const userid = req.user.id;
     const cartItem = await Cart.find({ UserID: userid });
@@ -61,6 +84,8 @@ exports.account = async(req, res, next) =>{
         title: 'Account'
     });
 }
+
+//------------------------------------------------------------Agent---------------------------------------------//
 
 exports.shopkeeper = async(req, res, next) => { 
     res.status(200).render("agent",{

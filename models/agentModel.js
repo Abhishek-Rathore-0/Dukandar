@@ -52,9 +52,6 @@ const agentSchema = new mongoose.Schema({
     available_out:{
         type:String,
         default:"6:00 PM"
-    },
-    product:{
-        type:[[String]]
     }
 });
 
