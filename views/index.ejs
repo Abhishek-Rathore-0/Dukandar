@@ -57,11 +57,13 @@
 
     
     <h1 id="featured-stores-heading">Items</h1>
-    <div id="featured-stores" class="d-block">
+    <div id="featured-stores">
         <% for(let product of Products){ %> 
             <form class="addc" style="display: inline !important;">
             <div id="col-4">
-                <img class="d-block center" src="/image/products/<%=product.images[0]%>" style="width: 100px;height: 100px;" alt="Store Image"><br>
+                <div class="img block d-block" style="height: 110px;">
+                    <img class="d-block center" src="/image/products/<%=product.images[0]%>" style="width: 100px;height: 100px;" alt="Store Image"><br>
+                </div>
                 <strong class="d-block"><%=product.name %></strong>
                 <button onclick="fill('<%=product._id%>');">Explore</button>
             </div>
