@@ -18,7 +18,11 @@
             <div class="card mb-3 col-sm-12" style="border-radius: 20px; max-width: 100%; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
               <div class="card-body text-start">
                 <div class="d-flex justify-content-between">
-                  <h5 class="card-title">Shop name: <%=shopName %></h5>  
+                  <h5 class="card-title mt-1">Shop name: <%=shop.shop %></h5>  
+                  <div>
+                    <button onclick="location.href='/shop/<%=shop._id%>'" class="btn btn-light">Explore</button>
+                    <button class="btn btn-light" id="empty--cart">Empty Cart</button>
+                  </div>
                 </div>
               </div> 
             </div>

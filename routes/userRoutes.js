@@ -10,7 +10,8 @@ router.get('/logout', authController.logout);
 
 router.post("/cart/:id",authController.protect, userController.addCart);
 router.put("/cart/:id",authController.protect, userController.editCart);
-router.delete("/cart/:id",authController.protect, userController.deleteCart);
+router.delete("/cart/:id",authController.protect, userController.deleteCartItem);
+router.delete("/cart",authController.protect, userController.deleteCart);
  
 
 

@@ -36,6 +36,7 @@ export const updateC = async (id, Quantity) => {
       showAlert('error', err.response.data.message);
     }
 };
+
 export const deleteC = async (id) => {
     try {
       const res = await axios({
@@ -52,4 +53,22 @@ export const deleteC = async (id) => {
     } catch (err) {
       showAlert('error', err.response.data.message);
     }
+};
+
+export const empty_cart = async () => {
+  try {
+    const res = await axios({
+      method: 'DELETE',
+      url: 'api/users/cart/',
+      data: {}
+    });
+
+    if (res.data.status === 'success') {
+      window.setTimeout(() => {
+          location.assign('/cart');
+        }, 1200);
+    }
+  } catch (err) {
+    showAlert('error', err.response.data.message);
+  }
 };

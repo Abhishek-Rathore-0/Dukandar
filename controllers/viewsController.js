@@ -49,7 +49,7 @@ exports.cart= async(req, res, next) => {
     
     if(cartItem.length!=0){
         let agentp = await AgentModel.find({_id:arrayy[0][0].shopId});
-        shopName=agentp[0].shop;
+        shop=agentp[0];
     }
 
     let subtotal = 0;
@@ -75,7 +75,7 @@ exports.cart= async(req, res, next) => {
         subtotal,
         shipping,
         tax,
-        shopName
+        shop
     })
 }
 

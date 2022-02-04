@@ -2,7 +2,7 @@ import '@babel/polyfill';
 import {login,logout,signup,signup1,updatea} from './login';
 import {showAlert} from './alert';
 import {addProduct,updateProduct,deleteproduct,sortingandsearch} from './product';
-import {addC,updateC,deleteC} from './cart';
+import {addC,updateC,deleteC,empty_cart} from './cart';
 
 const loginform = document.querySelector('.form');
 const loginform1 = document.querySelector('.form1');
@@ -171,7 +171,13 @@ if(updatep)
         });
         updateProduct(form);
     })
+
 //-------------------------------------------------CART-------------------------------------------//
+
+const deleteM = document.getElementById('empty--cart');
+if(deleteM)
+    deleteM.addEventListener('click',empty_cart);
+
 
 let cboxa = document.querySelectorAll(".addc");
 cboxa.forEach(box => {

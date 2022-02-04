@@ -9246,7 +9246,7 @@ exports.deleteproduct = deleteproduct;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.updateC = exports.deleteC = exports.addC = void 0;
+exports.updateC = exports.empty_cart = exports.deleteC = exports.addC = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -9401,6 +9401,53 @@ var deleteC = /*#__PURE__*/function () {
 }();
 
 exports.deleteC = deleteC;
+
+var empty_cart = /*#__PURE__*/function () {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+    var res;
+    return regeneratorRuntime.wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.prev = 0;
+            _context4.next = 3;
+            return (0, _axios.default)({
+              method: 'DELETE',
+              url: 'api/users/cart/',
+              data: {}
+            });
+
+          case 3:
+            res = _context4.sent;
+
+            if (res.data.status === 'success') {
+              window.setTimeout(function () {
+                location.assign('/cart');
+              }, 1200);
+            }
+
+            _context4.next = 10;
+            break;
+
+          case 7:
+            _context4.prev = 7;
+            _context4.t0 = _context4["catch"](0);
+            (0, _alert.showAlert)('error', _context4.t0.response.data.message);
+
+          case 10:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4, null, [[0, 7]]);
+  }));
+
+  return function empty_cart() {
+    return _ref4.apply(this, arguments);
+  };
+}();
+
+exports.empty_cart = empty_cart;
 },{"axios":"../../node_modules/axios/index.js","./alert":"alert.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
@@ -9845,6 +9892,8 @@ if (updatep) updatep.addEventListener('submit', function (e) {
   (0, _product.updateProduct)(form);
 }); //-------------------------------------------------CART-------------------------------------------//
 
+var deleteM = document.getElementById('empty--cart');
+if (deleteM) deleteM.addEventListener('click', _cart.empty_cart);
 var cboxa = document.querySelectorAll(".addc");
 cboxa.forEach(function (box) {
   box.addEventListener('click', function (e) {
@@ -9902,7 +9951,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "4778" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "11415" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

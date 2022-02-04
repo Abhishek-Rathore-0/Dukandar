@@ -13,7 +13,7 @@ exports.addCart = async(req, res, next)=>{
         });
 
         if (cartfind.length == 0) {
-            const cartItems = await Cart.find();
+            const cartItems = await Cart.find({UserID: userid});
             if(cartItems.length !=0){
                 const product1 = await Product.find({_id:cartItems[0].ProductID});
                 const product2 = await Product.find({_id:id});
@@ -62,11 +62,19 @@ exports.editCart = async(req, res, next)=>{
     res.status(200).json({ status: 'success' });
 }
 
-exports.deleteCart = async(req, res, next)=>{
+exports.deleteCartItem = async(req, res, next)=>{
     const { id } = req.params;
     const cartItem = await Cart.findOneAndDelete({
         UserID: req.user.id,
         ProductID: id,
+    });
+
+    res.status(200).json({ status: 'success' });
+}
+
+exports.deleteCart = async(req, res, next)=>{
+    const cartItem = await Cart.deleteMany({
+        UserID: req.user.id
     });
 
     res.status(200).json({ status: 'success' });
