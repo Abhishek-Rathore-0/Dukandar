@@ -99,7 +99,7 @@ exports.isLoggedIn = async (req, res, next) => {
       }
     
       res.locals.user = currentUser;
-      res.locals.address = 'http://'+req.headers.host+'/';
+      res.locals.address = req.headers.host=="localhost:3000"?'http://'+req.headers.host+'/':'https://'+req.headers.host+'/';
       return next();
     
     } catch (err) {
@@ -142,7 +142,7 @@ exports.protect = catchAsync(async (req, res, next) => {
   // GRANT ACCESS TO PROTECTED ROUTE
   req.user = currentUser;
   res.locals.user = currentUser;
-  res.locals.address = 'http://'+req.headers.host+'/';
-      
+  res.locals.address = req.headers.host=="localhost:3000"?'http://'+req.headers.host+'/':'https://'+req.headers.host+'/';
+          
   next();
 });
