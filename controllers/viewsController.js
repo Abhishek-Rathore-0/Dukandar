@@ -40,7 +40,7 @@ exports.cart= async(req, res, next) => {
     const userid = req.user.id;
     const cartItem = await Cart.find({ UserID: userid });
     
-    let shopName="";
+    let shop;
     let arrayy = [];
     for (let cart of cartItem) {
       let cartProduct = await ProductModel.find({ _id: cart.ProductID });
