@@ -1,79 +1,75 @@
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light my-2" style="background-color: white !important;">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#"><img src="/image/logo/Samaan_Mart-removebg-cropped.png" alt="Samaan Mart"></a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/agent">Home</a>
-                  </li>
+<nav class="navbar navbar-expand-lg navbar-light bg-light my-2" style="background-color: white !important;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"><img src="/image/logo/Samaan_Mart-removebg-cropped.png" alt="Samaan Mart"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/agent">Home</a>
+        </li>
 
-                  <li class="nav-item">
-                    <a class="nav-link<%=!agent?' disabled':''%>" href="/" <%-!agent? "tabindex='-1' aria-disabled='true'":""%>>Dashboard</a>
-                  </li>
-                  
-                  <li class="nav-item">
-                    <a class="nav-link <%=!agent?' disabled':''%>" href="/agent-products" <%-!agent? "tabindex='-1' aria-disabled='true'":""%>>Products</a>
-                  </li>
-                  
-                  <li class="nav-item">
-                    <a class="nav-link <%=!agent?' disabled':''%>" href="#" <%-!agent? "tabindex='-1' aria-disabled='true'":""%>>Ratings</a>
-                  </li>
-                  
-                  <li class="nav-item">
-                    <a class="nav-link <%=!agent?' disabled':''%>" href="/agent-account" <%-!agent? "tabindex='-1' aria-disabled='true'":""%>>Me</a>
-                  </li>
-                  
+        <li class="nav-item">
+          <a class="nav-link<%=!agent?' disabled':''%>" href="/" <%-!agent? "tabindex='-1' aria-disabled='true'":""%>>Dashboard</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link <%=!agent?' disabled':''%>" href="/agent-products" <%-!agent? "tabindex='-1' aria-disabled='true'":""%>>Products</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link <%=!agent?' disabled':''%>" href="#" <%-!agent? "tabindex='-1' aria-disabled='true'":""%>>Ratings</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link <%=!agent?' disabled':''%>" href="/agent-account" <%-!agent? "tabindex='-1' aria-disabled='true'":""%>>Me</a>
+        </li>
+        
 
-                </ul>
-                <%if(!agent){ %> 
-                  
-                <a class="btn btn-outline-success" style="margin-right: 10px;" aria-current="page" href="#login" data-bs-toggle="modal">Login</a>
-                <a class="btn btn-outline-success" href="/agent-signup">SignUp</a>
-                
-                <% }else{ %> 
-                  <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Hi, <%=agent.name %> </a>
-                  <a class="logout-btn btn btn-outline-success" style="margin-right: 10px;">Logout</a> 
-                <% } %> 
+      </ul>
+      <%if(!agent){ %>   
+        <a class="btn btn-outline-success" style="margin-right: 10px;" aria-current="page" href="#login" data-bs-toggle="modal">Login</a>
+        <a class="btn btn-outline-success" href="/agent-signup">SignUp</a>
+      <% }else{ %> 
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Hi, <%=agent.name %> </a>
+        <a class="logout-btn btn btn-outline-success" style="margin-right: 10px;">Logout</a> 
+      <% } %> 
+    </div>
+  </div>
+</nav>
+
+<section class="log" style="margin-top: 0px;">
+  <div class="modal fade" id="login" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1" >
+    <div class="modal-dialog modal-dialog-centered rounded-0" style="max-width: 400px;">
+      <div class="modal-content" style="border-radius: 10px;">
+        <div class="modal-header border-0">
+          <h3>Log IN</h3>
+          <button type="button" class="btn-close  " style="margin-top: -48px;" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div>
+            <form class="px-4 py-3 form1">
+              <div class="mb-3">
+                <label for="exampleDropdownFormEmail1" class="form-label label">Email address</label>
+                <input type="email" class="form-control inp" id="email" name="Email1" placeholder="Enter your email">
               </div>
-            </div>
-          </nav>
-
-          <section class="log" style="margin-top: 0px;">
-            <div class="modal fade" id="login" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1" >
-              <div class="modal-dialog modal-dialog-centered rounded-0" style="max-width: 400px;">
-                <div class="modal-content" style="border-radius: 10px;">
-                  <div class="modal-header border-0">
-                    <h3>Log IN</h3>
-                    <button type="button" class="btn-close  " style="margin-top: -48px;" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                      <div>
-                          <form class="px-4 py-3 form1">
-                            <div class="mb-3">
-                              <label for="exampleDropdownFormEmail1" class="form-label label">Email address</label>
-                              <input type="email" class="form-control inp" id="email" name="Email1" placeholder="Enter your email">
-                            </div>
-                            <div class="mb-3 mt-5">
-                              <label for="exampleDropdownFormPassword1" class="form-label label">Password</label>
-                              <input type="password" class="form-control inp" id="password" name="Password1" placeholder="Enter your password">
-                            </div>
-                            <div class="text-center  mt-5">
-                              <button class="button">LOGIN</button>
-                            </div>
-                          </form>
-                          
-                          <div class="modal-body" style="text-align: right; ">
-                            <a class="right" href="/agent-signup">New around here? Sign up</a><br>
-                          </div>
-                        </div>
-                  </div>
-               
-                </div>
+              <div class="mb-3 mt-5">
+                <label for="exampleDropdownFormPassword1" class="form-label label">Password</label>
+                <input type="password" class="form-control inp" id="password" name="Password1" placeholder="Enter your password">
               </div>
+              <div class="text-center  mt-5">
+                <button class="button">LOGIN</button>
+              </div>
+            </form>
+            
+            <div class="modal-body" style="text-align: right; ">
+              <a class="right" href="/agent-signup">New around here? Sign up</a><br>
             </div>
-            
-            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

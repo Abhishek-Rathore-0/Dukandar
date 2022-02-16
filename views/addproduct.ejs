@@ -1,68 +1,69 @@
 <!DOCTYPE html>
     
 <%- include('partials/head') %> 
-<body style="background-color: white" class="mx-5">
+<body style="background-color: white">
     <%- include('partials_agent/navbar') %>  
-
-    <div class="row align-items-center mt-5">   
-        <h2 class="heading-secondary ma-bt-md">Add product</h2>
-        <div class="col-sm-7">
-            <div class="user-view__content">
-                <div class="user_view__form-container">
-                    <form class="form--addproduct">
-                    <div class="px-4 py-3">
-                           
-                        <div class="mb-3 row">
-                                
-                            <div class="col-sm-5">
-                                <label class="form-label label">Name</label>
-                                <input type="text" class="form-control inp" required id="name" name="Name" placeholder="Product Name"> 
-                            </div>
+    <section class="mx-5">
+        <div class="row align-items-center mt-5">   
+            <h2 class="heading-secondary ma-bt-md">Add product</h2>
+            <div class="col-sm-7">
+                <div class="user-view__content">
+                    <div class="user_view__form-container">
+                        <form class="form--addproduct">
+                        <div class="px-4 py-3">
                             
-                            <div class="col-sm-6">
-                                <label class="form-label label">Description</label>
-                                <input type="text" class="form-control inp" required id="description" name="description" placeholder="Product Description">
-                            </div>
-    
-                        </div>
-    
-                        <div class="mb-3 mt-4 row">
-                            <div class="col-sm-5">
-                                <% const cate=["Automobile & Tyres","Books","Clothes","Computer Accessories","Cosmetics","Dairy","Decoration","Electronics","Fashin Accessories","Furniture","Gym Equipments","Media","Others"] %> 
-                                <label class="form-label" for="category">Select Category </label>                                    
-                                <select name="category" id="category" required class="form-control inp"     size="5"> 
-                                    <% for (var i = 0; i < cate.length; i++) { %>
-                                        <option value="<%=cate[i]%>"><%=cate[i]%></option>
-                                    <% } %> 
-                                        
-                                </select>
-                            </div>
-                            <div class="col-sm-6 row">
+                            <div class="mb-3 row">
+                                    
+                                <div class="col-sm-5">
+                                    <label class="form-label label">Name</label>
+                                    <input type="text" class="form-control inp" required id="name" name="Name" placeholder="Product Name"> 
+                                </div>
+                                
                                 <div class="col-sm-6">
-                                    <label class="form-label label mt-2">Price</label>
-                                    <input type="text" class="form-control inp"  required id="price" name="price" placeholder="RS.">
+                                    <label class="form-label label">Description</label>
+                                    <input type="text" class="form-control inp" required id="description" name="description" placeholder="Product Description">
                                 </div>
-                                <div class="col-sm-6">
-                                    <label class="form-label label mt-2">Quantity</label>
-                                    <input type="text" class="form-control inp" required id="quantity" name="quantity" >
-                                </div>
-                                <div class="mt-4">
-                                    <label for="aphoto" class="mb-2"> Set Product photo</label>
-                                    <input type="file" accept="image/*" class="form-control inp" multiple id="photos" name="photos">
-                                </div>
+        
                             </div>
-                        </div>                
-                    </div>  
-                </div> 
+        
+                            <div class="mb-3 mt-4 row">
+                                <div class="col-sm-5">
+                                    <% const cate=["Automobile & Tyres","Books","Clothes","Computer Accessories","Cosmetics","Dairy","Decoration","Electronics","Fashin Accessories","Furniture","Gym Equipments","Media","Others"] %> 
+                                    <label class="form-label" for="category">Select Category </label>                                    
+                                    <select name="category" id="category" required class="form-control inp"     size="5"> 
+                                        <% for (var i = 0; i < cate.length; i++) { %>
+                                            <option value="<%=cate[i]%>"><%=cate[i]%></option>
+                                        <% } %> 
+                                            
+                                    </select>
+                                </div>
+                                <div class="col-sm-6 row">
+                                    <div class="col-sm-6">
+                                        <label class="form-label label mt-2">Price</label>
+                                        <input type="text" class="form-control inp"  required id="price" name="price" placeholder="RS.">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class="form-label label mt-2">Quantity</label>
+                                        <input type="text" class="form-control inp" required id="quantity" name="quantity" >
+                                    </div>
+                                    <div class="mt-4">
+                                        <label for="aphoto" class="mb-2"> Set Product photo</label>
+                                        <input type="file" accept="image/*" class="form-control inp" multiple id="photos" name="photos">
+                                    </div>
+                                </div>
+                            </div>                
+                        </div>  
+                    </div> 
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <img src="https://cdn.learnwoo.com/wp-content/uploads/2016/11/Adding-Products_Cropped-696x472.png" style="width: 500px;height: 330px;">
             </div>
         </div>
-        <div class="col-sm-4">
-            <img src="https://cdn.learnwoo.com/wp-content/uploads/2016/11/Adding-Products_Cropped-696x472.png" style="width: 500px;height: 330px;">
+        <div class="mt-5 text-center">
+            <button class="col-sm-3 btn btn-outline-success">Add</button>
         </div>
-    </div>
-    <div class="mt-5 text-center">
-        <button class="col-sm-3 btn btn-outline-success">Add</button>
-    </div>
+    </section>
     <input type="hidden" name="shop" id="shop" value="<%=agent.id%>">
     </form>
     
