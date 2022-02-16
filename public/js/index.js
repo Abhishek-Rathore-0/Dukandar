@@ -210,7 +210,6 @@ cboxd.forEach(box => {
   box.addEventListener('click', e=>{
     e.preventDefault();
     const id=document.getElementById('proId').value;
-    console.log('delte');
     if(id!="")
         deleteC(id);
   });
