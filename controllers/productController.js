@@ -142,7 +142,6 @@ exports.getAll = catchAsync(async(req, res, next) =>{
       res.locals.query = req.query;
       if(!res.locals.Agents)
         res.locals.Agents = await Agent.find();
-      console.log(res.locals.Agents);
     }
     next();
 })
