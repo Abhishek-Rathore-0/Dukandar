@@ -104,3 +104,22 @@ export const updatea = async(data) =>{
     showAlert('error', err.response.data.message);
   }
 }
+
+export const updateu = async(data) =>{
+  try {
+    const res = await axios({
+      method: 'PATCH',
+      url: 'api/users/update',
+      data
+    });
+    
+    if (res.data.status === 'success') {  
+      showAlert('success', 'Changed successful.');
+      window.setTimeout(() => {
+        location.assign('/account');
+      }, 1200);
+    }
+  } catch (err) {
+    showAlert('error', err.response.data.message);
+  }
+}

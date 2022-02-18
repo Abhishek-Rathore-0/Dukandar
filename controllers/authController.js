@@ -72,7 +72,7 @@ exports.logout = (req, res) => {
 };
   
 exports.isLoggedIn = async (req, res, next) => {
-   
+  
   res.locals.user =''
   if (req.cookies.jwt) {
     
@@ -98,6 +98,8 @@ exports.isLoggedIn = async (req, res, next) => {
         );
       }
     
+      req.user = currentUser;
+  
       res.locals.user = currentUser;
       res.locals.address = req.headers.host=="localhost:3000"?'http://'+req.headers.host+'/':'https://'+req.headers.host+'/';
       return next();

@@ -7,6 +7,7 @@ const router = express.Router();
 router.post('/signup', authController.signup);
 router.post('/login', authController.login);
 router.get('/logout', authController.logout);
+router.patch('/update', authController.protect, userController.uploadUserPhoto, userController.resizeUserPhoto, userController.update);
 
 router.post("/cart/:id",authController.protect, userController.addCart);
 router.put("/cart/:id",authController.protect, userController.editCart);

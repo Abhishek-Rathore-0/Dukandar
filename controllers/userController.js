@@ -1,6 +1,71 @@
 const Product = require('../models/productModel');
 const Cart=require('../models/cartModel');
+const User = require('./../models/userModel');
+
 const AppError = require('./../utils/appError');
+const catchAsync = require('./../utils/catchAsync');
+
+// For image------------------------------------------------------------
+const multer = require('multer');
+const sharp = require('sharp');
+
+const multerStorage = multer.memoryStorage();
+
+const multerFilter = (req, file, cb) => {
+  if (file.mimetype.startsWith('image')) {
+    cb(null, true);
+  } else {
+    cb(new AppError('Not an image! Please upload only images.', 400), false);
+  }
+};
+
+const upload = multer({
+  storage: multerStorage,
+  fileFilter: multerFilter
+});
+
+exports.uploadUserPhoto = upload.single('photo');
+
+exports.resizeUserPhoto = catchAsync(async (req, res, next) => {
+  if (!req.file) return next();
+  req.file.filename = `user-${req.body.name}.jpeg`;
+  
+  await sharp(req.file.buffer)
+    .toFormat('jpeg')
+    .jpeg({ quality: 90 })
+    .toFile(`public/image/users/${req.file.filename}`);
+  next();
+});
+
+// ------------------------------------------------------------------------------------------
+
+
+const filterObj = (obj, ...allowedFields) => {
+    const newObj = {};
+    Object.keys(obj).forEach(el => {
+      if (allowedFields.includes(el)) newObj[el] = obj[el];
+    });
+    return newObj;
+  };
+
+exports.update = catchAsync(async (req, res, next)=>{
+    const filteredBody = filterObj(req.body, 'name', 'email', 'location', 'mobile', 'photo', 'city');
+    
+    if (req.file) filteredBody.photo = req.file.filename;
+    //Update user document
+    const updateduser= await User.findByIdAndUpdate(req.user.id, filteredBody, {
+      new: true,
+      runValidators: true
+    });
+  
+    res.status(200).json({
+      status: 'success',
+      data: {
+        user: updateduser
+      }
+    });
+  });
+
 
 exports.addCart = async(req, res, next)=>{
     const userid = req.user.id;

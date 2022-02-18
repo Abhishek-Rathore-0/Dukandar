@@ -8789,7 +8789,7 @@ exports.showAlert = showAlert;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.updatea = exports.signup1 = exports.signup = exports.logout = exports.login = void 0;
+exports.updateu = exports.updatea = exports.signup1 = exports.signup = exports.logout = exports.login = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -9045,6 +9045,54 @@ var updatea = /*#__PURE__*/function () {
 }();
 
 exports.updatea = updatea;
+
+var updateu = /*#__PURE__*/function () {
+  var _ref6 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(data) {
+    var res;
+    return regeneratorRuntime.wrap(function _callee6$(_context6) {
+      while (1) {
+        switch (_context6.prev = _context6.next) {
+          case 0:
+            _context6.prev = 0;
+            _context6.next = 3;
+            return (0, _axios.default)({
+              method: 'PATCH',
+              url: 'api/users/update',
+              data: data
+            });
+
+          case 3:
+            res = _context6.sent;
+
+            if (res.data.status === 'success') {
+              (0, _alert.showAlert)('success', 'Changed successful.');
+              window.setTimeout(function () {
+                location.assign('/account');
+              }, 1200);
+            }
+
+            _context6.next = 10;
+            break;
+
+          case 7:
+            _context6.prev = 7;
+            _context6.t0 = _context6["catch"](0);
+            (0, _alert.showAlert)('error', _context6.t0.response.data.message);
+
+          case 10:
+          case "end":
+            return _context6.stop();
+        }
+      }
+    }, _callee6, null, [[0, 7]]);
+  }));
+
+  return function updateu(_x11) {
+    return _ref6.apply(this, arguments);
+  };
+}();
+
+exports.updateu = updateu;
 },{"axios":"../../node_modules/axios/index.js","./alert":"alert.js"}],"product.js":[function(require,module,exports) {
 "use strict";
 
@@ -9741,6 +9789,7 @@ var updatep = document.querySelector('.form--updateproduct');
 var sort1 = document.getElementById('sort1');
 var sort2 = document.getElementById('sort2');
 var searchbtn = document.querySelector('.search');
+var user_update = document.querySelector('.form-udate');
 
 function ss() {
   var s = document.getElementById('searchv').value;
@@ -9821,6 +9870,22 @@ if (signinform1) signinform1.addEventListener('submit', function (e) {
   (0, _login.signup1)(form, "agents");
 });
 if (logOutBtn) logOutBtn.addEventListener('click', _login.logout);
+if (user_update) user_update.addEventListener('submit', function (e) {
+  e.preventDefault();
+  var form = new FormData();
+  form.append('name', document.getElementById('aname').value);
+  form.append('email', document.getElementById('aemail').value);
+  if (document.getElementById('aphoto').files[0]) form.append('photo', document.getElementById('aphoto').files[0]);
+  form.append('mobile', document.getElementById('amobile').value);
+  var location1 = document.getElementById('alocation1').value;
+  var city = document.getElementById('alocation2').value;
+  var location3 = document.getElementById('alocation3').value;
+  var location4 = document.getElementById('alocation4').value;
+  var location = location1 + ", " + city + ", " + location3 + ", " + location4;
+  form.append('location', location);
+  form.append('city', city);
+  (0, _login.updateu)(form);
+});
 if (aupdate) aupdate.addEventListener('submit', function (e) {
   e.preventDefault();
   var form = new FormData();
@@ -9919,7 +9984,6 @@ cboxd.forEach(function (box) {
   box.addEventListener('click', function (e) {
     e.preventDefault();
     var id = document.getElementById('proId').value;
-    console.log('delte');
     if (id != "") (0, _cart.deleteC)(id);
   });
 });
@@ -9951,7 +10015,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "11415" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "7547" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

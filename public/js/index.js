@@ -1,5 +1,5 @@
 import '@babel/polyfill';
-import {login,logout,signup,signup1,updatea} from './login';
+import {login,logout,signup,signup1,updatea,updateu} from './login';
 import {showAlert} from './alert';
 import {addProduct,updateProduct,deleteproduct,sortingandsearch} from './product';
 import {addC,updateC,deleteC,empty_cart} from './cart';
@@ -16,6 +16,7 @@ const updatep = document.querySelector('.form--updateproduct');
 const sort1 = document.getElementById('sort1');
 const sort2 = document.getElementById('sort2');
 const searchbtn = document.querySelector('.search');
+const user_update = document.querySelector('.form-udate');
 
 function ss(){
     const s= document.getElementById('searchv').value;
@@ -99,6 +100,29 @@ if(signinform1)
     });
 
 if(logOutBtn) logOutBtn.addEventListener('click', logout);
+
+if(user_update)
+    user_update.addEventListener('submit', e=>{
+        e.preventDefault();
+        const form = new FormData();
+        form.append('name', document.getElementById('aname').value);
+        form.append('email', document.getElementById('aemail').value);
+        if(document.getElementById('aphoto').files[0])
+            form.append('photo', document.getElementById('aphoto').files[0]);
+        form.append('mobile', document.getElementById('amobile').value);
+
+     
+        const location1=document.getElementById('alocation1').value;
+        const city=document.getElementById('alocation2').value;
+        const location3=document.getElementById('alocation3').value;
+        const location4=document.getElementById('alocation4').value;
+        const location=location1+", "+city+", "+location3+", "+location4;
+
+        form.append('location', location);
+        form.append('city', city);
+        updateu(form);
+    });
+
 
 if(aupdate)
     aupdate.addEventListener('submit', e=>{

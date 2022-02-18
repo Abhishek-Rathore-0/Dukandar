@@ -3,47 +3,106 @@
     <body style="background-color: white">
         <%- include('partials/navbar') %>     
         
-        <main class="main">
-        <div class="user-view">
-            <nav class="user-view__menu">
-                <ul class="side-nav">
-                    <li class="side-nav--active">
-                        <a href="#">Settings</a>
-                    </li>
-                    <li>
+        <div class="row align-items-center mx-5 mt-5">
+            <nav class="col-sm-4 justify-content-center">
+                <div class="form__photo-upload d-flex justify-content-center">
+                    <img src="/image/users/<%=user.photo%>" alt='User photo' class="form__user-photo">
+                </div>
+                <div class="d-flex justify-content-center">
+                    <div>
+                        <a class="" href="/account">Settings</a>
+                    </div>
+                    <div>
                         <a href="#">My Orders</a>
-                    </li>
-                    <li>
-                        <a href="#">My reviews</a>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </nav>
 
-            <div class="user-view__content">
+            <div class="col-sm-7">
                 <div class="user_view__form-container">
                     <h2 class="heading-secondary ma-bt-md">Your account settings</h2>
-                    
-                    <form class="form form-user-data">
-                        <div class="form__group">
-                            <label class="form__label" for="name"> Name</label>
-                            <input type="text" class="form__input" id="name" required value="<%=user.name%>">
+                                
+                    <form class="px-4 py-3 form-udate">
+                        <div class="mb-3 row">
                             
-                            <label class="form__label" for="email">Email address</label>
-                            <input type="email" class="form__input" id="email" required value="<%=user.email%>">
-                            <div class="form__group right">
-                                <button class="btn btn--small btn--green"> Save settings</button>
+                            <div class="col-sm-5">
+                                <label class="form-label label">Name</label>
+                                <input type="text" class="form-control inp" required id="aname" name="Name" value="<%=user.name%>">
                             </div>
+                        
+                            <div class="col-sm-6">
+                                <label class="form-label label">Email address</label>
+                                <input type="email" disabled class="form-control inp" required id="aemail" name="Email" value="<%=user.email%>">
+                            </div>
+    
                         </div>
-            
-            
+    
+                        <%if(!user.location){%>
+                            <div class="mb-3 mt-4 row">
+                                <label class="form-label label">Location</label>
+                                <div class="col-sm-5">
+                                    <input type="text" class="form-control inp" required id="alocation1" name="location" placeholder="Address">
+                                </div>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control inp" required id="alocation2" name="location" placeholder="City">
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control inp" required id="alocation3" name="location" placeholder="State">
+                                </div>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control inp" required id="alocation4" name="location" placeholder="Pincode">
+                                </div>  
+                            </div>
+                        <% }else{ %>
+                            <% let location = user.location.split(',');%> 
+                            <% let add=location[0];let l=location.length; %> 
+                            <% for(let i=1; i<(l-3);i++) {%> 
+                            <% add=add+","+location[i]; }%> 
+                             
+                            <div class="mb-3 mt-4 row">
+                                <label class="form-label label">Location</label>
+                                <div class="col-sm-5">
+                                    <input type="text" class="form-control inp" required id="alocation1" name="location" value="<%=add%>">
+                                </div>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control inp" required id="alocation2" name="location" value="<%=location[l-3].trim()%>">
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control inp" required id="alocation3" name="location" value="<%=location[l-2].trim()%>">
+                                </div>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control inp" required id="alocation4" name="location" value="<%=location[l-1].trim()%>">
+                                </div>  
+                            </div>
+                        <% } %>  
+                          
+                        <div class="mb-2 mt-4 row">
+                          
+                            <div class="col-sm-5">
+                                <label for="aphoto" class="mb-2"> Change photo</label>
+                                <input type="file" accept="image/*" class="form-control inp" id="aphoto" name="aphoto">
+                            </div>
+                          
+                            <div class="col-sm-6 row">
+                                <div class="col-sm-6">
+                                    <label class="form-label label">Mobile No</label>
+                                    <%if(!user.mobile){%>    
+                                        <input type="text" class="form-control inp" required id="amobile" name="mobile" placeholder="Enter mobile no"> 
+                                    <%}else{%>
+                                        <input type="text" class="form-control inp" required id="amobile" name="mobile" value="<%=user.mobile %> ">  
+                                    <% } %> 
+                                </div>
+                                <div class="col-sm-5 text-center mt-3">
+                                    <button class="form-control btn btn-outline-success">SAVE</button>
+                                </div>                         
+                            </div>
+                        </div> 
+    
                     </form>
-            
-            
+                    
                 </div>
             </div>
-
         </div>
-    </main>
     <footer>
         <%- include('partials/footer') %>
     </footer>   

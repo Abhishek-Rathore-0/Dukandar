@@ -95,12 +95,21 @@ exports.delete = catchAsync(async(req,res,next) => {
 
 exports.getAll = catchAsync(async(req, res, next) =>{
   let features;
-  if(req.user){
-    features = new APIFeatures(Product.find({"city":req.user.city}), req.query)
+    
+  if(req.user && req.user.city){
+    const agent =await Agent.find({"city":req.user.city});
+    res.locals.Agents = agent;
+      
+    let id=[];
+    for(const a of agent){
+      id.push(a._id);
+    }
+    features = new APIFeatures(Product.find({"shopId":id}), req.query)
       .filter()
       .sort()
       .limitFields()
       .paginate();
+
   }else if(req.agent){
     features = new APIFeatures(Product.find({"shopId":req.agent.id}), req.query)
       .filter()
@@ -130,8 +139,10 @@ exports.getAll = catchAsync(async(req, res, next) =>{
     }
     else{
       res.locals.Products = doc;
-      res.locals.Agents = await Agent.find();
       res.locals.query = req.query;
+      if(!res.locals.Agents)
+        res.locals.Agents = await Agent.find();
+      console.log(res.locals.Agents);
     }
     next();
 })
