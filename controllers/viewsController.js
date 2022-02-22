@@ -10,8 +10,7 @@ exports.home = async(req, res, next) => {
     });
 }
 exports.index = async(req, res, next) => {
-    console.log(req.body);
-    res.render('index',{
+     res.render('index',{
         title:'Digital Dukaan'
     })
 }
@@ -76,6 +75,13 @@ exports.cart= async(req, res, next) => {
         tax,
         shop
     })
+}
+
+
+exports.orders = async(req, res, next) =>{
+    res.status(200).render('orders',{
+        title: 'Order'
+    });
 }
 
 exports.account = async(req, res, next) =>{

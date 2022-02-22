@@ -9,6 +9,7 @@ const router = express.Router();
 router.get("/", authController.isLoggedIn, productController.getAll, viewsController.home);
 router.get("/account",authController.protect, viewsController.account);
 router.get("/cart",authController.protect, viewsController.cart);
+router.get("/orders",authController.protect, viewsController.orders);
 router.get("/shop/:id", authController.isLoggedIn, viewsController.shop);
 
 
