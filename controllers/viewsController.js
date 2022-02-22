@@ -10,6 +10,7 @@ exports.home = async(req, res, next) => {
     });
 }
 exports.index = async(req, res, next) => {
+    console.log(req.body);
     res.render('index',{
         title:'Digital Dukaan'
     })
@@ -21,10 +22,8 @@ exports.shop = async(req, res, next)=>{
     if(ObjectId.isValid(id)){
         if((String)(new ObjectId(id)) === id){
             let shopObject = await AgentModel.find({_id:id});
-            console.log(shopObject[0]);
             if(shopObject.length !=0 ){    
                 let products = await ProductModel.find({shopId:id});
-                console.log(products[0])
                 return res.status(200).render('shop',{
                     title: shopObject[0].shop,
                     shop:shopObject[0],
