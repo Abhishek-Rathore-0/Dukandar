@@ -1,9 +1,16 @@
 const Product = require('../models/productModel');
 const Cart=require('../models/cartModel');
+const Order=require('../models/orderModel');
+const AgentModel=require('../models/agentModel');
 const User = require('./../models/userModel');
 
 const AppError = require('./../utils/appError');
 const catchAsync = require('./../utils/catchAsync');
+
+const PUBLISHABLE_KEY = process.env.PUBLISHABLE_KEY;
+const SECRET_KEY = process.env.SECRET_KEY;
+const stripe = require("stripe")(SECRET_KEY);
+
 
 // For image------------------------------------------------------------
 const multer = require('multer');
@@ -144,3 +151,96 @@ exports.deleteCart = async(req, res, next)=>{
 
     res.status(200).json({ status: 'success' });
 }
+
+exports.addorder = catchAsync(async(req, res, next)=>{
+  const UserID = req.user.id;
+  const cartItem = await Cart.find({UserID});
+  if (cartItem.length == 0) {
+    return next(new AppError('Please add items to cart to order.', 400));
+  }
+  else{
+    
+    const orders = await Order.deleteMany({UserID,Status:"pending"});
+
+
+
+    let arrayy = [];
+    for (let cart of cartItem) {
+      let cartProduct = await Product.find({ _id: cart.ProductID });
+      arrayy.push(cartProduct);
+    }
+    
+    let agentp = await AgentModel.find({_id:arrayy[0][0].shopId});
+    let shop = agentp[0];
+    
+    let subtotal = 0;
+    let i = 0;
+    for (let arr of arrayy) {
+      subtotal = subtotal + arr[0].price * cartItem[i].Quantity;
+      i++;
+    }
+
+    let shipping = 100;
+    if (subtotal >= 1000 || subtotal == 0) shipping = 0;
+    let tax = subtotal / 10;
+    finaltotal = subtotal + shipping + tax;
+    
+    i=0;
+    for (let arr of arrayy) {
+      const ProductID = arr[0]._id;
+      const ShopID = shop._id;
+      const Quantity = cartItem[i].Quantity;
+      const Date1 = new Date().toISOString().slice(0, 10);
+      const TransactionID = UserID;
+      const PaymentMode = "--";
+      const prod= await Product.find({_id:arr[0]._id});
+      const Price=prod[0].price;
+      const Status ="pending"
+      
+      const NewOrder = new Order({
+        UserID,
+        ProductID,
+        ShopID,
+        Quantity,
+        OrderDate: Date1,
+        TransactionID,
+        PaymentMode,
+        Price,
+        Total: finaltotal,
+        Status
+      });
+      await NewOrder.save();
+      i++;
+    }
+    
+  }
+  
+  res.status(200).json({status: 'success'});
+})
+
+exports.paying = catchAsync(async(req, res, next)=>{
+  stripe.customers
+  .create({
+    email: req.body.stripeEmail,
+    source: req.body.stripeToken,
+    name: "User_" + new Date().getTime(),
+  })
+  .then((customer) => {
+    return stripe.charges.create({
+      amount: Math.round(finalcost) * 100,
+      description: "Order From Samaan Mart",
+      currency: "INR",
+      customer: customer.id,
+    });
+  })
+  .then(catchAsync(async(charge) => {
+    // console.log(charge);
+    req.user.transId = charge.id;
+    console.log(req.body.stripeToken);
+    await Cart.deleteMany({ UserID: UserID });
+    res.redirect("/success");
+  }))
+  .catch((err) => {
+    return next(err);
+  });
+});

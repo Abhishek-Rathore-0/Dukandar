@@ -2,7 +2,7 @@ import '@babel/polyfill';
 import {login,logout,signup,signup1,updatea,updateu} from './login';
 import {showAlert} from './alert';
 import {addProduct,updateProduct,deleteproduct,sortingandsearch} from './product';
-import {addC,updateC,deleteC,empty_cart} from './cart';
+import {addC,updateC,deleteC,empty_cart,addO,paynowfunction} from './cart';
 
 const loginform = document.querySelector('.form');
 const loginform1 = document.querySelector('.form1');
@@ -15,8 +15,17 @@ const deletep = document.querySelector('.form--deleteproduct');
 const updatep = document.querySelector('.form--updateproduct');
 const sort1 = document.getElementById('sort1');
 const sort2 = document.getElementById('sort2');
+const OrderBtn = document.getElementById('OrderBtn');
 const searchbtn = document.querySelector('.search');
 const user_update = document.querySelector('.form-udate');
+const paynow = document.querySelector('.paynow1');
+
+if(paynow)
+    paynow.addEventListener('submit', e=>{
+        console.log("1 ssj ")
+        e.preventDefault();
+        paynowfunction();
+    });
 
 function ss(){
     const s= document.getElementById('searchv').value;
@@ -238,3 +247,8 @@ cboxd.forEach(box => {
         deleteC(id);
   });
 });
+
+if(OrderBtn)
+    OrderBtn.addEventListener('click',e=>{
+        addO();
+    });
