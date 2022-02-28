@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <title>Stripe Payment Demo</title>
+  <body>
+    <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+      <h2>Welcome to Payment Gateway</h2>
+      <form class="paynow1">
+        <script
+          src="//checkout.stripe.com/v2/checkout.js"
+          class="stripe-button"
+          data-key="<%= key %>"
+          data-amount="<%= Math.round(amount)*100 %>"
+          data-currency="inr"
+          data-name="<SAMAAN MART>"
+          data-description="ORDER FROM SAMAAN MART"
+          data-image="/image/logo/Samaan_Mart.png"
+          data-locale="auto"
+        ></script>
+      </form>
+    </div>
+    
+<script src="/js/bundle.js"></script>
+  </body>
+
+</html>

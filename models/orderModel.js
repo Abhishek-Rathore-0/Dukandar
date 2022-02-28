@@ -13,10 +13,6 @@ const orderSchema = new mongoose.Schema({
         type: String, 
         required: true
     },
-    Size: {
-        type: String,
-        enum: ['S','M','L','XL','XXL','']
-    },
     Quantity: {
         type: Number,
         enum: [1,2,3,4,5,6,7,8,9,0]
@@ -31,7 +27,7 @@ const orderSchema = new mongoose.Schema({
     },
     PaymentMode: {
         type: String,
-        enum: ['card','upi','cod']
+        enum: ['card','upi','cod','--']
     },
     Price:{
         type: String,
@@ -43,7 +39,7 @@ const orderSchema = new mongoose.Schema({
     },
     Status: {
        type: String,
-       enum: ['pending','delivered']
+       enum: ['pending','success']
     }
 });
 

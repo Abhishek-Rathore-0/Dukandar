@@ -72,3 +72,36 @@ export const empty_cart = async () => {
     showAlert('error', err.response.data.message);
   }
 };
+
+export const addO =async()=>{
+  try {
+    const res = await axios({
+      method: 'POST',
+      url:'api/users/order'
+    });
+
+    if (res.data.status === 'success') {
+      location.assign('/paynow');
+    }
+  } catch (err) {
+    console.log(err)
+    showAlert('error', err.response.data.message);
+  }
+};
+
+export const paynowfunction=async()=>{
+  try {
+    const res = await axios({
+      method: 'POST',
+      url:'api/users/paynow'
+    });
+
+    if (res.data.status === 'success') {
+      window.setTimeout(() => {
+        location.assign('/success');
+      }, 1200);
+    }
+  } catch (err) {
+    showAlert('error', err.response.data.message);
+  }
+};

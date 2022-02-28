@@ -1,6 +1,7 @@
 const ProductModel = require('../models/productModel');
 const Cart = require('../models/cartModel');
 const AgentModel = require('../models/agentModel');
+const UserModel = require('../models/userModel');
 const AppError = require('./../utils/appError');
 const ObjectId = require('mongoose').Types.ObjectId;
 
@@ -122,4 +123,18 @@ exports.addproduct = async(req, res, next) =>{
     res.status(200).render('addproduct',{
         title: 'Products',
       });
+}
+
+exports.paynow = async(req, res, next) =>{
+    
+    
+    res.status(200).render("payInput", {
+        key: "pk_test_51JRIRlSD7ORX7cv9kuhqMwSx9qAURpkuNwiDTX0SMiCjCEC8mKUmqlmnThqNTyCqcijRjCOI9rm6WCOIjVwWgzus00dJloVbPY",
+        amount: 1200,
+        Name: (await UserModel.find({_id:req.user.user_id})).name,
+      });
+    
+    // res.status(200).render('success',{
+    //     title: 'Products',
+    //   });
 }

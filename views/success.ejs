@@ -1,0 +1,100 @@
+<!DOCTYPE html> 
+<%- include('partials/head') %> 
+<body > 
+    <div class="container col-lg-6 col-md-12 col-sm-12 mb-5 mt-5" style="background-color: #eee; padding: 20px 0px; border-radius: 20px;">
+        
+        <div class="row">
+            <div class="col-sm-12" style="text-align: center">
+                <img style="width: 100px;" src="/image/logo/Samaan Mart.png" alt="">
+              </div>
+        </div>
+
+        <div class="row">
+            <div class="mt-4 col-sm-12" style="text-align: center">
+                <h1 class="text-center text-uppercase" style="font-size: 30px; color: #343a40;">
+                  Thank you for shopping with us
+                </h1>
+              </div>
+        </div>
+
+        <hr class="mt-3">
+
+        <div class="row d-flex justify-content-center">
+            <div class="col-6 text-center" >
+               <h3>Payment Details</h3> 
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center mt-3">
+            <div class="col-6 text-center">
+                Payment Method
+            </div>
+            <div class="col-6 text-center" >
+                <%= paymentMethod %> 
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center mt-3">
+            <div class="col-6 text-center" >
+                Card Type
+            </div>
+            <div class="col-6 text-center" >
+                <%= network %> 
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center mt-3">
+            <div class="col-6 text-center" >
+                Card Last 4 digits
+            </div>
+            <div class="col-6 text-center" >
+                <%= last4 %> 
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center mt-3">
+            <div class="col-6 text-center" >
+                Transaction ID
+            </div>
+            <div class="col-6 text-center" >
+                <%= transactionId %> 
+            </div>
+        </div>
+
+        <hr class="mt-3">
+
+        <div class="row d-flex justify-content-center">
+            <div class="col-6 text-center" >
+                <h5>Amount</h5> 
+            </div>
+            <div class="col-6 text-center" >
+              <h5><%= amount/100 %>.00 </h5>  
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center mt-2">
+            <div class="col-6 text-center" >
+                <h5>Status</h5> 
+            </div>
+            <div class="col-6 text-center" >
+              <h5>Successful</h5>  
+            </div>
+        </div>
+        
+        <hr class="mt-3">
+        <div class="row d-flex justify-content-center">
+            <div class="col-6 text-center" >
+                <button class="proceed" onclick="window.print()">Print this page</button>
+            </div>
+            <div class="col-6 text-center" >
+                <button class="proceed" onclick="location.href='/'">Return to home</button> 
+            </div>
+        </div>
+
+        <hr class="mb-3"></hr>
+
+        <div class="row d-flex justify-content-center">
+            <div class="col-10 text-center" >
+                <h6>Print the payment details(for future reference) before returning to home.</h6>
+            </div>
+        </div>
+
+    </div>
+    
+</body> 
+</html>
