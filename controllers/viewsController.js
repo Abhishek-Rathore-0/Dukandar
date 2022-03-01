@@ -1,5 +1,6 @@
 const ProductModel = require('../models/productModel');
 const Cart = require('../models/cartModel');
+const Order = require('../models/orderModel');
 const AgentModel = require('../models/agentModel');
 const UserModel = require('../models/userModel');
 const AppError = require('./../utils/appError');
@@ -80,8 +81,23 @@ exports.cart= async(req, res, next) => {
 
 
 exports.orders = async(req, res, next) =>{
+    const OrderList= await Order.find({});
+    OrderList.reverse();
+
+    let OrderProduct = [];
+    let shops =[];
+    for (let orders of OrderList) {
+        let OProduct = await ProductModel.find({ _id: orders.ProductID });
+        OrderProduct.push(OProduct);
+        let shop = await AgentModel.find({_id: orders.ShopID });
+        shops.push(shop);
+    }
+
     res.status(200).render('orders',{
-        title: 'Order'
+        title: 'Order',
+        OrderList,
+        OrderProduct,
+        shops
     });
 }
 
@@ -127,14 +143,9 @@ exports.addproduct = async(req, res, next) =>{
 
 exports.paynow = async(req, res, next) =>{
     
-    
     res.status(200).render("payInput", {
         key: "pk_test_51JRIRlSD7ORX7cv9kuhqMwSx9qAURpkuNwiDTX0SMiCjCEC8mKUmqlmnThqNTyCqcijRjCOI9rm6WCOIjVwWgzus00dJloVbPY",
         amount: 1200,
         Name: (await UserModel.find({_id:req.user.user_id})).name,
       });
-    
-    // res.status(200).render('success',{
-    //     title: 'Products',
-    //   });
 }

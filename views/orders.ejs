@@ -4,15 +4,18 @@
     <%- include('partials/navbar',{location:"orders"}) %>  
     
     <div class="container text-center col-lg-8 col-md-12 col-sm-12 mb-5 mt-4" style="border-bottom: 1px solid black;">
-        <h1 class="merchheading">ORDERS</h1>
+        <h1 style="
+        padding-bottom: 10px;
+        font-size: 6vh;
+        letter-spacing: 6px;
+        color: #343a40;">ORDERS</h1>
       </div>
-      <% if(0 !=0 ){  %> 
+      <% if(0 ==0 ){  %> 
       <div class="container col-lg-8 col-md-12 col-sm-12 mb-5 mt-4">
         <div class="row">
           <div class="col-sm-12 col-lg-12" style="color: #343a40;">
-            <% let i=0; let j=1; let TransId="";%> 
+            <% let i=0; let j=1; let TransId=""%> 
             <% for(let orders of OrderProduct) { %> 
-              
               
               <%if(TransId != OrderList[i].TransactionID && i!=0 ){ %>
               </div>
@@ -23,34 +26,31 @@
               <% if(TransId != OrderList[i].TransactionID){  j=0;%>
   
                 <div class="card mb-3 col-sm-12" style="border-radius: 20px; max-width: 100%; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
-                  <div class="row g-0 border_t" style="background: #343a40; color: white; padding:20px;">
-                    <div class="col-sm-4">Date:<br><%=OrderList[i].OrderDate.toString().slice(0,15); %></div>
-                    <div class="col-sm-4">Total Price:<br>₹<%=OrderList[i].Total %></div>
-                    <div class="col-sm-4">Transaction ID:<br><%=OrderList[i].TransactionID %></div>
+                  <div class="row g-0 border_t" style="border-top-right-radius: 20px;border-top-left-radius: 20px; background: #343a40; color: white; padding:20px;">
+                    <div class="col-sm-3">Date:<br><%=OrderList[i].OrderDate.toString().slice(0,15); %></div>
+                    <div class="col-sm-3">Total Price:<br>₹ <%=OrderList[i].Total %></div>
+                    <div class="col-sm-3">Shop Name:<br><%=shops[i][0].shop %></div>
+                    <div class="col-sm-3">Transaction ID:<br><%=OrderList[i].TransactionID %></div>
                   </div>
                   <% TransId=OrderList[i].TransactionID %> 
                 <% } %>  
                  
               <div class="row g-0" style="height: auto;">
                 <div class="col-md-4 d-flex justify-content-center" style="padding: 20px; height: auto;">
-                  <img style="border-radius: 15%; height: 120px;" src="<%=orders[0].pImage%>" class="img-fluid" alt="...">
+                  <img style="border-radius: 15%; height: 120px;" src="/image/products/<%=orders[0].images[0]%>" class="img-fluid" alt="...">
                 </div>
                 
                 <div class="col-md-8">
                   <div class="card-body text-start">
                     <div class="d-flex justify-content-between">
-                      <% if(orders.Size =='') {%>
-                        <h5 class="card-title"><%=orders[0].pName  %> </h5>
-                        <% }else{ %>  
-                        <h5 class="card-title"><%=orders[0].pName  %> (<%= OrderList[i].Size %>)</h5>
-                      <% } %> 
+                        <h5 class="card-title"><%=orders[0].name  %> </h5>
+                     
                     </div>
-                    <p class="card-text"><%= orders[0].pDescription %> </p> 
+                    <p class="card-text"><%= orders[0].description %> </p> 
                     
                     <div class="d-flex justify-content-between">
                       <p class="card-text">Quantity: <%= OrderList[i].Quantity %> </p> 
-                    
-                        <p class="mt-1 fw-bold" style="font-size: 22px;">₹<%= orders[0].pPrice %> </p>
+                      <p class="fw-bold" style="font-size: 22px;">₹<%= orders[0].price %> </p>
                     </div>
                   </div>
                 </div>
