@@ -66,7 +66,7 @@
     <div id="featured-stores" style="overflow: auto;">
       <% let count=0; for(let product of Products){ if(count < 10){ count++; %>
         <div class="card mx-2 mb-2 text-center" style="display:inline-block;border-radius: 20px;min-width: 240px !important;">
-          <div style="cursor:pointer;">
+          <div onclick="location.href='/product/<%=product._id%>'" style="cursor:pointer;">
             <h4 class="card-title" style="font-size: 105%; padding: 10px;"><%=product.name %></h4>
                 
             <div class="img text-center d-block" style="height: 140px;">
@@ -158,15 +158,12 @@
     <input type="hidden" id="proId">
     <input type="hidden" id="aid">
   <script>
-    
     function fill(proId){
       document.getElementById("proId").value=proId;
     }
     function fill1(aid){
       document.getElementById("aid").value=aid;
     }
-    
-    
   </script>
 </body>
 </html>

@@ -12,6 +12,7 @@ router.get("/cart",authController.protect, viewsController.cart);
 router.get("/orders",authController.protect, viewsController.orders);
 router.get("/paynow", authController.protect, viewsController.paynow)
 router.get("/shop/:id", authController.isLoggedIn, viewsController.shop);
+router.get("/product/:id", authController.isLoggedIn, viewsController.productpage);
 
 
 router.get("/shop", authController.isLoggedIn, productController.getAll, viewsController.index);

@@ -36,6 +36,28 @@ exports.shop = async(req, res, next)=>{
     return next(new AppError("Something went wrong",400));     
 }
 
+exports.productpage = async(req, res, next)=>{
+    const {id} = req.params;
+    
+    if(ObjectId.isValid(id)){
+        if((String)(new ObjectId(id)) === id){
+            let product = await ProductModel.find({_id:id});
+            if(product.length !=0 ){    
+                let products = await ProductModel.find({shopId:product[0].shopId});
+                let shop = await AgentModel.find({_id:product[0].shopId});
+                console.log(products);
+                return res.status(200).render('product',{
+                    title: product[0].name,
+                    shop:shop[0],
+                    product:product[0],
+                    products
+                });
+            }      
+        }
+    }
+    return next(new AppError("Something went wrong",400));     
+}
+
 exports.cart= async(req, res, next) => {
     const userid = req.user.id;
     const cartItem = await Cart.find({ UserID: userid });
