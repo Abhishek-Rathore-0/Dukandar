@@ -93,9 +93,9 @@
     </div>  -->
 
     <h1 id="featured-stores-heading">Trending Products</h1>
-    <div id="featured-stores" style="overflow-x: auto;overflow-y: hidden;white-space: nowrap; width: 80%;">
-        <% let count=0; for(let product of Products){ if(count < 6){ count++; %>
-          <div class="card mx-2 text-center" style="border-radius: 20px; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; width:200px !important;">
+    <div id="featured-stores" style="overflow: auto;white-space: nowrap; width: 80%;">
+        <% let count=0; for(let product of Products){ if(count < 10){ count++; %>
+          <div class="card mx-2 text-center col-sm-4" style="display:inline-block;border-radius: 20px;box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;width: 250px;">
             <form class="addc" style="display: inline !important;">
               <h4 class="card-title" style="font-size: 105%;"><%=product.name %></h4>
                   
@@ -115,7 +115,7 @@
             </form>
           </div>
         <%}}%> 
-    </div>
+      </div>
 
     <h1 id="featured-stores-heading">Popular General Stores</h1>
     <div id="featured-stores">
