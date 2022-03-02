@@ -219,3 +219,15 @@ figcaption {
   margin-right: 2rem;
   margin-bottom: 2rem;
 }
+
+.nav-item::first-letter {
+  text-transform: capitalize;
+}
+.nav-item .active:hover::after {
+  left: 50% !important;
+  width: 0% !important;
+}
+
+.nav-item .active {
+  border-bottom: black 1px solid;
+}

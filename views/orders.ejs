@@ -11,10 +11,10 @@
         color: #343a40;">ORDERS</h1>
       </div>
       <% if(0 ==0 ){  %> 
-      <div class="container col-lg-8 col-md-12 col-sm-12 mb-5 mt-4">
+      <div class="container col-lg-8 col-md-12 col-sm-12 mb-4 mt-4">
         <div class="row">
           <div class="col-sm-12 col-lg-12" style="color: #343a40;">
-            <% let i=0; let j=1; let TransId=""%> 
+            <% let i=0; let TransId=""%> 
             <% for(let orders of OrderProduct) { %> 
               
               <%if(TransId != OrderList[i].TransactionID && i!=0 ){ %>
@@ -23,14 +23,14 @@
                 <hr>
                 <% } %>  
                 
-              <% if(TransId != OrderList[i].TransactionID){  j=0;%>
+              <% if(TransId != OrderList[i].TransactionID){  %>
   
                 <div class="card mb-3 col-sm-12" style="border-radius: 20px; max-width: 100%; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
                   <div class="row g-0 border_t" style="border-top-right-radius: 20px;border-top-left-radius: 20px; background: #343a40; color: white; padding:20px;">
                     <div class="col-sm-3">Date:<br><%=OrderList[i].OrderDate.toString().slice(0,15); %></div>
-                    <div class="col-sm-3">Total Price:<br>₹ <%=OrderList[i].Total %></div>
                     <div class="col-sm-3">Shop Name:<br><%=shops[i][0].shop %></div>
-                    <div class="col-sm-3">Transaction ID:<br><%=OrderList[i].TransactionID %></div>
+                    <div class="col-sm-2">Total Price:<br>₹ <%=OrderList[i].Total %></div>
+                    <div class="col-sm-4">Transaction ID:<br><%=OrderList[i].TransactionID %></div>
                   </div>
                   <% TransId=OrderList[i].TransactionID %> 
                 <% } %>  
@@ -57,7 +57,7 @@
               </div>
             
               
-            <%j++; i++;} %> 
+            <%i++;} %> 
                 </div>
           </div>
         </div>
