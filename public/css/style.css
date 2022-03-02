@@ -76,6 +76,7 @@ figcaption {
   height: 70%;
 }
 
+/*-----------------------------footer-----------------------------------------------------------------*/
 #footer {
   display: flex;
   margin: 2% auto;
@@ -220,7 +221,9 @@ figcaption {
   margin-bottom: 2rem;
 }
 
-.nav-item::first-letter {
+/*----------------------------------------Nav bar--------------------------------------*/
+
+.nav-link::first-letter {
   text-transform: capitalize;
 }
 .nav-item .active:hover::after {

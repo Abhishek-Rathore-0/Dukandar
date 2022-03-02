@@ -9,21 +9,20 @@
             <% let menu=["home","shop","orders"] %> 
             <ul class="navbar-nav mx-1 me-auto mb-2 mb-lg-0">
               <% for (let m of menu){ %> 
-                <li class="nav-item mx-1">
-                  <a class="nav-link <%-location==m?'active':''%>" aria-current="page" href="<%-m=='home'?'/':'/'+m%>"><%=m%></a>
+                <li class="nav-item mx-1 d-flex justify-content-center">
+                  <a class="nav-link <%-location==m?'active':''%>" style="max-width:fit-content;" aria-current="page" href="<%-m=='home'?'/':'/'+m%>"><%=m%></a>
                 </li>
               <%}%>
             </ul>
             
-            <%if(!user){ %> 
-            <a class="btn btn-outline-success" style="margin-right: 10px;" href="/agent">Become a seller</a>
-            <a class="btn btn-outline-success" aria-current="page" href="#login" data-bs-toggle="modal">Login</a>
-              <% }else{ %> 
-                <a class="nav-link" href="/account" style="text-transform: capitalize;cursor: pointer;color: black;">Hi, <%=user.name %> </a>
-                <a class="btn btn-outline-success" style="margin-right: 10px;" href="/cart"><i class="fas fa-shopping-cart"></i>Cart</a>
-                <a class="logout-btn btn btn-outline-success" style="margin-right: 10px;">Logout</a>
-              
-              <% } %> 
+            <div class="d-flex justify-content-center"> <%if(!user){ %>
+              <a class="btn btn-outline-success" style="margin-right: 10px;" href="/agent">Become a seller</a>
+              <a class="btn btn-outline-success" aria-current="page" href="#login" data-bs-toggle="modal">Login</a>
+            <% }else{ %> 
+              <a class="nav-link" href="/account" style="text-transform: capitalize;cursor: pointer;color: black;">Hi, <%=user.name %> </a>
+              <a class="btn btn-outline-success" style="margin-right: 10px;" href="/cart"><i class="fas fa-shopping-cart"></i>Cart</a>
+              <a class="logout-btn btn btn-outline-success" style="margin-right: 10px;">Logout</a>
+            <% } %></div> 
           </div>
         </div>
       </nav>
