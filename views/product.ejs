@@ -10,7 +10,7 @@
     <div class="d-flex justify-content-center" style="border-bottom: 1px solid black;">
       <h1 class="mx-4 text-center"><%=product.name%> </h1>
     </div>
-    <div class="row">
+    <div class="row pb-4" style="border-bottom: 1px solid black;">
         <div class="col-sm-6 text-center mt-4">
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
@@ -38,53 +38,60 @@
         </div>
 
         <div class="col-sm-6">
-            <div class="p-2 mt-3" style="font-size: 1.2rem;"><div class="fw-bold" >Product Description :-</div> <%=product.description  %> </div>
-            <div class="d-flex justify-content-between mx-3 mt-3 pb-4 " style="border-bottom: 1px solid black;">
-                <h5 class="card-text p-2">M.R.P. - ₹<%= product.price %> </h5>
-                <form class="addc" style="display: inline !important;">
-                  <button type="button" class="px-4 p-2 " onclick="fill('<%=product._id%>');" style="border-radius: 5px;border: 0px;font-size: 1.2rem;"><i class="fas fa-shopping-cart"></i> Add </button>
-                </form>
+          <div class="p-2 mt-3" style="font-size: 1.2rem;"><div class="fw-bold" >Product Description :-</div> <div class="mx-3"><%=product.description%></div></div>
+          <div class="d-flex justify-content-between mx-3 mt-3 pb-4 " style="border-bottom: 1px solid black;">
+            <h5 class="card-text p-2">M.R.P. - ₹<%= product.price %> </h5>
+            <form class="addc" style="display: inline !important;">
+              <button type="button" class="px-4 p-2 " onclick="fill('<%=product._id%>');" style="border-radius: 5px;border: 0px;font-size: 1.2rem;"><i class="fas fa-shopping-cart"></i> Add </button>
+            </form>
+          </div>
+          <div class="p-2 mt-3" style="font-size: 1.2rem;"> 
+            <div class="fw-bold" >Shop Information :-</div> 
+            <div class="d-flex justify-content-between mx-3 mt-3">
+              <div>Shop Name:</div><%=shop.shop %> 
             </div>
-            <div class="p-2 mt-3" style="font-size: 1.2rem;"><div class="fw-bold" >Shop Information :-</div> <%=product.description  %> </div>
-            
+            <div class="d-flex justify-content-between mx-3">
+              <div>Mobile no:</div><%=shop.mobile %> 
+            </div>
+            <div class="d-flex justify-content-between mx-3">
+              <div>Email:</div><%=shop.email%> 
+            </div>
+          </div>   
+          <div class="text-center">
+            <button type="button" class="px-4 m-2 p-2" onclick="location.href='/shop/<%=shop._id%>'" style="border-radius: 5px;border: 0px;font-size: 1.2rem;">Go to shop Page</button>
+          </div>       
         </div>
     </div>
-
-    <div class="row">
-      <div class="col-sm-9">
-        <div class="row mt-4">
-      
-          <% for(let product of products) {%>
-          <div class="col-sm-4 col-xl-4 mb-4 ms-0">
-            <div class="card h-100" style="border-radius: 20px; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
-              <form class="addc" style="display: inline !important;">
-                <div class="img text-center d-block mt-2 mb-4" style="height: 110px;">
-                  <img src="/image/products/<%=product.images[0]%>" class="card-img-top p-3" style="width: 100px;height: 100px;" alt="Store Image"><br>
-                </div>
-                <div class="card-body" style="border-radius: 20%;">
-                  <div class="d-flex justify-content-between">
-                    <h4 class="card-title" style="font-size: 105%;"><%=product.name %></h4>
-                    <h5 class="card-text fw-bold text-end;"> ₹<%= product.price %> </h5>
-                  </div>
-                        
-                  <p class="card-text" style="font-size: 80%;"> <%= product.description %> </p>
+ 
+    <% if(products.length != 1) {%>  
+      <h2 id="featured-stores-heading" class="mt-4">Other Products from <%=shop.shop %> :</h2>
+      <div id="featured-stores" style="overflow: auto;width: 100%; border-bottom: 1px solid black;">
+        <%for(let p of products){ if(!p._id.equals(product._id)){ %>
+          <div class="card mx-2 mb-2 text-center" style="display:inline-block;border-radius: 20px;min-width: 240px !important;">
+            <div onclick="location.href='/product/<%=p._id%>'" style="cursor:pointer;">
+              <h4 class="card-title" style="font-size: 105%; padding: 10px;"><%=p.name %></h4>
                   
-                  <div class="card-footer">
-                    <button type="button" class="btn Cart w-50" onclick="fill('<%=product._id%>');"><i class="fas fa-shopping-cart"></i> Cart</button>
-                  </div>
-                </form>
+              <div class="img text-center d-block" style="height: 140px;">
+                  <img src="/image/products/<%=p.images[0]%>" class="card-img-top p-2" style="width: 130px;height: 130px;" alt="Store Image"><br>
               </div>
             </div>
+            <div class="card-body" style="border-radius: 20%;">
+              <div class="d-flex justify-content-between align-items-center">
+                <h5 class="card-text fw-bold text-end mx-1"> ₹<%= p.price %> </h5>
+                <form class="addc" style="display: inline !important;">
+                  <button type="button" class="px-2" onclick="fill('<%=p._id%>');" style="border-radius: 10px;margin-top: -10px;border: 0px; padding: 5px;"><i class="fas fa-shopping-cart"></i> Add </button>
+                </form>
+              </div>
+            
+            </div>
+            
           </div>
-          <% } %> 
-        </div>
+        <%}}%>
       </div>
-      <div class="col-sm-3 mt-4">
-        <h6>Location:</h6><%=shop.email%> 
-        <h6 class="mt-2">Mobile: <div style="display: inline; font: 1em sans-serif;"><%=shop.mobile %></div> </h6>
-      </div>
-    </div>
+    <% } %> 
+
   </div>
+  
   <input type="hidden" id="proId">
   <input type="hidden" id="urla" value="<%=address%>">
   <%- include('partials/footer') %> 

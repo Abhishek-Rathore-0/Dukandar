@@ -45,7 +45,6 @@ exports.productpage = async(req, res, next)=>{
             if(product.length !=0 ){    
                 let products = await ProductModel.find({shopId:product[0].shopId});
                 let shop = await AgentModel.find({_id:product[0].shopId});
-                console.log(products);
                 return res.status(200).render('product',{
                     title: product[0].name,
                     shop:shop[0],

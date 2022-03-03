@@ -53,7 +53,11 @@ if(loginform)
         e.preventDefault();
         const email=document.getElementById('email').value;
         const password=document.getElementById('password').value;
-        login(email,password,"users");
+        const urla=document.getElementById('urla');
+        if(urla)
+            login(email,password,"users",urla.value);
+        else
+            login(email,password,"users");
     });
     
 if(loginform1)
@@ -61,7 +65,11 @@ if(loginform1)
         e.preventDefault();
         const email=document.getElementById('email').value;
         const password=document.getElementById('password').value;
-        login(email,password,"agents");
+        const urla=document.getElementById('urla');
+        if(urla)
+            login(email,password,"agents",urla.value);
+        else
+            login(email,password,"agents");
     });
 
 if(signinform)
@@ -70,7 +78,11 @@ if(signinform)
         const name=document.getElementById('sname').value;
         const email=document.getElementById('semail').value;
         const password=document.getElementById('spassword').value;
-        signup(name,email,password,"users");
+        const urla=document.getElementById('urla');
+        if(urla)
+            signup(name,email,password,"users",urla.value);
+        else
+            signup(name,email,password,"users");
     });
 
 if(signinform1)
@@ -108,7 +120,13 @@ if(signinform1)
         signup1(form, "agents");
     });
 
-if(logOutBtn) logOutBtn.addEventListener('click', logout);
+if(logOutBtn) logOutBtn.addEventListener('click', e=>{
+    const urla=document.getElementById('urla');
+    if(urla)
+        logout(urla.value);
+    else
+        logout();
+});
 
 if(user_update)
     user_update.addEventListener('submit', e=>{

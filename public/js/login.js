@@ -1,11 +1,11 @@
 import axios from "axios";
 import {showAlert} from './alert';
 
-export const login = async (email, password, route) => {
+export const login = async (email, password, route, urla="") => {
     try {
       const res = await axios({
         method: 'POST',
-        url: 'api/'+route+'/login',
+        url: urla+'api/'+route+'/login',
         data: {
           email,
           password
@@ -22,15 +22,16 @@ export const login = async (email, password, route) => {
         }, 1200);
       }
     } catch (err) {
+      console.log(err)
       showAlert('error', err.response.data.message);
     }
   };
 
-  export const logout = async () => {
+  export const logout = async (urla="") => {
     try {
       const res = await axios({
         method: 'GET',
-        url: 'api/users/logout'
+        url:urla+'api/users/logout'
       });
       if ((res.data.status = 'success')) {
         window.setTimeout(() => {
@@ -42,11 +43,11 @@ export const login = async (email, password, route) => {
     }
   };
   
-export const signup = async (name, email, password, route) => {
+export const signup = async (name, email, password, route, urla="") => {
   try {
     const res = await axios({
       method: 'POST',
-      url: 'api/'+route+'/signup',
+      url: urla+'api/'+route+'/signup',
       data: {
         name,
         email,
