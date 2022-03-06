@@ -1,4 +1,38 @@
 
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"><img src="/image/logo/Samaan_Mart-removebg-cropped.png" alt="Samaan Mart"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-1 me-auto mb-2 mb-lg-0">
+        
+        <li class="nav-item mx-1 d-flex justify-content-center">
+          <a class="nav-link <%-location=='agent'?'active':''%>" aria-current="page" href="/agent">Home</a>
+        </li>
+        
+        <% let menu=["dashboard","products","account"] %> 
+        <% for (let m of menu){ %> 
+          <li class="nav-item mx-1 d-flex justify-content-center">
+            <a class="nav-link <%-location==m?'active':''%> <%-!agent?' disabled':''%>" style="max-width:fit-content;" aria-current="page" href="/agent-<%=m%>"><%=m%></a>
+          </li>
+        <%}%>
+      </ul>
+      
+      <div class="d-flex justify-content-center"> <%if(!agent){ %>   
+        <a class="btn btn-outline-success" style="margin-right: 10px;" aria-current="page" href="#login" data-bs-toggle="modal">Login</a>
+        <a class="btn btn-outline-success" href="/agent-signup">SignUp</a>
+      <% }else{ %> 
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Hi, <%=agent.name %> </a>
+        <a class="logout-btn btn btn-outline-success" style="margin-right: 10px;">Logout</a> 
+      <% } %> </div> 
+      
+    </div>
+  </div>
+</nav>
+
+<!-- 
 <nav class="navbar navbar-expand-lg navbar-light bg-light my-2" style="background-color: white !important;">
   <div class="container-fluid">
     <a class="navbar-brand" href="#"><img src="/image/logo/Samaan_Mart-removebg-cropped.png" alt="Samaan Mart"></a>
@@ -38,7 +72,7 @@
       <% } %> 
     </div>
   </div>
-</nav>
+</nav> -->
 
 <section class="log" style="margin-top: 0px;">
   <div class="modal fade" id="login" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1" >

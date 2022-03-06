@@ -148,6 +148,52 @@ exports.agentaccount = async(req, res, next) =>{
     });
 }
 
+exports.agentdashboard = async(req, res, next) =>{
+    
+    let transid="";
+    let checker = [];
+    let monthcheck = [0,0,0,0,0,0,0,0,0,0,0,0]
+    let orderCount = 0;
+    let orderdata = await Order.find({});
+    let categories = [];
+    for(let product of res.locals.Products){
+        categories.push(product.name);
+        checker.push(0);
+    }
+    // console.log(categories);
+    for(let data of orderdata){
+        //console.log(data.OrderDate.toISOString().slice(5,7));
+        if(transid!=data.TransactionID){
+            orderCount=orderCount+1;
+            for(let i=1;i<=12;i++){
+                let month = parseInt(data.OrderDate.toISOString().slice(5,7));
+                if(month==i){
+                    monthcheck[i-1]++;
+                }
+            }
+            // console.log(monthcheck);
+        }
+        transid=data.TransactionID
+
+        const product1 = await ProductModel.find({_id: data.ProductID});
+        // console.log(product1[0].pCategory);
+        for(let i=0;i<checker.length;i++){
+            if(categories[i]==product1[0].name){
+                // console.log("hi");
+                checker[i]=checker[i]+data.Quantity;
+            }
+        }
+    }
+    // console.log(checker,orderCount);
+    const Date1 = new Date().toUTCString().slice(0, 16);
+    const Time1 = new Date().toLocaleString().slice(9,22);   
+    
+    res.status(200).render('dashboard',{
+        title: 'Dashboard',
+        Date1,monthcheck,Time1,checker,orderCount,categories
+    });
+}
+
 exports.products = async(req, res, next) =>{
     
     res.status(200).render('products',{
