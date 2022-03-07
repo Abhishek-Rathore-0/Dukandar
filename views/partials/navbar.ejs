@@ -6,7 +6,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <% let menu=["home","shop","orders"] %> 
+            <% let menu=["home","shop","cart","orders"] %> 
             <ul class="navbar-nav mx-1 me-auto mb-2 mb-lg-0">
               <% for (let m of menu){ %> 
                 <li class="nav-item mx-1 d-flex justify-content-center">
@@ -20,7 +20,6 @@
               <a class="btn btn-outline-success" aria-current="page" href="#login" data-bs-toggle="modal">Login</a>
             <% }else{ %> 
               <a class="nav-link" href="/account" style="text-transform: capitalize;cursor: pointer;color: black;">Hi, <%=user.name %> </a>
-              <a class="btn btn-outline-success" style="margin-right: 10px;" href="/cart"><i class="fa fa-shopping-cart"></i>Cart</a>
               <a class="logout-btn btn btn-outline-success" style="margin-right: 10px;">Logout</a>
             <% } %></div> 
           </div>

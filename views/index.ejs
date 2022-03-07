@@ -88,9 +88,9 @@
       <%}}%> 
     </div>
 
-    <h1 id="featured-stores-heading" class="mt-4">Popular General Stores</h1>
+    <h1 id="featured-stores-heading">Popular Stationery Stores</h1>
     <div id="featured-stores" style="overflow: auto;">
-      <% for(let agent of Agents){ %>
+      <% for(let agent of Agents){ if(agent.category.includes("Books")){ %>
         <div class="card mx-2" onclick="location.href='/shop/<%=agent._id%>'" style="display:inline-block;border-radius: 15px;min-width: 235px !important;cursor: pointer;">
           <div class="img text-center d-block mt-2" style="height: 150px;">
             <img src="/image/agents/<%=agent.photo %>" class="card-img-top p-2" style="width: 234px;height: 160px;" alt="Store Image"><br>
@@ -99,59 +99,24 @@
             <h4 class="card-title text-center" style="font-size: 105%;"><%=agent.shop %></h4>
           </div>                
         </div>
-      <%}%>
+      <%}}%>
     </div>
 
-    <h1 id="featured-stores-heading">Popular Stationery Stores</h1>
-    <div id="featured-stores"> 
-        <div id="col-4">
-            <img src="https://www.kindpng.com/picc/m/9-94468_shop-clipart-hd-png-download.png" alt="Store Image">
-            <strong>Store Name</strong>
-            <p>Store Details</p>
-            <button>Explore</button>
+    
+    <h1 id="featured-stores-heading" class="mt-4">Popular General Stores</h1>
+    <div id="featured-stores" style="overflow: auto;">
+      <%count=0; for(let agent of Agents){ if(count < 5 ){ count++; %>
+        <div class="card mx-2 mb-2" onclick="location.href='/shop/<%=agent._id%>'" style="display:inline-block;border-radius: 15px;min-width: 235px !important;cursor: pointer;">
+          <div class="img text-center d-block mt-2" style="height: 150px;">
+            <img src="/image/agents/<%=agent.photo %>" class="card-img-top p-2" style="width: 234px;height: 160px;" alt="Store Image"><br>
+          </div>
+          <div class="card-body d-flex justify-content-center align-items-center">
+            <h4 class="card-title text-center" style="font-size: 105%;"><%=agent.shop %></h4>
+          </div>                
         </div>
-        <div id="col-4">
-            <img src="https://www.kindpng.com/picc/m/9-94468_shop-clipart-hd-png-download.png" alt="Store Image">
-            <strong>Store Name</strong>
-            <p>Store Details</p>
-            <button>Explore</button>
-        </div>
-        <div id="col-4">
-            <img src="https://www.kindpng.com/picc/m/9-94468_shop-clipart-hd-png-download.png" alt="Store Image">
-            <strong>Store Name</strong>
-            <p>Store Details</p>
-            <button>Explore</button>
-        </div>
-        <div id="col-4">
-            <img src="https://www.kindpng.com/picc/m/9-94468_shop-clipart-hd-png-download.png" alt="Store Image">
-            <strong>Store Name</strong>
-            <p>Store Details</p>
-            <button>Explore</button>
-        </div>
+      <%}}%>
     </div>
-
-    <%if(!user) {%>
-        <section class="container col-lg-8 col-md-12 col-sm-12 mb-5 mt-5">
-          <div class="row mt-5">
-            <div class="col-sm-12" style="text-align: center">
-              <h1 class="text-center text-uppercase" style="font-size: 50px">
-                Sign UP and Get Started
-              </h1>
-            </div>
-          </div>
-          <div class="row d-flex justify-content-center">
-            <div class="col-sm-6 text-center mt-5 d-flex">
-              <div class="col-6 mx-auto">
-                <a class="signUp" href="#login" data-bs-toggle="modal">Login</a>
-              </div>
-              <div class="col-6 mx-auto">
-                <a class="signUp" href="#signup" data-bs-toggle="modal">SignUp</a>
-                 </div>
-            </div>
-          </div>
-        </section>
-        <%}%>
-
+    
     <footer>
         <%- include('partials/footer') %>
     </footer>   

@@ -34,6 +34,27 @@
     </div>
     
 
+    <%if(!user) {%>
+        <section class="container col-lg-8 col-md-12 col-sm-12 mb-5 mt-5">
+          <div class="row mt-5">
+            <div class="col-sm-12" style="text-align: center">
+              <h1 class="text-center text-uppercase" style="font-size: 50px">
+                Sign UP and Get Started
+              </h1>
+            </div>
+          </div>
+          <div class="row d-flex justify-content-center">
+            <div class="col-sm-6 text-center mt-5 d-flex">
+              <div class="col-6 mx-auto">
+                <a class="signUp" href="#login" data-bs-toggle="modal">Login</a>
+              </div>
+              <div class="col-6 mx-auto">
+                <a class="signUp" href="#signup" data-bs-toggle="modal">SignUp</a>
+                 </div>
+            </div>
+          </div>
+        </section>
+        <%}%>
 
 
 
