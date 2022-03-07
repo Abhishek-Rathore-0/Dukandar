@@ -15,6 +15,5 @@ router.delete("/cart/:id",authController.protect, userController.deleteCartItem)
 router.delete("/cart",authController.protect, userController.deleteCart);
  
 router.post('/order', authController.protect, userController.addorder);
-router.post('/paynow', authController.protect, userController.paying);
 
 module.exports = router;

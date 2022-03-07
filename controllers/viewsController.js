@@ -102,7 +102,7 @@ exports.cart= async(req, res, next) => {
 
 
 exports.orders = async(req, res, next) =>{
-    const OrderList= await Order.find({});
+    const OrderList= await Order.find({UserID:req.user.id});
     OrderList.reverse();
 
     let OrderProduct = [];
@@ -154,13 +154,15 @@ exports.agentdashboard = async(req, res, next) =>{
     let checker = [];
     let monthcheck = [0,0,0,0,0,0,0,0,0,0,0,0]
     let orderCount = 0;
-    let orderdata = await Order.find({});
+    let orderdata = await Order.find({ShopID:req.agent._id});
+    let user = [];
+
     let categories = [];
     for(let product of res.locals.Products){
         categories.push(product.name);
         checker.push(0);
     }
-    // console.log(categories);
+    console.log(orderdata);
     for(let data of orderdata){
         //console.log(data.OrderDate.toISOString().slice(5,7));
         if(transid!=data.TransactionID){
@@ -183,14 +185,16 @@ exports.agentdashboard = async(req, res, next) =>{
                 checker[i]=checker[i]+data.Quantity;
             }
         }
+        if(!user.includes(data.UserID))
+            user.push(data.UserID)
     }
-    // console.log(checker,orderCount);
+    // console.log(checker,orderCount, user);
     const Date1 = new Date().toUTCString().slice(0, 16);
     const Time1 = new Date().toLocaleString().slice(9,22);   
     
     res.status(200).render('dashboard',{
         title: 'Dashboard',
-        Date1,monthcheck,Time1,checker,orderCount,categories
+        Date1,monthcheck,Time1,checker,orderCount,categories,userCount:user.length
     });
 }
 
@@ -208,11 +212,9 @@ exports.addproduct = async(req, res, next) =>{
       });
 }
 
-exports.paynow = async(req, res, next) =>{
+exports.success = async(req, res, next) =>{
     
-    res.status(200).render("payInput", {
-        key: "pk_test_51JRIRlSD7ORX7cv9kuhqMwSx9qAURpkuNwiDTX0SMiCjCEC8mKUmqlmnThqNTyCqcijRjCOI9rm6WCOIjVwWgzus00dJloVbPY",
-        amount: 1200,
-        Name: (await UserModel.find({_id:req.user.user_id})).name,
-      });
+    res.status(200).render("success", {
+       title:'Success'
+    });
 }

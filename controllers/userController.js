@@ -155,15 +155,12 @@ exports.deleteCart = async(req, res, next)=>{
 exports.addorder = catchAsync(async(req, res, next)=>{
   const UserID = req.user.id;
   const cartItem = await Cart.find({UserID});
+  const Ordercount = (await Order.find({UserID})).length;
   if (cartItem.length == 0) {
     return next(new AppError('Please add items to cart to order.', 400));
   }
   else{
     
-    const orders = await Order.deleteMany({UserID,Status:"pending"});
-
-
-
     let arrayy = [];
     for (let cart of cartItem) {
       let cartProduct = await Product.find({ _id: cart.ProductID });
@@ -191,7 +188,7 @@ exports.addorder = catchAsync(async(req, res, next)=>{
       const ShopID = shop._id;
       const Quantity = cartItem[i].Quantity;
       const Date1 = new Date().toISOString().slice(0, 10);
-      const TransactionID = UserID;
+      const TransactionID = UserID+(1+Ordercount);
       const PaymentMode = "--";
       const prod= await Product.find({_id:arr[0]._id});
       const Price=prod[0].price;
@@ -212,35 +209,7 @@ exports.addorder = catchAsync(async(req, res, next)=>{
       await NewOrder.save();
       i++;
     }
-    
   }
-  
+  await Cart.deleteMany({ UserID: UserID });
   res.status(200).json({status: 'success'});
 })
-
-exports.paying = catchAsync(async(req, res, next)=>{
-  stripe.customers
-  .create({
-    email: req.body.stripeEmail,
-    source: req.body.stripeToken,
-    name: "User_" + new Date().getTime(),
-  })
-  .then((customer) => {
-    return stripe.charges.create({
-      amount: Math.round(finalcost) * 100,
-      description: "Order From Samaan Mart",
-      currency: "INR",
-      customer: customer.id,
-    });
-  })
-  .then(catchAsync(async(charge) => {
-    // console.log(charge);
-    req.user.transId = charge.id;
-    console.log(req.body.stripeToken);
-    await Cart.deleteMany({ UserID: UserID });
-    res.redirect("/success");
-  }))
-  .catch((err) => {
-    return next(err);
-  });
-});

@@ -81,27 +81,10 @@ export const addO =async()=>{
     });
 
     if (res.data.status === 'success') {
-      location.assign('/paynow');
+      location.assign('/success');
     }
   } catch (err) {
     console.log(err)
-    showAlert('error', err.response.data.message);
-  }
-};
-
-export const paynowfunction=async()=>{
-  try {
-    const res = await axios({
-      method: 'POST',
-      url:'api/users/paynow'
-    });
-
-    if (res.data.status === 'success') {
-      window.setTimeout(() => {
-        location.assign('/success');
-      }, 1200);
-    }
-  } catch (err) {
     showAlert('error', err.response.data.message);
   }
 };

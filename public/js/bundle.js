@@ -9304,7 +9304,7 @@ exports.deleteproduct = deleteproduct;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.updateC = exports.paynowfunction = exports.empty_cart = exports.deleteC = exports.addO = exports.addC = void 0;
+exports.updateC = exports.empty_cart = exports.deleteC = exports.addO = exports.addC = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -9525,7 +9525,7 @@ var addO = /*#__PURE__*/function () {
             res = _context5.sent;
 
             if (res.data.status === 'success') {
-              location.assign('/paynow');
+              location.assign('/success');
             }
 
             _context5.next = 11;
@@ -9551,52 +9551,6 @@ var addO = /*#__PURE__*/function () {
 }();
 
 exports.addO = addO;
-
-var paynowfunction = /*#__PURE__*/function () {
-  var _ref6 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
-    var res;
-    return regeneratorRuntime.wrap(function _callee6$(_context6) {
-      while (1) {
-        switch (_context6.prev = _context6.next) {
-          case 0:
-            _context6.prev = 0;
-            _context6.next = 3;
-            return (0, _axios.default)({
-              method: 'POST',
-              url: 'api/users/paynow'
-            });
-
-          case 3:
-            res = _context6.sent;
-
-            if (res.data.status === 'success') {
-              window.setTimeout(function () {
-                location.assign('/success');
-              }, 1200);
-            }
-
-            _context6.next = 10;
-            break;
-
-          case 7:
-            _context6.prev = 7;
-            _context6.t0 = _context6["catch"](0);
-            (0, _alert.showAlert)('error', _context6.t0.response.data.message);
-
-          case 10:
-          case "end":
-            return _context6.stop();
-        }
-      }
-    }, _callee6, null, [[0, 7]]);
-  }));
-
-  return function paynowfunction() {
-    return _ref6.apply(this, arguments);
-  };
-}();
-
-exports.paynowfunction = paynowfunction;
 },{"axios":"../../node_modules/axios/index.js","./alert":"alert.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
@@ -10132,7 +10086,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "6058" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "7678" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

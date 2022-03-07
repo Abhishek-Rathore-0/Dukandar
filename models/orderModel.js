@@ -40,6 +40,10 @@ const orderSchema = new mongoose.Schema({
     Status: {
        type: String,
        enum: ['pending','success']
+    },
+    Delivered:{
+        type: Boolean,
+        default: false
     }
 });
 
