@@ -198,6 +198,27 @@ exports.agentdashboard = async(req, res, next) =>{
     });
 }
 
+exports.orders_admin = async(req, res, next) =>{
+    const user = await UserModel.find();
+  
+    let OrderList;
+    OrderList = await Order.find({ShopID:req.agent._id});
+    OrderList.reverse();
+
+    let OrderProduct = [];
+    for (let orders of OrderList) {
+        let OProduct = await ProductModel.find({ _id: orders.ProductID });
+        OrderProduct.push(OProduct);
+    }
+console.log(OrderProduct);
+    res.status(200).render('orders_admin',{
+        title: 'Orders',
+        user, 
+        OrderList,
+        OrderProduct
+      });
+}
+
 exports.products = async(req, res, next) =>{
     
     res.status(200).render('products',{

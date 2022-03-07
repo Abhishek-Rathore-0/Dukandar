@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<%- include('partials/head') %> 
+<body style="background-color: white">   
+    <%- include('partials_agent/navbar',{location:"orders"}) %>  
+    
+    <% let i=0; let j=0; let TransId="";%> 
+    <% for(let orders of OrderProduct) { %> 
+      
+      <%if(TransId != OrderList[i].TransactionID && i!=0 ){ %>
+        </tbody>
+        </table>
+        </td>
+        </tr>
+        </tbody>
+        </table>
+        </div>
+        </div>
+        
+      <% } %>  
+  
+    <%if(TransId != OrderList[i].TransactionID ){  j++;%>
+        <% TransId=OrderList[i].TransactionID %>
+          <div class="navbar navbar-expand-lg navbar-light bg-none">
+            <div class="container col-lg-8 col-md-12 col-sm-12">
+              <table class="table table-dark" id="orderData">
+                <thead>
+                  <tr style="text-align: center">
+                    <th scope="col" class="p-3">#</th>
+                    <th scope="col" class="p-3">Name</th>
+                    <th scope="col" class="p-3">Date</th>
+                    <th scope="col" class="p-3">TransactionID</th>
+                    <th scope="col" class="p-3">Amount</th>
+                    <th scope="col" class="p-3">Delivery Status</th>
+                    <th scope="col" class="p-3">Update</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="vertical-align: middle; text-align: center">
+                    <th scope="row"><%= j %> </th>
+                    <% for(let u of user) { %>
+                      <%if(u._id == OrderList[i].UserID ){ %>
+                        <td><%=u.name %></td>
+                      <% } %> 
+                    <% } %> 
+                    <td><%=OrderList[i].OrderDate.toString().slice(4,15); %></td>
+                    <td><%=OrderList[i].TransactionID%></td>
+                    <td>₹<%=OrderList[i].Total %></td>
+                      
+                      <% if(OrderList[i].Status!="delivered") {%>
+                        <td> <select name="status" id="status" style="background-color: #343a40; color: white; border: none; outline: none;">
+                            <option value="pending">Pending</option>
+                            <option value="delivered">Delivered</option>
+                            
+                        </select> </td>
+                      <% }else{ %> 
+                        <td>Delivered</td>
+                      <% } %>                
+                      <td>
+                        <% if(OrderList[i].Status!="delivered"){ %> 
+                          <input type="submit" class="btn btn-success btn-sm" value="Update"></td>
+                        <% } else{%>
+                          <input type="button" class="btn btn-success btn-sm" value="Update"></td>
+                        <% } %>  
+                    
+                    </tr>
+                    <tr>
+                    <td colspan="7">
+                        <table class="table table-dark mb-0 text-center table-striped" class="width: margin: 0 auto !important;">
+                            <thead>
+                                <tr>
+                                    <th colspan="7" class="text-uppercase">order details</th>
+                                </tr>
+                                <tr>
+                                    <th scope="col">Product Name</th>
+                                    <th scope="col">QTY</th>
+                                    <th scope="col">Unit Price</th>
+                                    <th scope="col">Total(incl. taxes)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+      
+        <% } %>
+        <tr style="vertical-align: middle">
+            <td> <%=orders[0].name%></td>
+            <td><%= OrderList[i].Quantity %></td>
+            <td><%= OrderList[i].Price %></td>
+            <td><%= OrderList[i].Price * OrderList[i].Quantity%></td>
+        </tr>
+                      
+        <% i++;} %> 
+      </tbody>
+    </table>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    </div>
+
+          
+    <%- include('partials/scrollToTop')%> 
+  
+    <%- include('partials/footer') %> 
+  
+
+</body>

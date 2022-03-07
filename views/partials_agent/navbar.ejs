@@ -12,7 +12,7 @@
           <a class="nav-link <%-location=='agent'?'active':''%>" aria-current="page" href="/agent">Home</a>
         </li>
         
-        <% let menu=["dashboard","products","account"] %> 
+        <% let menu=["dashboard","products","orders","account"] %> 
         <% for (let m of menu){ %> 
           <li class="nav-item mx-1 d-flex justify-content-center">
             <a class="nav-link <%-location==m?'active':''%> <%-!agent?' disabled':''%>" style="max-width:fit-content;" aria-current="page" href="/agent-<%=m%>"><%=m%></a>
