@@ -9525,7 +9525,10 @@ var addO = /*#__PURE__*/function () {
             res = _context5.sent;
 
             if (res.data.status === 'success') {
-              location.assign('/success');
+              (0, _alert.showAlert)('success', 'Ordered successful.');
+              window.setTimeout(function () {
+                location.assign('/orders');
+              }, 1200);
             }
 
             _context5.next = 11;
@@ -10086,7 +10089,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "7678" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "1640" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

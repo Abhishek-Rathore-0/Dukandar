@@ -11,7 +11,6 @@ router.get("/", authController.isLoggedIn, productController.getAll, viewsContro
 router.get("/account",authController.protect, viewsController.account);
 router.get("/cart",authController.protect, viewsController.cart);
 router.get("/orders",authController.protect, viewsController.orders);
-router.get("/success", authController.protect, viewsController.success)
 router.get("/shop", authController.isLoggedIn, productController.getAll, viewsController.index);
 router.get("/shop/:id", authController.isLoggedIn, viewsController.shop);
 router.get("/product/:id", authController.isLoggedIn, viewsController.productpage);

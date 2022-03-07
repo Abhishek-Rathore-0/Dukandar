@@ -233,9 +233,3 @@ exports.addproduct = async(req, res, next) =>{
       });
 }
 
-exports.success = async(req, res, next) =>{
-    
-    res.status(200).render("success", {
-       title:'Success'
-    });
-}

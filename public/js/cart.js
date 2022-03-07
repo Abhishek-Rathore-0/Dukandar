@@ -81,7 +81,11 @@ export const addO =async()=>{
     });
 
     if (res.data.status === 'success') {
-      location.assign('/success');
+
+      showAlert('success', 'Ordered successful.');
+        window.setTimeout(() => {
+          location.assign('/orders');
+        }, 1200);
     }
   } catch (err) {
     console.log(err)
