@@ -97,6 +97,17 @@ figcaption {
   text-align: center;
 }
 
+footer{
+  display: flexbox;
+}
+
+.col-3
+{
+  margin: 0 auto;
+  text-align: center;
+  width: 33%;
+}
+
 .error {
   position: absolute;
   top: 35%;
