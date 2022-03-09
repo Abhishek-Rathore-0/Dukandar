@@ -25,10 +25,11 @@ module.exports = class Email {
   // Send the actual email
   async send(template, subject) {
     // 1) Render HTML based on a ejs template
-    const html = await ejs.renderFile(`${__dirname}/../views/email/${template}.ejs`, {
+    const html = await ejs.renderFile(`${__dirname}/../views/email/baseEmail.ejs`, {
       firstName: this.firstName,
       url: this.url,
-      subject
+      subject,
+      template
     });
 
     // 2) Define email options

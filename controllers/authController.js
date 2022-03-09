@@ -42,7 +42,7 @@ exports.signup = catchAsync(async (req, res, next) => {
     email: req.body.email,
     password: req.body.password
   });
-  const url = `${req.protocol}://${req.get('host')}/about`;
+  const url = `${req.protocol}://${req.get('host')}/account`;
   await new Email(newUser, url).sendWelcome();
   createSendToken(newUser, 201, req, res);
 });
@@ -166,7 +166,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
   try {
     const resetURL = `${req.protocol}://${req.get(
       'host'
-    )}/api/v1/users/resetPassword/${resetToken}`;
+    )}/api/users/resetPassword/${resetToken}`;
     await new Email(user, resetURL).sendPasswordReset();
 
     res.status(200).json({
@@ -177,7 +177,6 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
     user.passwordResetToken = undefined;
     user.passwordResetExpires = undefined;
     await user.save({ validateBeforeSave: false });
-
     return next(
       new AppError('There was an error sending the email. Try again later!'),
       500
@@ -208,6 +207,7 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
   await user.save();
 
   // 3) Update changedPasswordAt property for the user
+
   // 4) Log the user in, send JWT
   createSendToken(user, 200, req, res);
 });
