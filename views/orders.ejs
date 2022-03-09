@@ -10,7 +10,7 @@
         letter-spacing: 6px;
         color: #343a40;">ORDERS</h1>
       </div>
-      <% if(0 ==0 ){  %> 
+      <% if(OrderProduct.length != 0 ){  %> 
       <div class="container col-lg-8 col-md-12 col-sm-12 mb-4 mt-4">
         <div class="row">
           <div class="col-sm-12 col-lg-12" style="color: #343a40;">
@@ -20,39 +20,58 @@
               <%if(TransId != OrderList[i].TransactionID && i!=0 ){ %>
               </div>
               <% }else if(i!=0){ %>
-                <hr>
+                <hr style="margin-bottom: 2px;">
                 <% } %>  
                 
               <% if(TransId != OrderList[i].TransactionID){  %>
   
                 <div class="card mb-3 col-sm-12" style="border-radius: 20px; max-width: 100%; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
                   <div class="row g-0 border_t" style="border-top-right-radius: 20px;border-top-left-radius: 20px; background: #343a40; color: white; padding:20px;">
-                    <div class="col-sm-3">Date:<br><%=OrderList[i].OrderDate.toString().slice(0,15); %></div>
-                    <div class="col-sm-3">Shop Name:<br><%=shops[i][0].shop %></div>
-                    <div class="col-sm-2">Total Price:<br>₹ <%=OrderList[i].Total %></div>
-                    <div class="col-sm-4">Transaction ID:<br><%=OrderList[i].TransactionID %></div>
+                    <div class="col-sm-3 d-flex">
+                      <div>
+                        Date :
+                      </div>  
+                      <div class="mx-1">
+                        <%-OrderList[i].OrderDate.toString().slice(3,15); %>
+                      </div>
+                    </div>
+                    <div class="col-sm-6 d-flex">
+                      <div>
+                        Shop Name :
+                      </div>
+                      <div  class="mx-1">
+                        <%=shops[i][0].shop %></div>
+                      </div>
+                    <div class="col-sm-3 d-flex">
+                      <div>
+                         Total Price :
+                      </div>
+                         <div  class="mx-1">₹ <%=OrderList[i].Total %></div>
+                      </div>
                   </div>
                   <% TransId=OrderList[i].TransactionID %> 
                 <% } %>  
                  
               <div class="row g-0" style="height: auto;">
-                <div class="col-md-4 d-flex justify-content-center" style="padding: 20px; height: auto;">
+                <div class="col-sm-3 d-flex justify-content-center pb-3 pt-2" style="height: auto;">
                   <img style="border-radius: 15%; height: 120px;" src="/image/products/<%=orders[0].images[0]%>" class="img-fluid" alt="...">
                 </div>
                 
-                <div class="col-md-8">
+                <div class="col-sm-5">
                   <div class="card-body text-start">
-                    <div class="d-flex justify-content-between">
+                    <div class="d-flex justify-content-between justify-content-between align-items-center mt-3">
+                      <div>
                         <h5 class="card-title"><%=orders[0].name  %> </h5>
-                     
+                        <p class="card-text">Quantity: <%= OrderList[i].Quantity %> </p> 
+                      </div>
+                        <p class="fw-bold" style="font-size: 22px;">₹<%= orders[0].price %> </p>
                     </div>
-                    <p class="card-text"><%= orders[0].description %> </p> 
-                    
                     <div class="d-flex justify-content-between">
-                      <p class="card-text">Quantity: <%= OrderList[i].Quantity %> </p> 
-                      <p class="fw-bold" style="font-size: 22px;">₹<%= orders[0].price %> </p>
                     </div>
                   </div>
+                </div>
+                <div class="col-sm-4 d-flex justify-content-center align-items-center">
+                  <div><div class="fw-bolder">Status:</div> On her way  </div>
                 </div>
               </div>
             
