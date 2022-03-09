@@ -56,7 +56,7 @@ export const signup = async (name, email, password, route, urla="") => {
     });
 
     if (res.data.status === 'success') {
-      showAlert('success', 'Craeted successful.');
+      showAlert('success', 'Created successfully.');
       window.setTimeout(() => {
         location.assign('/');
       }, 1200);
