@@ -5,6 +5,7 @@ const AgentModel = require('../models/agentModel');
 const UserModel = require('../models/userModel');
 const AppError = require('./../utils/appError');
 const ObjectId = require('mongoose').Types.ObjectId;
+const crypto = require('crypto');
 
 exports.home = async(req, res, next) => { 
     res.render("home",{
@@ -127,6 +128,28 @@ exports.account = async(req, res, next) =>{
         title: 'Account'
     });
 }
+
+exports.forget = async(req, res, next) =>{
+    const hashedToken = crypto
+        .createHash('sha256')
+        .update(req.params.token)
+        .digest('hex');
+  
+    const user = await UserModel.findOne({
+        passwordResetToken: hashedToken
+    });
+
+    if (!user) {
+        return next(new AppError('Token is invalid or has expired', 400));
+    }
+
+    res.status(200).render('newpass',{
+        title: 'Password Reset',
+        token:req.params.token,
+        email:user.email
+    });
+}
+
 
 //------------------------------------------------------------Agent---------------------------------------------//
 

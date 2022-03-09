@@ -7,11 +7,6 @@ const User = require('./../models/userModel');
 const AppError = require('./../utils/appError');
 const catchAsync = require('./../utils/catchAsync');
 
-const PUBLISHABLE_KEY = process.env.PUBLISHABLE_KEY;
-const SECRET_KEY = process.env.SECRET_KEY;
-const stripe = require("stripe")(SECRET_KEY);
-
-
 // For image------------------------------------------------------------
 const multer = require('multer');
 const sharp = require('sharp');

@@ -42,7 +42,45 @@ export const login = async (email, password, route, urla="") => {
       showAlert('error', err.response.data.message);
     }
   };
-  
+export const resetp= async(token,password,urla)=>{
+  try {
+    const res = await axios({
+      method: 'PATCH',
+      url:urla+'api/users/resetPassword/'+token,
+      data:{
+        password
+      }
+    });
+    if (res.data.status = 'success'){
+      showAlert('success', 'Successful changed');
+      window.setTimeout(() => {
+        location.assign('/');
+      }, 100);
+    }
+  } catch (err) {
+    showAlert('error', err.response.data.message);
+  }
+}
+export const forgetp = async(email,urla="")=>{
+  try {
+    const res = await axios({
+      method: 'POST',
+      url:urla+'api/users/forgotPassword',
+      data:{
+        email
+      }
+    });
+    if ((res.data.status = 'success')) {
+      showAlert('success', 'Token sent to email!');
+      window.setTimeout(() => {
+        location.assign('/');
+      }, 100);
+    }
+  } catch (err) {
+    showAlert('error', err.response.data.message);
+  }
+}
+
 export const signup = async (name, email, password, route, urla="") => {
   try {
     const res = await axios({

@@ -14,6 +14,7 @@ router.get("/orders",authController.protect, viewsController.orders);
 router.get("/shop", authController.isLoggedIn, productController.getAll, viewsController.index);
 router.get("/shop/:id", authController.isLoggedIn, viewsController.shop);
 router.get("/product/:id", authController.isLoggedIn, viewsController.productpage);
+router.get("/resetPassword/:token",authController.isLoggedIn,viewsController.forget)
 
 router.get("/agent",authController1.isLoggedIn, viewsController.shopkeeper);
 router.get("/agent-signup",authController1.isLoggedIn, viewsController.signup);

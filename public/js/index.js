@@ -1,5 +1,5 @@
 import '@babel/polyfill';
-import {login,logout,signup,signup1,updatea,updateu} from './login';
+import {login,logout,signup,signup1,updatea,updateu,forgetp,resetp} from './login';
 import {showAlert} from './alert';
 import {addProduct,updateProduct,deleteproduct,sortingandsearch} from './product';
 import {addC,updateC,deleteC,empty_cart,addO,paynowfunction} from './cart';
@@ -8,17 +8,20 @@ const loginform = document.querySelector('.form');
 const loginform1 = document.querySelector('.form1');
 const signinform = document.querySelector('.form-sign');
 const signinform1 = document.querySelector('.form-sign1');
+const forget = document.querySelector('.form-forget');
 const logOutBtn = document.querySelector('.logout-btn');
 const aupdate = document.querySelector('.form--updateAgent');
 const addp = document.querySelector('.form--addproduct');
 const deletep = document.querySelector('.form--deleteproduct');
 const updatep = document.querySelector('.form--updateproduct');
+const reset = document.querySelector('.form-newpassword');
 const sort1 = document.getElementById('sort1');
 const sort2 = document.getElementById('sort2');
 const OrderBtn = document.getElementById('OrderBtn');
 const searchbtn = document.querySelector('.search');
 const user_update = document.querySelector('.form-udate');
 const paynow = document.querySelector('.paynow1');
+
 
 if(paynow)
     paynow.addEventListener('submit', e=>{
@@ -84,6 +87,27 @@ if(signinform)
         else
             signup(name,email,password,"users");
     });
+
+if(forget)
+    forget.addEventListener('submit',e=>{
+        e.preventDefault();
+        const email=document.getElementById('femail').value;
+        const urla=document.getElementById('urla');
+        if(urla)
+            forgetp(email,urla.value);
+        else
+            forgetp(email);
+        
+    })
+
+if(reset)
+    reset.addEventListener('submit',e=>{
+        e.preventDefault();
+        const password = document.getElementById('password').value;
+        const token = document.getElementById('token').value;
+        const urla=document.getElementById('urla');
+        resetp(token,password,urla.value);
+    })
 
 if(signinform1)
     signinform1.addEventListener('submit', e=>{

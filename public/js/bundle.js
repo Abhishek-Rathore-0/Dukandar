@@ -8789,7 +8789,7 @@ exports.showAlert = showAlert;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.updateu = exports.updatea = exports.signup1 = exports.signup = exports.logout = exports.login = void 0;
+exports.updateu = exports.updatea = exports.signup1 = exports.signup = exports.resetp = exports.logout = exports.login = exports.forgetp = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -8905,18 +8905,121 @@ var logout = /*#__PURE__*/function () {
 
 exports.logout = logout;
 
-var signup = /*#__PURE__*/function () {
-  var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(name, email, password, route) {
-    var urla,
-        res,
-        _args3 = arguments;
+var resetp = /*#__PURE__*/function () {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(token, password, urla) {
+    var res;
     return regeneratorRuntime.wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
-            urla = _args3.length > 4 && _args3[4] !== undefined ? _args3[4] : "";
-            _context3.prev = 1;
-            _context3.next = 4;
+            _context3.prev = 0;
+            _context3.next = 3;
+            return (0, _axios.default)({
+              method: 'PATCH',
+              url: urla + 'api/users/resetPassword/' + token,
+              data: {
+                password: password
+              }
+            });
+
+          case 3:
+            res = _context3.sent;
+
+            if (res.data.status = 'success') {
+              (0, _alert.showAlert)('success', 'Successful changed');
+              window.setTimeout(function () {
+                location.assign('/');
+              }, 100);
+            }
+
+            _context3.next = 10;
+            break;
+
+          case 7:
+            _context3.prev = 7;
+            _context3.t0 = _context3["catch"](0);
+            (0, _alert.showAlert)('error', _context3.t0.response.data.message);
+
+          case 10:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3, null, [[0, 7]]);
+  }));
+
+  return function resetp(_x4, _x5, _x6) {
+    return _ref3.apply(this, arguments);
+  };
+}();
+
+exports.resetp = resetp;
+
+var forgetp = /*#__PURE__*/function () {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(email) {
+    var urla,
+        res,
+        _args4 = arguments;
+    return regeneratorRuntime.wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            urla = _args4.length > 1 && _args4[1] !== undefined ? _args4[1] : "";
+            _context4.prev = 1;
+            _context4.next = 4;
+            return (0, _axios.default)({
+              method: 'POST',
+              url: urla + 'api/users/forgotPassword',
+              data: {
+                email: email
+              }
+            });
+
+          case 4:
+            res = _context4.sent;
+
+            if (res.data.status = 'success') {
+              (0, _alert.showAlert)('success', 'Token sent to email!');
+              window.setTimeout(function () {
+                location.assign('/');
+              }, 100);
+            }
+
+            _context4.next = 11;
+            break;
+
+          case 8:
+            _context4.prev = 8;
+            _context4.t0 = _context4["catch"](1);
+            (0, _alert.showAlert)('error', _context4.t0.response.data.message);
+
+          case 11:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4, null, [[1, 8]]);
+  }));
+
+  return function forgetp(_x7) {
+    return _ref4.apply(this, arguments);
+  };
+}();
+
+exports.forgetp = forgetp;
+
+var signup = /*#__PURE__*/function () {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(name, email, password, route) {
+    var urla,
+        res,
+        _args5 = arguments;
+    return regeneratorRuntime.wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            urla = _args5.length > 4 && _args5[4] !== undefined ? _args5[4] : "";
+            _context5.prev = 1;
+            _context5.next = 4;
             return (0, _axios.default)({
               method: 'POST',
               url: urla + 'api/' + route + '/signup',
@@ -8928,136 +9031,40 @@ var signup = /*#__PURE__*/function () {
             });
 
           case 4:
-            res = _context3.sent;
+            res = _context5.sent;
 
             if (res.data.status === 'success') {
-              (0, _alert.showAlert)('success', 'Craeted successful.');
+              (0, _alert.showAlert)('success', 'Created successfully.');
               window.setTimeout(function () {
                 location.assign('/');
               }, 1200);
             }
 
-            _context3.next = 11;
+            _context5.next = 11;
             break;
 
           case 8:
-            _context3.prev = 8;
-            _context3.t0 = _context3["catch"](1);
-            (0, _alert.showAlert)('error', _context3.t0.response.data.message);
+            _context5.prev = 8;
+            _context5.t0 = _context5["catch"](1);
+            (0, _alert.showAlert)('error', _context5.t0.response.data.message);
 
           case 11:
           case "end":
-            return _context3.stop();
+            return _context5.stop();
         }
       }
-    }, _callee3, null, [[1, 8]]);
+    }, _callee5, null, [[1, 8]]);
   }));
 
-  return function signup(_x4, _x5, _x6, _x7) {
-    return _ref3.apply(this, arguments);
+  return function signup(_x8, _x9, _x10, _x11) {
+    return _ref5.apply(this, arguments);
   };
 }();
 
 exports.signup = signup;
 
 var signup1 = /*#__PURE__*/function () {
-  var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(data, route) {
-    var res;
-    return regeneratorRuntime.wrap(function _callee4$(_context4) {
-      while (1) {
-        switch (_context4.prev = _context4.next) {
-          case 0:
-            _context4.prev = 0;
-            _context4.next = 3;
-            return (0, _axios.default)({
-              method: 'POST',
-              url: 'api/agents/signup',
-              data: data
-            });
-
-          case 3:
-            res = _context4.sent;
-
-            if (res.data.status === 'success') {
-              (0, _alert.showAlert)('success', 'Craeted successful.');
-              window.setTimeout(function () {
-                location.assign('/agent');
-              }, 1200);
-            }
-
-            _context4.next = 10;
-            break;
-
-          case 7:
-            _context4.prev = 7;
-            _context4.t0 = _context4["catch"](0);
-            (0, _alert.showAlert)('error', _context4.t0.response.data.message);
-
-          case 10:
-          case "end":
-            return _context4.stop();
-        }
-      }
-    }, _callee4, null, [[0, 7]]);
-  }));
-
-  return function signup1(_x8, _x9) {
-    return _ref4.apply(this, arguments);
-  };
-}();
-
-exports.signup1 = signup1;
-
-var updatea = /*#__PURE__*/function () {
-  var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(data) {
-    var res;
-    return regeneratorRuntime.wrap(function _callee5$(_context5) {
-      while (1) {
-        switch (_context5.prev = _context5.next) {
-          case 0:
-            _context5.prev = 0;
-            _context5.next = 3;
-            return (0, _axios.default)({
-              method: 'PATCH',
-              url: 'api/agents/update',
-              data: data
-            });
-
-          case 3:
-            res = _context5.sent;
-
-            if (res.data.status === 'success') {
-              (0, _alert.showAlert)('success', 'Changed successful.');
-              window.setTimeout(function () {
-                location.assign('/agent-account');
-              }, 1200);
-            }
-
-            _context5.next = 10;
-            break;
-
-          case 7:
-            _context5.prev = 7;
-            _context5.t0 = _context5["catch"](0);
-            (0, _alert.showAlert)('error', _context5.t0.response.data.message);
-
-          case 10:
-          case "end":
-            return _context5.stop();
-        }
-      }
-    }, _callee5, null, [[0, 7]]);
-  }));
-
-  return function updatea(_x10) {
-    return _ref5.apply(this, arguments);
-  };
-}();
-
-exports.updatea = updatea;
-
-var updateu = /*#__PURE__*/function () {
-  var _ref6 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(data) {
+  var _ref6 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(data, route) {
     var res;
     return regeneratorRuntime.wrap(function _callee6$(_context6) {
       while (1) {
@@ -9066,8 +9073,8 @@ var updateu = /*#__PURE__*/function () {
             _context6.prev = 0;
             _context6.next = 3;
             return (0, _axios.default)({
-              method: 'PATCH',
-              url: 'api/users/update',
+              method: 'POST',
+              url: 'api/agents/signup',
               data: data
             });
 
@@ -9075,9 +9082,9 @@ var updateu = /*#__PURE__*/function () {
             res = _context6.sent;
 
             if (res.data.status === 'success') {
-              (0, _alert.showAlert)('success', 'Changed successful.');
+              (0, _alert.showAlert)('success', 'Craeted successful.');
               window.setTimeout(function () {
-                location.assign('/account');
+                location.assign('/agent');
               }, 1200);
             }
 
@@ -9097,8 +9104,104 @@ var updateu = /*#__PURE__*/function () {
     }, _callee6, null, [[0, 7]]);
   }));
 
-  return function updateu(_x11) {
+  return function signup1(_x12, _x13) {
     return _ref6.apply(this, arguments);
+  };
+}();
+
+exports.signup1 = signup1;
+
+var updatea = /*#__PURE__*/function () {
+  var _ref7 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7(data) {
+    var res;
+    return regeneratorRuntime.wrap(function _callee7$(_context7) {
+      while (1) {
+        switch (_context7.prev = _context7.next) {
+          case 0:
+            _context7.prev = 0;
+            _context7.next = 3;
+            return (0, _axios.default)({
+              method: 'PATCH',
+              url: 'api/agents/update',
+              data: data
+            });
+
+          case 3:
+            res = _context7.sent;
+
+            if (res.data.status === 'success') {
+              (0, _alert.showAlert)('success', 'Changed successful.');
+              window.setTimeout(function () {
+                location.assign('/agent-account');
+              }, 1200);
+            }
+
+            _context7.next = 10;
+            break;
+
+          case 7:
+            _context7.prev = 7;
+            _context7.t0 = _context7["catch"](0);
+            (0, _alert.showAlert)('error', _context7.t0.response.data.message);
+
+          case 10:
+          case "end":
+            return _context7.stop();
+        }
+      }
+    }, _callee7, null, [[0, 7]]);
+  }));
+
+  return function updatea(_x14) {
+    return _ref7.apply(this, arguments);
+  };
+}();
+
+exports.updatea = updatea;
+
+var updateu = /*#__PURE__*/function () {
+  var _ref8 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee8(data) {
+    var res;
+    return regeneratorRuntime.wrap(function _callee8$(_context8) {
+      while (1) {
+        switch (_context8.prev = _context8.next) {
+          case 0:
+            _context8.prev = 0;
+            _context8.next = 3;
+            return (0, _axios.default)({
+              method: 'PATCH',
+              url: 'api/users/update',
+              data: data
+            });
+
+          case 3:
+            res = _context8.sent;
+
+            if (res.data.status === 'success') {
+              (0, _alert.showAlert)('success', 'Changed successful.');
+              window.setTimeout(function () {
+                location.assign('/account');
+              }, 1200);
+            }
+
+            _context8.next = 10;
+            break;
+
+          case 7:
+            _context8.prev = 7;
+            _context8.t0 = _context8["catch"](0);
+            (0, _alert.showAlert)('error', _context8.t0.response.data.message);
+
+          case 10:
+          case "end":
+            return _context8.stop();
+        }
+      }
+    }, _callee8, null, [[0, 7]]);
+  }));
+
+  return function updateu(_x15) {
+    return _ref8.apply(this, arguments);
   };
 }();
 
@@ -9839,11 +9942,13 @@ var loginform = document.querySelector('.form');
 var loginform1 = document.querySelector('.form1');
 var signinform = document.querySelector('.form-sign');
 var signinform1 = document.querySelector('.form-sign1');
+var forget = document.querySelector('.form-forget');
 var logOutBtn = document.querySelector('.logout-btn');
 var aupdate = document.querySelector('.form--updateAgent');
 var addp = document.querySelector('.form--addproduct');
 var deletep = document.querySelector('.form--deleteproduct');
 var updatep = document.querySelector('.form--updateproduct');
+var reset = document.querySelector('.form-newpassword');
 var sort1 = document.getElementById('sort1');
 var sort2 = document.getElementById('sort2');
 var OrderBtn = document.getElementById('OrderBtn');
@@ -9895,6 +10000,19 @@ if (signinform) signinform.addEventListener('submit', function (e) {
   var password = document.getElementById('spassword').value;
   var urla = document.getElementById('urla');
   if (urla) (0, _login.signup)(name, email, password, "users", urla.value);else (0, _login.signup)(name, email, password, "users");
+});
+if (forget) forget.addEventListener('submit', function (e) {
+  e.preventDefault();
+  var email = document.getElementById('femail').value;
+  var urla = document.getElementById('urla');
+  if (urla) (0, _login.forgetp)(email, urla.value);else (0, _login.forgetp)(email);
+});
+if (reset) reset.addEventListener('submit', function (e) {
+  e.preventDefault();
+  var password = document.getElementById('password').value;
+  var token = document.getElementById('token').value;
+  var urla = document.getElementById('urla');
+  (0, _login.resetp)(token, password, urla.value);
 });
 if (signinform1) signinform1.addEventListener('submit', function (e) {
   e.preventDefault();
@@ -10089,7 +10207,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "1640" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "5244" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
