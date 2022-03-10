@@ -249,7 +249,7 @@ let cboxa = document.querySelectorAll(".addc");
 cboxa.forEach(box => {
   box.addEventListener('click', e=>{
     e.preventDefault();
-    
+    console.log("heelo")
     const id=document.getElementById('proId').value;
     const urla=document.getElementById('urla');
     if(id!=""){

@@ -10186,6 +10186,7 @@ var cboxa = document.querySelectorAll(".addc");
 cboxa.forEach(function (box) {
   box.addEventListener('click', function (e) {
     e.preventDefault();
+    console.log("heelo");
     var id = document.getElementById('proId').value;
     var urla = document.getElementById('urla');
 
