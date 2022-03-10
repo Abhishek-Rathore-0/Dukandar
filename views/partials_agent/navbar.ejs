@@ -78,7 +78,39 @@
   <div class="modal fade" id="login" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1" >
     <div class="modal-dialog modal-dialog-centered rounded-0" style="max-width: 400px;">
       <div class="modal-content" style="border-radius: 10px;">
-        <div class="modal-header border-0">
+        <div class="container h-100 mt-3 mb-3">
+          <div class="d-flex justify-content-center h-100">
+            <div class="user_card">
+              <div class="d-flex justify-content-center">
+                <div class="brand_logo_container">
+                  <img src="/image/logo/Samaan_Mart-removebg-cropped.png" class="brand_logo" alt="Logo" style="width: 150px; margin-bottom: 10px;">
+                </div>
+              </div>
+              <div class="d-flex justify-content-center form_container">
+                <form class="form1">
+                  <div class="input-group mb-3">
+                      <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                    <input type="text" id="email" name="Email1" class="form-control input_user" required value="" placeholder="Username">
+                  </div>
+                  <div class="input-group mb-2">
+                    <span class="input-group-text"><i class="fa fa-key"></i></span>
+                    <input type="password" id="password" name="Password1" class="form-control input_pass" required value="" placeholder="Password">
+                  </div>
+                  <div class="d-flex justify-content-center mt-3 login_container">
+                    <button type="submit" name="button" class="btn login_btn btn-block w-100" style="background: #d4d4d4;">Login</button>
+                  </div>
+                </form>
+              </div>
+          
+              <div class="d-flex justify-content-center user-select-none m-4" style="	cursor: pointer;">
+                <a class="right" href="/agent-signup">New around here? Sign up</a><br>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+
+      <!-- <div class="modal-header border-0">
           <h3>Log IN</h3>
           <button type="button" class="btn-close  " style="margin-top: -48px;" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
@@ -102,8 +134,8 @@
               <a class="right" href="/agent-signup">New around here? Sign up</a><br>
             </div>
           </div>
-        </div>
-      </div>
+        </div>-->
+      </div> 
     </div>
   </div>
 </section>
