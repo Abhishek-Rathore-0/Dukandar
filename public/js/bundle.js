@@ -8812,7 +8812,8 @@ var login = /*#__PURE__*/function () {
           case 0:
             urla = _args.length > 3 && _args[3] !== undefined ? _args[3] : "";
             _context.prev = 1;
-            _context.next = 4;
+            document.getElementById("spinner").style.display = "flex";
+            _context.next = 5;
             return (0, _axios.default)({
               method: 'POST',
               url: urla + 'api/' + route + '/login',
@@ -8822,31 +8823,32 @@ var login = /*#__PURE__*/function () {
               }
             });
 
-          case 4:
+          case 5:
             res = _context.sent;
 
             if (res.data.status === 'success') {
+              document.getElementById("spinner").style.display = "none";
               (0, _alert.showAlert)('success', 'Logged in successfully!');
               window.setTimeout(function () {
                 if (route == "agents") location.assign('/agent');else location.assign('/');
-              }, 1200);
+              }, 700);
             }
 
-            _context.next = 12;
+            _context.next = 13;
             break;
 
-          case 8:
-            _context.prev = 8;
+          case 9:
+            _context.prev = 9;
             _context.t0 = _context["catch"](1);
-            console.log(_context.t0);
+            document.getElementById("spinner").style.display = "none";
             (0, _alert.showAlert)('error', _context.t0.response.data.message);
 
-          case 12:
+          case 13:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[1, 8]]);
+    }, _callee, null, [[1, 9]]);
   }));
 
   return function login(_x, _x2, _x3) {
@@ -8867,13 +8869,14 @@ var logout = /*#__PURE__*/function () {
           case 0:
             urla = _args2.length > 0 && _args2[0] !== undefined ? _args2[0] : "";
             _context2.prev = 1;
-            _context2.next = 4;
+            document.getElementById("spinner").style.display = "flex";
+            _context2.next = 5;
             return (0, _axios.default)({
               method: 'GET',
               url: urla + 'api/users/logout'
             });
 
-          case 4:
+          case 5:
             res = _context2.sent;
 
             if (res.data.status = 'success') {
@@ -8882,20 +8885,21 @@ var logout = /*#__PURE__*/function () {
               }, 100);
             }
 
-            _context2.next = 11;
+            _context2.next = 13;
             break;
 
-          case 8:
-            _context2.prev = 8;
+          case 9:
+            _context2.prev = 9;
             _context2.t0 = _context2["catch"](1);
+            document.getElementById("spinner").style.display = "none";
             (0, _alert.showAlert)('error', _context2.t0.response.data.message);
 
-          case 11:
+          case 13:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[1, 8]]);
+    }, _callee2, null, [[1, 9]]);
   }));
 
   return function logout() {
@@ -8913,7 +8917,8 @@ var resetp = /*#__PURE__*/function () {
         switch (_context3.prev = _context3.next) {
           case 0:
             _context3.prev = 0;
-            _context3.next = 3;
+            document.getElementById("spinner").style.display = "flex";
+            _context3.next = 4;
             return (0, _axios.default)({
               method: 'PATCH',
               url: urla + 'api/users/resetPassword/' + token,
@@ -8922,30 +8927,32 @@ var resetp = /*#__PURE__*/function () {
               }
             });
 
-          case 3:
+          case 4:
             res = _context3.sent;
 
             if (res.data.status = 'success') {
+              document.getElementById("spinner").style.display = "none";
               (0, _alert.showAlert)('success', 'Successful changed');
               window.setTimeout(function () {
                 location.assign('/');
-              }, 100);
+              }, 400);
             }
 
-            _context3.next = 10;
+            _context3.next = 12;
             break;
 
-          case 7:
-            _context3.prev = 7;
+          case 8:
+            _context3.prev = 8;
             _context3.t0 = _context3["catch"](0);
+            document.getElementById("spinner").style.display = "none";
             (0, _alert.showAlert)('error', _context3.t0.response.data.message);
 
-          case 10:
+          case 12:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3, null, [[0, 7]]);
+    }, _callee3, null, [[0, 8]]);
   }));
 
   return function resetp(_x4, _x5, _x6) {
@@ -8966,7 +8973,8 @@ var forgetp = /*#__PURE__*/function () {
           case 0:
             urla = _args4.length > 1 && _args4[1] !== undefined ? _args4[1] : "";
             _context4.prev = 1;
-            _context4.next = 4;
+            document.getElementById("spinner").style.display = "flex";
+            _context4.next = 5;
             return (0, _axios.default)({
               method: 'POST',
               url: urla + 'api/users/forgotPassword',
@@ -8975,30 +8983,32 @@ var forgetp = /*#__PURE__*/function () {
               }
             });
 
-          case 4:
+          case 5:
             res = _context4.sent;
 
             if (res.data.status = 'success') {
+              document.getElementById("spinner").style.display = "none";
               (0, _alert.showAlert)('success', 'Token sent to email!');
               window.setTimeout(function () {
                 location.assign('/');
-              }, 100);
+              }, 400);
             }
 
-            _context4.next = 11;
+            _context4.next = 13;
             break;
 
-          case 8:
-            _context4.prev = 8;
+          case 9:
+            _context4.prev = 9;
             _context4.t0 = _context4["catch"](1);
+            document.getElementById("spinner").style.display = "none";
             (0, _alert.showAlert)('error', _context4.t0.response.data.message);
 
-          case 11:
+          case 13:
           case "end":
             return _context4.stop();
         }
       }
-    }, _callee4, null, [[1, 8]]);
+    }, _callee4, null, [[1, 9]]);
   }));
 
   return function forgetp(_x7) {
@@ -9019,7 +9029,8 @@ var signup = /*#__PURE__*/function () {
           case 0:
             urla = _args5.length > 4 && _args5[4] !== undefined ? _args5[4] : "";
             _context5.prev = 1;
-            _context5.next = 4;
+            document.getElementById("spinner").style.display = "flex";
+            _context5.next = 5;
             return (0, _axios.default)({
               method: 'POST',
               url: urla + 'api/' + route + '/signup',
@@ -9030,30 +9041,32 @@ var signup = /*#__PURE__*/function () {
               }
             });
 
-          case 4:
+          case 5:
             res = _context5.sent;
 
             if (res.data.status === 'success') {
+              document.getElementById("spinner").style.display = "none";
               (0, _alert.showAlert)('success', 'Created successfully.');
               window.setTimeout(function () {
                 location.assign('/');
-              }, 1200);
+              }, 1000);
             }
 
-            _context5.next = 11;
+            _context5.next = 13;
             break;
 
-          case 8:
-            _context5.prev = 8;
+          case 9:
+            _context5.prev = 9;
             _context5.t0 = _context5["catch"](1);
+            document.getElementById("spinner").style.display = "none";
             (0, _alert.showAlert)('error', _context5.t0.response.data.message);
 
-          case 11:
+          case 13:
           case "end":
             return _context5.stop();
         }
       }
-    }, _callee5, null, [[1, 8]]);
+    }, _callee5, null, [[1, 9]]);
   }));
 
   return function signup(_x8, _x9, _x10, _x11) {
@@ -9071,37 +9084,40 @@ var signup1 = /*#__PURE__*/function () {
         switch (_context6.prev = _context6.next) {
           case 0:
             _context6.prev = 0;
-            _context6.next = 3;
+            document.getElementById("spinner").style.display = "flex";
+            _context6.next = 4;
             return (0, _axios.default)({
               method: 'POST',
               url: 'api/agents/signup',
               data: data
             });
 
-          case 3:
+          case 4:
             res = _context6.sent;
 
             if (res.data.status === 'success') {
+              document.getElementById("spinner").style.display = "none";
               (0, _alert.showAlert)('success', 'Craeted successful.');
               window.setTimeout(function () {
                 location.assign('/agent');
-              }, 1200);
+              }, 1100);
             }
 
-            _context6.next = 10;
+            _context6.next = 12;
             break;
 
-          case 7:
-            _context6.prev = 7;
+          case 8:
+            _context6.prev = 8;
             _context6.t0 = _context6["catch"](0);
+            document.getElementById("spinner").style.display = "none";
             (0, _alert.showAlert)('error', _context6.t0.response.data.message);
 
-          case 10:
+          case 12:
           case "end":
             return _context6.stop();
         }
       }
-    }, _callee6, null, [[0, 7]]);
+    }, _callee6, null, [[0, 8]]);
   }));
 
   return function signup1(_x12, _x13) {
@@ -9119,37 +9135,40 @@ var updatea = /*#__PURE__*/function () {
         switch (_context7.prev = _context7.next) {
           case 0:
             _context7.prev = 0;
-            _context7.next = 3;
+            document.getElementById("spinner").style.display = "flex";
+            _context7.next = 4;
             return (0, _axios.default)({
               method: 'PATCH',
               url: 'api/agents/update',
               data: data
             });
 
-          case 3:
+          case 4:
             res = _context7.sent;
 
             if (res.data.status === 'success') {
+              document.getElementById("spinner").style.display = "none";
               (0, _alert.showAlert)('success', 'Changed successful.');
               window.setTimeout(function () {
                 location.assign('/agent-account');
-              }, 1200);
+              }, 1000);
             }
 
-            _context7.next = 10;
+            _context7.next = 12;
             break;
 
-          case 7:
-            _context7.prev = 7;
+          case 8:
+            _context7.prev = 8;
             _context7.t0 = _context7["catch"](0);
+            document.getElementById("spinner").style.display = "none";
             (0, _alert.showAlert)('error', _context7.t0.response.data.message);
 
-          case 10:
+          case 12:
           case "end":
             return _context7.stop();
         }
       }
-    }, _callee7, null, [[0, 7]]);
+    }, _callee7, null, [[0, 8]]);
   }));
 
   return function updatea(_x14) {
@@ -9167,37 +9186,40 @@ var updateu = /*#__PURE__*/function () {
         switch (_context8.prev = _context8.next) {
           case 0:
             _context8.prev = 0;
-            _context8.next = 3;
+            document.getElementById("spinner").style.display = "flex";
+            _context8.next = 4;
             return (0, _axios.default)({
               method: 'PATCH',
               url: 'api/users/update',
               data: data
             });
 
-          case 3:
+          case 4:
             res = _context8.sent;
 
             if (res.data.status === 'success') {
+              document.getElementById("spinner").style.display = "none";
               (0, _alert.showAlert)('success', 'Changed successful.');
               window.setTimeout(function () {
                 location.assign('/account');
-              }, 1200);
+              }, 1000);
             }
 
-            _context8.next = 10;
+            _context8.next = 12;
             break;
 
-          case 7:
-            _context8.prev = 7;
+          case 8:
+            _context8.prev = 8;
             _context8.t0 = _context8["catch"](0);
+            document.getElementById("spinner").style.display = "none";
             (0, _alert.showAlert)('error', _context8.t0.response.data.message);
 
-          case 10:
+          case 12:
           case "end":
             return _context8.stop();
         }
       }
-    }, _callee8, null, [[0, 7]]);
+    }, _callee8, null, [[0, 8]]);
   }));
 
   return function updateu(_x15) {
@@ -9232,37 +9254,40 @@ var addProduct = /*#__PURE__*/function () {
         switch (_context.prev = _context.next) {
           case 0:
             _context.prev = 0;
-            _context.next = 3;
+            document.getElementById("spinner").style.display = "flex";
+            _context.next = 4;
             return (0, _axios.default)({
               method: 'POST',
               url: 'api/agents/product',
               data: data
             });
 
-          case 3:
+          case 4:
             res = _context.sent;
 
             if (res.data.status === 'success') {
+              document.getElementById("spinner").style.display = "none";
               (0, _alert.showAlert)('success', 'Added Successfully');
               window.setTimeout(function () {
                 location.assign('/agent-products');
               }, 1200);
             }
 
-            _context.next = 10;
+            _context.next = 12;
             break;
 
-          case 7:
-            _context.prev = 7;
+          case 8:
+            _context.prev = 8;
             _context.t0 = _context["catch"](0);
+            document.getElementById("spinner").style.display = "none";
             (0, _alert.showAlert)('error', _context.t0.response.data.message);
 
-          case 10:
+          case 12:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 7]]);
+    }, _callee, null, [[0, 8]]);
   }));
 
   return function addProduct(_x) {
@@ -9279,38 +9304,41 @@ var updateProduct = /*#__PURE__*/function () {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            _context2.prev = 0;
-            _context2.next = 3;
+            document.getElementById("spinner").style.display = "flex";
+            _context2.prev = 1;
+            _context2.next = 4;
             return (0, _axios.default)({
               method: 'PATCH',
               url: 'api/agents/product',
               data: data
             });
 
-          case 3:
+          case 4:
             res = _context2.sent;
 
             if (res.data.status === 'success') {
+              document.getElementById("spinner").style.display = "none";
               (0, _alert.showAlert)('success', 'Update Successfully');
               window.setTimeout(function () {
                 location.assign('/agent-products');
               }, 1200);
             }
 
-            _context2.next = 10;
+            _context2.next = 12;
             break;
 
-          case 7:
-            _context2.prev = 7;
-            _context2.t0 = _context2["catch"](0);
+          case 8:
+            _context2.prev = 8;
+            _context2.t0 = _context2["catch"](1);
+            document.getElementById("spinner").style.display = "none";
             (0, _alert.showAlert)('error', _context2.t0.response.data.message);
 
-          case 10:
+          case 12:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[0, 7]]);
+    }, _callee2, null, [[1, 8]]);
   }));
 
   return function updateProduct(_x2) {
@@ -9357,7 +9385,8 @@ var deleteproduct = /*#__PURE__*/function () {
         switch (_context4.prev = _context4.next) {
           case 0:
             _context4.prev = 0;
-            _context4.next = 3;
+            document.getElementById("spinner").style.display = "flex";
+            _context4.next = 4;
             return (0, _axios.default)({
               method: 'DELETE',
               url: 'api/agents/product',
@@ -9366,8 +9395,9 @@ var deleteproduct = /*#__PURE__*/function () {
               }
             });
 
-          case 3:
+          case 4:
             res = _context4.sent;
+            document.getElementById("spinner").style.display = "none";
 
             if (res.data.status === 'success') {
               (0, _alert.showAlert)('success', 'Delete Successfully');
@@ -9379,20 +9409,21 @@ var deleteproduct = /*#__PURE__*/function () {
               (0, _alert.showAlert)('error', res.data.status);
             }
 
-            _context4.next = 10;
+            _context4.next = 13;
             break;
 
-          case 7:
-            _context4.prev = 7;
+          case 9:
+            _context4.prev = 9;
             _context4.t0 = _context4["catch"](0);
+            document.getElementById("spinner").style.display = "none";
             (0, _alert.showAlert)('error', _context4.t0.response.data.message);
 
-          case 10:
+          case 13:
           case "end":
             return _context4.stop();
         }
       }
-    }, _callee4, null, [[0, 7]]);
+    }, _callee4, null, [[0, 9]]);
   }));
 
   return function deleteproduct(_x4) {
@@ -9441,7 +9472,7 @@ var addC = /*#__PURE__*/function () {
             res = _context.sent;
 
             if (res.data.status === 'success') {
-              (0, _alert.showAlert)('success', "Added succesful", 2);
+              (0, _alert.showAlert)('success', "Added succesful", 1);
             }
 
             _context.next = 11;
@@ -9450,7 +9481,7 @@ var addC = /*#__PURE__*/function () {
           case 8:
             _context.prev = 8;
             _context.t0 = _context["catch"](1);
-            (0, _alert.showAlert)('error', _context.t0.response.data.message);
+            (0, _alert.showAlert)('error', _context.t0.response.data.message, 2);
 
           case 11:
           case "end":
@@ -9475,7 +9506,8 @@ var updateC = /*#__PURE__*/function () {
         switch (_context2.prev = _context2.next) {
           case 0:
             _context2.prev = 0;
-            _context2.next = 3;
+            document.getElementById("spinner").style.display = "flex";
+            _context2.next = 4;
             return (0, _axios.default)({
               method: 'PUT',
               url: 'api/users/cart/' + id,
@@ -9484,29 +9516,30 @@ var updateC = /*#__PURE__*/function () {
               }
             });
 
-          case 3:
+          case 4:
             res = _context2.sent;
 
             if (res.data.status === 'success') {
               window.setTimeout(function () {
                 location.assign('/cart');
-              }, 1000);
+              }, 700);
             }
 
-            _context2.next = 10;
+            _context2.next = 12;
             break;
 
-          case 7:
-            _context2.prev = 7;
+          case 8:
+            _context2.prev = 8;
             _context2.t0 = _context2["catch"](0);
-            (0, _alert.showAlert)('error', _context2.t0.response.data.message);
+            document.getElementById("spinner").style.display = "none";
+            (0, _alert.showAlert)('error', _context2.t0.response.data.message, 2);
 
-          case 10:
+          case 12:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[0, 7]]);
+    }, _callee2, null, [[0, 8]]);
   }));
 
   return function updateC(_x2, _x3) {
@@ -9524,14 +9557,15 @@ var deleteC = /*#__PURE__*/function () {
         switch (_context3.prev = _context3.next) {
           case 0:
             _context3.prev = 0;
-            _context3.next = 3;
+            document.getElementById("spinner").style.display = "flex";
+            _context3.next = 4;
             return (0, _axios.default)({
               method: 'DELETE',
               url: 'api/users/cart/' + id,
               data: {}
             });
 
-          case 3:
+          case 4:
             res = _context3.sent;
 
             if (res.data.status === 'success') {
@@ -9540,20 +9574,21 @@ var deleteC = /*#__PURE__*/function () {
               }, 1200);
             }
 
-            _context3.next = 10;
+            _context3.next = 12;
             break;
 
-          case 7:
-            _context3.prev = 7;
+          case 8:
+            _context3.prev = 8;
             _context3.t0 = _context3["catch"](0);
-            (0, _alert.showAlert)('error', _context3.t0.response.data.message);
+            document.getElementById("spinner").style.display = "none";
+            (0, _alert.showAlert)('error', _context3.t0.response.data.message, 2);
 
-          case 10:
+          case 12:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3, null, [[0, 7]]);
+    }, _callee3, null, [[0, 8]]);
   }));
 
   return function deleteC(_x4) {
@@ -9571,36 +9606,38 @@ var empty_cart = /*#__PURE__*/function () {
         switch (_context4.prev = _context4.next) {
           case 0:
             _context4.prev = 0;
-            _context4.next = 3;
+            document.getElementById("spinner").style.display = "none";
+            _context4.next = 4;
             return (0, _axios.default)({
               method: 'DELETE',
               url: 'api/users/cart/',
               data: {}
             });
 
-          case 3:
+          case 4:
             res = _context4.sent;
 
             if (res.data.status === 'success') {
               window.setTimeout(function () {
                 location.assign('/cart');
-              }, 1200);
+              }, 800);
             }
 
-            _context4.next = 10;
+            _context4.next = 12;
             break;
 
-          case 7:
-            _context4.prev = 7;
+          case 8:
+            _context4.prev = 8;
             _context4.t0 = _context4["catch"](0);
-            (0, _alert.showAlert)('error', _context4.t0.response.data.message);
+            document.getElementById("spinner").style.display = "none";
+            (0, _alert.showAlert)('error', _context4.t0.response.data.message, 2);
 
-          case 10:
+          case 12:
           case "end":
             return _context4.stop();
         }
       }
-    }, _callee4, null, [[0, 7]]);
+    }, _callee4, null, [[0, 8]]);
   }));
 
   return function empty_cart() {
@@ -9618,37 +9655,40 @@ var addO = /*#__PURE__*/function () {
         switch (_context5.prev = _context5.next) {
           case 0:
             _context5.prev = 0;
-            _context5.next = 3;
+            document.getElementById("spinner").style.display = "flex";
+            _context5.next = 4;
             return (0, _axios.default)({
               method: 'POST',
               url: 'api/users/order'
             });
 
-          case 3:
+          case 4:
             res = _context5.sent;
 
             if (res.data.status === 'success') {
+              document.getElementById("spinner").style.display = "none";
               (0, _alert.showAlert)('success', 'Ordered successful.');
               window.setTimeout(function () {
                 location.assign('/orders');
               }, 1200);
             }
 
-            _context5.next = 11;
+            _context5.next = 13;
             break;
 
-          case 7:
-            _context5.prev = 7;
+          case 8:
+            _context5.prev = 8;
             _context5.t0 = _context5["catch"](0);
             console.log(_context5.t0);
-            (0, _alert.showAlert)('error', _context5.t0.response.data.message);
+            document.getElementById("spinner").style.display = "none";
+            (0, _alert.showAlert)('error', _context5.t0.response.data.message, 3);
 
-          case 11:
+          case 13:
           case "end":
             return _context5.stop();
         }
       }
-    }, _callee5, null, [[0, 7]]);
+    }, _callee5, null, [[0, 8]]);
   }));
 
   return function addO() {
@@ -9954,12 +9994,6 @@ var sort2 = document.getElementById('sort2');
 var OrderBtn = document.getElementById('OrderBtn');
 var searchbtn = document.querySelector('.search');
 var user_update = document.querySelector('.form-udate');
-var paynow = document.querySelector('.paynow1');
-if (paynow) paynow.addEventListener('submit', function (e) {
-  console.log("1 ssj ");
-  e.preventDefault();
-  (0, _cart.paynowfunction)();
-});
 
 function ss() {
   var s = document.getElementById('searchv').value;
@@ -10207,7 +10241,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "1511" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "6332" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

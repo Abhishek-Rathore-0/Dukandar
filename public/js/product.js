@@ -3,6 +3,7 @@ import {showAlert} from './alert';
 
 export const addProduct = async (data) => {
     try {
+      document.getElementById("spinner").style.display="flex";
         const res = await axios({
           method: 'POST',
           url: 'api/agents/product',
@@ -10,17 +11,20 @@ export const addProduct = async (data) => {
         });
         
         if (res.data.status === 'success') {  
+          document.getElementById("spinner").style.display="none";
           showAlert('success', 'Added Successfully');
           window.setTimeout(() => {
             location.assign('/agent-products');
           }, 1200);
         }
       } catch (err) {
+        document.getElementById("spinner").style.display="none";
         showAlert('error', err.response.data.message);
       }
 }
 
 export const updateProduct = async(data) =>{
+  document.getElementById("spinner").style.display="flex";
   try {
     const res = await axios({
       method: 'PATCH',
@@ -29,12 +33,14 @@ export const updateProduct = async(data) =>{
     });
     
     if (res.data.status === 'success') {  
+      document.getElementById("spinner").style.display="none";
       showAlert('success', 'Update Successfully');
       window.setTimeout(() => {
         location.assign('/agent-products');
       }, 1200);
     }
   } catch (err) {
+    document.getElementById("spinner").style.display="none";
     showAlert('error', err.response.data.message);
   }
 }
@@ -51,6 +57,7 @@ export const sortingandsearch = async(field) =>{
 
 export const deleteproduct = async(id) =>{
   try{
+    document.getElementById("spinner").style.display="flex";
     const res = await axios({
       method: 'DELETE',
       url: 'api/agents/product',
@@ -58,7 +65,7 @@ export const deleteproduct = async(id) =>{
         id
       }
     });
-    
+    document.getElementById("spinner").style.display="none";
     if (res.data.status === 'success') {  
       showAlert('success', 'Delete Successfully');
       window.setTimeout(() => {
@@ -70,6 +77,7 @@ export const deleteproduct = async(id) =>{
       showAlert('error',res.data.status);
     }
   }catch(err){
+    document.getElementById("spinner").style.display="none";
     showAlert('error', err.response.data.message)
   }
 }

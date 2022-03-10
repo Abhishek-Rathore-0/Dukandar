@@ -10,15 +10,16 @@ export const addC = async (id,urla="") => {
     });
 
     if (res.data.status === 'success') {
-      showAlert('success',"Added succesful",2);
+      showAlert('success',"Added succesful",1);
     }
   } catch (err) {
-    showAlert('error', err.response.data.message);
+    showAlert('error', err.response.data.message,2);
   }
 };
 
 export const updateC = async (id, Quantity) => {
     try {
+      document.getElementById("spinner").style.display="flex";
       const res = await axios({
         method: 'PUT',
         url: 'api/users/cart/'+id,
@@ -30,15 +31,17 @@ export const updateC = async (id, Quantity) => {
       if (res.data.status === 'success') {
         window.setTimeout(() => {
             location.assign('/cart');
-          }, 1000);
+          }, 700);
       }
     } catch (err) {
-      showAlert('error', err.response.data.message);
+      document.getElementById("spinner").style.display="none";
+      showAlert('error', err.response.data.message,2);
     }
 };
 
 export const deleteC = async (id) => {
     try {
+      document.getElementById("spinner").style.display="flex";
       const res = await axios({
         method: 'DELETE',
         url: 'api/users/cart/'+id,
@@ -51,12 +54,14 @@ export const deleteC = async (id) => {
           }, 1200);
       }
     } catch (err) {
-      showAlert('error', err.response.data.message);
+      document.getElementById("spinner").style.display="none";
+      showAlert('error', err.response.data.message,2);
     }
 };
 
 export const empty_cart = async () => {
   try {
+    document.getElementById("spinner").style.display="none";
     const res = await axios({
       method: 'DELETE',
       url: 'api/users/cart/',
@@ -66,22 +71,24 @@ export const empty_cart = async () => {
     if (res.data.status === 'success') {
       window.setTimeout(() => {
           location.assign('/cart');
-        }, 1200);
+        }, 800);
     }
   } catch (err) {
-    showAlert('error', err.response.data.message);
+    document.getElementById("spinner").style.display="none";
+    showAlert('error', err.response.data.message,2);
   }
 };
 
 export const addO =async()=>{
   try {
+    document.getElementById("spinner").style.display="flex";
     const res = await axios({
       method: 'POST',
       url:'api/users/order'
     });
 
     if (res.data.status === 'success') {
-
+      document.getElementById("spinner").style.display="none";
       showAlert('success', 'Ordered successful.');
         window.setTimeout(() => {
           location.assign('/orders');
@@ -89,6 +96,7 @@ export const addO =async()=>{
     }
   } catch (err) {
     console.log(err)
-    showAlert('error', err.response.data.message);
+    document.getElementById("spinner").style.display="none";
+    showAlert('error', err.response.data.message,3);
   }
 };

@@ -20,15 +20,6 @@ const sort2 = document.getElementById('sort2');
 const OrderBtn = document.getElementById('OrderBtn');
 const searchbtn = document.querySelector('.search');
 const user_update = document.querySelector('.form-udate');
-const paynow = document.querySelector('.paynow1');
-
-
-if(paynow)
-    paynow.addEventListener('submit', e=>{
-        console.log("1 ssj ")
-        e.preventDefault();
-        paynowfunction();
-    });
 
 function ss(){
     const s= document.getElementById('searchv').value;

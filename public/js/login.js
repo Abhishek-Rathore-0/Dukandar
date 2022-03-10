@@ -3,6 +3,7 @@ import {showAlert} from './alert';
 
 export const login = async (email, password, route, urla="") => {
     try {
+      document.getElementById("spinner").style.display="flex";
       const res = await axios({
         method: 'POST',
         url: urla+'api/'+route+'/login',
@@ -13,22 +14,24 @@ export const login = async (email, password, route, urla="") => {
       });
   
       if (res.data.status === 'success') {
+        document.getElementById("spinner").style.display="none";
         showAlert('success', 'Logged in successfully!');
         window.setTimeout(() => {
           if(route=="agents")
             location.assign('/agent');
           else
             location.assign('/');
-        }, 1200);
+        }, 700);
       }
     } catch (err) {
-      console.log(err)
+      document.getElementById("spinner").style.display="none";
       showAlert('error', err.response.data.message);
     }
   };
 
   export const logout = async (urla="") => {
     try {
+      document.getElementById("spinner").style.display="flex";
       const res = await axios({
         method: 'GET',
         url:urla+'api/users/logout'
@@ -39,12 +42,14 @@ export const login = async (email, password, route, urla="") => {
         }, 100);
       }
     } catch (err) {
+      document.getElementById("spinner").style.display="none";      
       showAlert('error', err.response.data.message);
     }
   };
 
 export const resetp= async(token,password,urla)=>{
   try {
+    document.getElementById("spinner").style.display="flex";
     const res = await axios({
       method: 'PATCH',
       url:urla+'api/users/resetPassword/'+token,
@@ -53,18 +58,21 @@ export const resetp= async(token,password,urla)=>{
       }
     });
     if (res.data.status = 'success'){
+      document.getElementById("spinner").style.display="none";
       showAlert('success', 'Successful changed');
       window.setTimeout(() => {
         location.assign('/');
-      }, 100);
+      }, 400);
     }
   } catch (err) {
+    document.getElementById("spinner").style.display="none";
     showAlert('error', err.response.data.message);
   }
 }
 
 export const forgetp = async(email,urla="")=>{
   try {
+    document.getElementById("spinner").style.display="flex";
     const res = await axios({
       method: 'POST',
       url:urla+'api/users/forgotPassword',
@@ -73,18 +81,21 @@ export const forgetp = async(email,urla="")=>{
       }
     });
     if ((res.data.status = 'success')) {
+      document.getElementById("spinner").style.display="none";
       showAlert('success', 'Token sent to email!');
       window.setTimeout(() => {
         location.assign('/');
-      }, 100);
+      }, 400);
     }
   } catch (err) {
+    document.getElementById("spinner").style.display="none";
     showAlert('error', err.response.data.message);
   }
 }
 
 export const signup = async (name, email, password, route, urla="") => {
   try {
+    document.getElementById("spinner").style.display="flex";
     const res = await axios({
       method: 'POST',
       url: urla+'api/'+route+'/signup',
@@ -96,19 +107,21 @@ export const signup = async (name, email, password, route, urla="") => {
     });
 
     if (res.data.status === 'success') {
+      document.getElementById("spinner").style.display="none";
       showAlert('success', 'Created successfully.');
       window.setTimeout(() => {
         location.assign('/');
-      }, 1200);
+      }, 1000);
     }
   } catch (err) {
+    document.getElementById("spinner").style.display="none";
     showAlert('error', err.response.data.message);
   }
 }; 
 
 export const signup1 = async(data, route) =>{
   try {
-       
+    document.getElementById("spinner").style.display="flex";
     const res = await axios({
       method: 'POST',
       url: 'api/agents/signup',
@@ -116,19 +129,21 @@ export const signup1 = async(data, route) =>{
     });
     
     if (res.data.status === 'success') {
+      document.getElementById("spinner").style.display="none";
       showAlert('success', 'Craeted successful.');
       window.setTimeout(() => {
         location.assign('/agent');
-      }, 1200);
+      }, 1100);
     }
   } catch (err) {
+    document.getElementById("spinner").style.display="none";
     showAlert('error', err.response.data.message);
   }
 }
 
 export const updatea = async(data) =>{
   try {
-       
+    document.getElementById("spinner").style.display="flex";
     const res = await axios({
       method: 'PATCH',
       url: 'api/agents/update',
@@ -136,18 +151,21 @@ export const updatea = async(data) =>{
     });
     
     if (res.data.status === 'success') {  
+      document.getElementById("spinner").style.display="none";
       showAlert('success', 'Changed successful.');
       window.setTimeout(() => {
         location.assign('/agent-account');
-      }, 1200);
+      }, 1000);
     }
   } catch (err) {
+    document.getElementById("spinner").style.display="none";
     showAlert('error', err.response.data.message);
   }
 }
 
 export const updateu = async(data) =>{
   try {
+    document.getElementById("spinner").style.display="flex";
     const res = await axios({
       method: 'PATCH',
       url: 'api/users/update',
@@ -155,12 +173,14 @@ export const updateu = async(data) =>{
     });
     
     if (res.data.status === 'success') {  
+      document.getElementById("spinner").style.display="none";
       showAlert('success', 'Changed successful.');
       window.setTimeout(() => {
         location.assign('/account');
-      }, 1200);
+      }, 1000);
     }
   } catch (err) {
+    document.getElementById("spinner").style.display="none";
     showAlert('error', err.response.data.message);
   }
 }
