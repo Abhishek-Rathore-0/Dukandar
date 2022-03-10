@@ -96,9 +96,7 @@ exports.isLoggedIn = async (req, res, next) => {
       
       //Check if user changed password after the token was issued
       if (currentUser.changedPasswordAfter(decoded.iat)) {
-        return next(
-          new AppError('You are not logged in! Please log in to get access.', 401)
-        );
+        return next();
       }
     
       req.user = currentUser;
@@ -164,11 +162,13 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
 
   // 3) Send it to user's email
   try {
-    const resetURL = `${req.protocol}://${req.get(
-      'host'
-    )}/resetPassword/${resetToken}`;
+    let protocol=`${req.protocol}`;
+    if(req.get('host')!="localhost:3000")
+      protocol=`${req.protocol}s`;
+    
+    const resetURL = `${protocol}://${req.get('host')}/resetPassword/${resetToken}`;
     //await new Email(user, resetURL).sendPasswordReset();
-    console.log(resetURL);
+   console.log(resetURL);
     res.status(200).json({
       status: 'success',
       message: 'Token sent to email!'
