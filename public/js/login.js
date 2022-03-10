@@ -42,6 +42,7 @@ export const login = async (email, password, route, urla="") => {
       showAlert('error', err.response.data.message);
     }
   };
+
 export const resetp= async(token,password,urla)=>{
   try {
     const res = await axios({
@@ -61,6 +62,7 @@ export const resetp= async(token,password,urla)=>{
     showAlert('error', err.response.data.message);
   }
 }
+
 export const forgetp = async(email,urla="")=>{
   try {
     const res = await axios({
