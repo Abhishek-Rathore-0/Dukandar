@@ -4,20 +4,30 @@
     <%- include('partials/navbar',{location:"orders"}) %>  
     
     <div class="container text-center col-lg-8 col-md-12 col-sm-12 mb-5 mt-4" style="border-bottom: 1px solid black;">
-        <h1 style="
+      <h1 style="
         padding-bottom: 10px;
         font-size: 6vh;
         letter-spacing: 6px;
         color: #343a40;">ORDERS</h1>
-      </div>
-      <% if(OrderProduct.length != 0 ){  %> 
+    </div>
+      
+    <% if(OrderProduct.length != 0 ){  %> 
       <div class="container col-lg-8 col-md-12 col-sm-12 mb-4 mt-4">
         <div class="row">
           <div class="col-sm-12 col-lg-12" style="color: #343a40;">
             <% let i=0; let TransId=""%> 
             <% for(let orders of OrderProduct) { %> 
               
-              <%if(TransId != OrderList[i].TransactionID && i!=0 ){ %>
+              <%if(TransId != OrderList[i].TransactionID && i!=0 ){ %>  
+                <% if(!OrderList[i-1].Delivered){ %> 
+                <div class="row g-0 border_t" style="border-bottom-right-radius: 20px;border-bottom-left-radius: 20px; background: #343a40; color: white; padding:20px;">
+                  <%if(OrderList[i-1].Status=="pending"){%>
+                      Delete it.
+                  <%}else if(OrderList[i-1].Delivered==false) {%>
+                      if you want to delete contact user.
+                  <%}%>
+                </div>
+                <% } %> 
               </div>
               <% }else if(i!=0){ %>
                 <hr style="margin-bottom: 2px;">
@@ -27,7 +37,7 @@
   
                 <div class="card mb-3 col-sm-12" style="border-radius: 20px; max-width: 100%; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
                   <div class="row g-0 border_t" style="border-top-right-radius: 20px;border-top-left-radius: 20px; background: #343a40; color: white; padding:20px;">
-                    <div class="col-sm-3 d-flex">
+                    <div class="col-sm-2 d-flex" style="margin-right: 20px;">
                       <div>
                         Date :
                       </div>  
@@ -35,7 +45,7 @@
                         <%-OrderList[i].OrderDate.toString().slice(3,15); %>
                       </div>
                     </div>
-                    <div class="col-sm-6 d-flex">
+                    <div class="col-sm-4 d-flex">
                       <div>
                         Shop Name :
                       </div>
@@ -48,51 +58,61 @@
                       </div>
                          <div  class="mx-1">₹ <%=OrderList[i].Total %></div>
                       </div>
+                      <div class="col-sm-2 d-flex">
+                        <div>
+                           Status :
+                        </div>
+                           <div  class="mx-1">
+                            <%if(OrderList[i].Status=="pending"){%>
+                              Pending
+                            <%}else if(OrderList[i].Delivered==false) {%>
+                              On the way  
+                            <% }else{ %>
+                              Completed
+                            <%}%>
+                           </div>
+                        </div>
                   </div>
                   <% TransId=OrderList[i].TransactionID %> 
                 <% } %>  
                  
-              <div class="row g-0" style="height: auto;">
+              <div class="row g-0" style="height: auto; cursor: pointer;" onclick="location.href='/product/<%=orders[0]._id%>'">
                 <div class="col-sm-3 d-flex justify-content-center pb-3 pt-2" style="height: auto;">
                   <img style="border-radius: 15%; height: 120px;" src="/image/products/<%=orders[0].images[0]%>" class="img-fluid" alt="...">
                 </div>
                 
-                <div class="col-sm-5">
+                <div class="col-sm-7 d-flex align-items-center px-2">
                   <div class="card-body text-start">
-                    <div class="d-flex justify-content-between justify-content-between align-items-center mt-3">
-                      <div>
-                        <h5 class="card-title"><%=orders[0].name  %> </h5>
-                        <p class="card-text">Quantity: <%= OrderList[i].Quantity %> </p> 
-                      </div>
-                        <p class="fw-bold" style="font-size: 22px;">₹<%= orders[0].price %> </p>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                    </div>
+                      <h5 class="card-title"><%=orders[0].name  %> </h5>
+                      <p style="overflow: hidden;
+                      display: -webkit-box;
+                      -webkit-line-clamp: 2;
+                      -webkit-box-orient: vertical;" class="px-2">
+                        <%=orders[0].description  %>
+                      </p>
                   </div>
                 </div>
-                <div class="col-sm-4 d-flex justify-content-center align-items-center">
-                  <div><div class="fw-bolder">Status:</div> On her way  </div>
+                <div class="col-sm-2 d-flex align-items-center px-4">
+                  <div>
+                    <p class="card-text">Quantity: <%= OrderList[i].Quantity %> </p> 
+                    <p class="fw-bold" style="font-size: 22px;">₹<%= orders[0].price %> </p>
+                  </div>
                 </div>
               </div>
-            
-              
-            <%i++;} %> 
-                </div>
+            <%i++;}%> 
+            </div>
           </div>
         </div>
       </div>
-  
-      <% }else{ %>
-        <div class="container col-lg-8 col-md-12 col-sm-12 mb-5 mt-4">
-          <div class="d-flex flex-column text-center" style="width: 100%;height:65vh;line-height: 65vh;text-align: center;">
-            <img src="/image/noItems.png" style="margin: 0 auto; width: 200px;" alt="">
-            <span style="font-size: 4.2vh;display: inline-block;vertical-align: middle;line-height: normal;">No orders yet, Order Now!</span>
-            <button class="mt-3 btn" style="color:white;width: fit-content; background-color: #343a40; margin: 0 auto;" onclick="location.href='/'">Order now</button>
-          </div>
-        </div>  
-      <% } %>
-    
-
+    <% }else{ %>
+      <div class="container col-lg-8 col-md-12 col-sm-12 mb-5 mt-4">
+        <div class="d-flex flex-column text-center" style="width: 100%;height:65vh;line-height: 65vh;text-align: center;">
+          <img src="/image/noItems.png" style="margin: 0 auto; width: 200px;" alt="">
+          <span style="font-size: 4.2vh;display: inline-block;vertical-align: middle;line-height: normal;">No orders yet, Order Now!</span>
+          <button class="mt-3 btn" style="color:white;width: fit-content; background-color: #343a40; margin: 0 auto;" onclick="location.href='/'">Order now</button>
+        </div>
+      </div>  
+    <% } %>
     <footer>
         <%- include('partials/footer') %>
     </footer>   
