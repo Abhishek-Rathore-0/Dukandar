@@ -22,7 +22,9 @@
                 <% if(!OrderList[i-1].Delivered){ %> 
                 <div class="row g-0 border_t" style="border-bottom-right-radius: 20px;border-bottom-left-radius: 20px; background: #343a40; color: white; padding:20px;">
                   <%if(OrderList[i-1].Status=="pending"){%>
-                      Delete it.
+                      <div>Want to delete this Order - 
+                        <div id="DelteOrdeR" style="cursor: pointer;font-size: 18px;display: inline;" onclick="fill('<%-OrderList[i-1].TransactionID%>')">DELETE</div>
+                      </div>
                   <%}else if(OrderList[i-1].Delivered==false) {%>
                       if you want to delete contact user.
                   <%}%>
@@ -100,6 +102,18 @@
                 </div>
               </div>
             <%i++;}%> 
+
+
+            <% if(!OrderList[i-1].Delivered){ %> 
+              <div class="row g-0 border_t" style="border-bottom-right-radius: 20px;border-bottom-left-radius: 20px; background: #343a40; color: white; padding:20px;">
+                <%if(OrderList[i-1].Status=="pending"){%>
+                  
+                    Delete it.
+                <%}else if(OrderList[i-1].Delivered==false) {%>
+                    if you want to delete contact user.
+                <%}%>
+              </div>
+            <%} %> 
             </div>
           </div>
         </div>
@@ -116,5 +130,14 @@
     <footer>
         <%- include('partials/footer') %>
     </footer>   
+    
+    <input type="hidden" id="TransId">
+    <script>
+    
+    function fill(TransId){
+      document.getElementById("TransId").value=TransId;
+    }
+    
+    </script>
 </body>
 </html>

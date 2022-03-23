@@ -100,3 +100,26 @@ export const addO =async()=>{
     showAlert('error', err.response.data.message,3);
   }
 };
+
+export const deleteO =async(TransactionID)=>{
+  try {
+    document.getElementById("spinner").style.display="flex";
+    const res = await axios({
+      method: 'Delete',
+      url:'api/users/order',
+      data: {TransactionID}
+    });
+
+    if (res.data.status === 'success') {
+      document.getElementById("spinner").style.display="none";
+      showAlert('success', 'Deleted successful.');
+        window.setTimeout(() => {
+          location.assign('/orders');
+        }, 1000);
+    }
+  } catch (err) {
+    console.log(err)
+    document.getElementById("spinner").style.display="none";
+    showAlert('error', err.response.data.message,3);
+  }
+};

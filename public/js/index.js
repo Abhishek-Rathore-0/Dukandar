@@ -2,7 +2,7 @@ import '@babel/polyfill';
 import {login,logout,signup,signup1,updatea,updateu,forgetp,resetp} from './login';
 import {showAlert} from './alert';
 import {addProduct,updateProduct,deleteproduct,sortingandsearch} from './product';
-import {addC,updateC,deleteC,empty_cart,addO,paynowfunction} from './cart';
+import {addC,updateC,deleteC,empty_cart,addO,deleteO} from './cart';
 
 const loginform = document.querySelector('.form');
 const loginform1 = document.querySelector('.form1');
@@ -20,6 +20,7 @@ const sort2 = document.getElementById('sort2');
 const OrderBtn = document.getElementById('OrderBtn');
 const searchbtn = document.querySelector('.search');
 const user_update = document.querySelector('.form-udate');
+const deleteorder = document.getElementById('DelteOrdeR');
 
 function ss(){
     const s= document.getElementById('searchv').value;
@@ -41,7 +42,7 @@ if(sort1 || sort2 || searchbtn){
         ss();
     });
 }
-    
+
 if(loginform)
     loginform.addEventListener('submit', e=>{
         e.preventDefault();
@@ -285,3 +286,13 @@ if(OrderBtn)
     OrderBtn.addEventListener('click',e=>{
         addO();
     });
+  
+if(deleteorder)
+    deleteorder.addEventListener('click',e=>{
+        const Tid=document.getElementById('TransId').value;
+        console.log(Tid);
+        // deleteO(Tid);
+        if(Tid!="")
+            deleteO(Tid);
+    });
+

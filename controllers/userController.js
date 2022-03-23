@@ -151,6 +151,7 @@ exports.addorder = catchAsync(async(req, res, next)=>{
   const UserID = req.user.id;
   const cartItem = await Cart.find({UserID});
   const Ordercount = (await Order.find({UserID})).length;
+  let random = Math.floor((Math.random() * 1000) + 1);
   if (cartItem.length == 0) {
     return next(new AppError('Please add items to cart to order.', 400));
   }
@@ -183,7 +184,7 @@ exports.addorder = catchAsync(async(req, res, next)=>{
       const ShopID = shop._id;
       const Quantity = cartItem[i].Quantity;
       const Date1 = new Date().toISOString().slice(0, 10);
-      const TransactionID = UserID+(1+Ordercount);
+      const TransactionID = UserID+(1+Ordercount)+random;
       const PaymentMode = "--";
       const prod= await Product.find({_id:arr[0]._id});
       const Price=prod[0].price;
@@ -206,5 +207,26 @@ exports.addorder = catchAsync(async(req, res, next)=>{
     }
   }
   await Cart.deleteMany({ UserID: UserID });
+  res.status(200).json({status: 'success'});
+})
+
+exports.delorder = catchAsync(async(req, res, next)=>{
+  const UserID = req.user.id;
+  const TransactionID = req.body.TransactionID;
+  const Order1 = await Order.find({UserID,TransactionID});
+  
+  if (Order1.length == 0) {
+    return next(new AppError('Please check your TransactionID.', 400));
+  }
+  else if(Order1[0].Delivered == true){
+    return next(new AppError('Cannot be deleted.', 400));
+  }
+  else if(Order1[0].Status == "success"){
+    return next(new AppError('Please contact the shop to delete this order.', 400));
+  }
+  else{
+    await Order.deleteMany({ UserID: UserID,TransactionID:TransactionID});
+  }
+
   res.status(200).json({status: 'success'});
 })
