@@ -225,7 +225,7 @@ exports.orders_admin = async(req, res, next) =>{
     const user = await UserModel.find();
   
     let OrderList;
-    OrderList = await Order.find({ShopID:req.agent._id});
+    OrderList = await Order.find({ShopID:req.agent._id}).sort({Status:-1,Delivered:-1});
     OrderList.reverse();
 
     let OrderProduct = [];
@@ -233,7 +233,6 @@ exports.orders_admin = async(req, res, next) =>{
         let OProduct = await ProductModel.find({ _id: orders.ProductID });
         OrderProduct.push(OProduct);
     }
-console.log(OrderProduct);
     res.status(200).render('orders_admin',{
         title: 'Orders',
         user, 

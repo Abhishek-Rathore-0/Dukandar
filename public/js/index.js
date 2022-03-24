@@ -2,7 +2,7 @@ import '@babel/polyfill';
 import {login,logout,signup,signup1,updatea,updateu,forgetp,resetp} from './login';
 import {showAlert} from './alert';
 import {addProduct,updateProduct,deleteproduct,sortingandsearch} from './product';
-import {addC,updateC,deleteC,empty_cart,addO,deleteO} from './cart';
+import {addC,updateC,deleteC,empty_cart,addO,deleteO,deleteO1,statusChange,confirm} from './cart';
 
 const loginform = document.querySelector('.form');
 const loginform1 = document.querySelector('.form1');
@@ -296,3 +296,34 @@ if(deleteorder)
             deleteO(Tid);
     });
 
+let deletebuttons = document.querySelectorAll("#deletebutton");
+deletebuttons.forEach(box => {
+    box.addEventListener('click', e=>{
+        const Tid=document.getElementById('TransId').value;
+        console.log(Tid);
+        if(Tid!="")
+            deleteO1(Tid);
+    });
+  });
+
+const updaToDelivery = document.querySelectorAll('.updaToDelivery');
+updaToDelivery.forEach(box=>{
+    box.addEventListener('click',e=>{
+        const Tid=document.getElementById('TransId').value;
+        const status=document.getElementById("statusD"+Tid).value;
+        
+        if(status=="delivered"){
+            statusChange(Tid);
+        }
+    });
+});
+
+let updateStatus = document.querySelectorAll(".updateStatus");
+updateStatus.forEach(box => {
+    box.addEventListener('click', e=>{
+        const Tid=document.getElementById('TransId').value;
+        console.log(Tid);
+        if(Tid!="")
+            confirm(Tid);
+    });
+  });

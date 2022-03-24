@@ -1,5 +1,6 @@
 const express = require('express');
 const authController = require('./../controllers/authController');
+const authController1 = require('./../controllers/authController1');
 const userController = require('./../controllers/userController');
 
 const router = express.Router();
@@ -17,6 +18,6 @@ router.delete("/cart/:id",authController.protect, userController.deleteCartItem)
 router.delete("/cart",authController.protect, userController.deleteCart);
  
 router.post('/order', authController.protect, userController.addorder);
-router.delete('/order', authController.protect, userController.delorder);
+router.delete('/order', authController.isLoggedIn, userController.delorder);
 
 module.exports = router;

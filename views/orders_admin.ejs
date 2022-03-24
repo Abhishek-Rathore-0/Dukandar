@@ -7,6 +7,7 @@
     <% for(let orders of OrderProduct) { %> 
       
       <%if(TransId != OrderList[i].TransactionID && i!=0 ){ %>
+        
         </tbody>
         </table>
         </td>
@@ -15,7 +16,6 @@
         </table>
         </div>
         </div>
-        
       <% } %>  
   
     <%if(TransId != OrderList[i].TransactionID ){  j++;%>
@@ -24,6 +24,16 @@
             <div class="container col-lg-8 col-md-12 col-sm-12">
               <table class="table table-dark" id="orderData">
                 <thead>
+                  <% if(OrderList[i].Status=="pending") {%>
+                  <tr>
+                    <td colspan="8">
+                      <div class="d-flex justify-content-between mx-4">
+                          <input type="button" class="btn btn-success updateStatus btn-sm m-1" style="color:white;width: 100%;" value=&#10003; onclick="fill('<%-OrderList[i].TransactionID%>')">
+                          <input type="button" id="deletebutton" class="btn btn-danger btn-sm m-1" style="color: white;width: 100%;" value="X" onclick="fill('<%-OrderList[i].TransactionID%>')">
+                      </div>
+                    </td>  
+                  </tr>
+                  <% } %>
                   <tr style="text-align: center">
                     <th scope="col" class="p-3">#</th>
                     <th scope="col" class="p-3">Name</th>
@@ -31,7 +41,8 @@
                     <th scope="col" class="p-3">TransactionID</th>
                     <th scope="col" class="p-3">Amount</th>
                     <th scope="col" class="p-3">Delivery Status</th>
-                    <th scope="col" class="p-3">Update</th>
+                    <th scope="col"><input type="button" id="deletebutton" class="btn btn-danger btn-sm m-1" style="color: white;width: 100%;" value="Delete" onclick="fill('<%-OrderList[i].TransactionID%>')">
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -46,22 +57,17 @@
                     <td><%=OrderList[i].TransactionID%></td>
                     <td>₹<%=OrderList[i].Total %></td>
                       
-                      <% if(OrderList[i].Status!="delivered") {%>
-                        <td> <select name="status" id="status" style="background-color: #343a40; color: white; border: none; outline: none;">
-                            <option value="pending">Pending</option>
-                            <option value="delivered">Delivered</option>
-                            
+                      <% if(OrderList[i].Delivered==false) {%>
+                        <td> <select name="status" id="<%-'statusD'+OrderList[i].TransactionID%>" style="background-color: #343a40; color: white; border: none; outline: none;">
+                            <option value="pending" <%-OrderList[i].Delivered?'':'select'%>>Pending</option>
+                            <option value="delivered" <%-OrderList[i].Delivered?'select':''%>>Delivered</option>
                         </select> </td>
                       <% }else{ %> 
                         <td>Delivered</td>
                       <% } %>                
                       <td>
-                        <% if(OrderList[i].Status!="delivered"){ %> 
-                          <input type="submit" class="btn btn-success btn-sm" value="Update"></td>
-                        <% } else{%>
-                          <input type="button" class="btn btn-success btn-sm" value="Update"></td>
-                        <% } %>  
-                    
+                        <input type="button"  class="btn btn-success btn-sm updaToDelivery" class="display:inline-block;" value="Update" onclick="fill('<%-OrderList[i].TransactionID%>')">
+                      </td>
                     </tr>
                     <tr>
                     <td colspan="7">
@@ -88,6 +94,7 @@
         </tr>
                       
         <% i++;} %> 
+        
       </tbody>
     </table>
     </td>
@@ -101,6 +108,12 @@
     <%- include('partials/scrollToTop')%> 
   
     <%- include('partials/footer') %> 
-  
+    <input type="hidden" id="TransId">
+    
+    <script>
+      function fill(TransId){
+        document.getElementById("TransId").value=TransId;
+      }
+    </script>
 
 </body>

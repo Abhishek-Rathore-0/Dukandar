@@ -103,6 +103,7 @@ export const addO =async()=>{
 
 export const deleteO =async(TransactionID)=>{
   try {
+    console.log(TransactionID)
     document.getElementById("spinner").style.display="flex";
     const res = await axios({
       method: 'Delete',
@@ -111,10 +112,75 @@ export const deleteO =async(TransactionID)=>{
     });
 
     if (res.data.status === 'success') {
-      document.getElementById("spinner").style.display="none";
       showAlert('success', 'Deleted successful.');
         window.setTimeout(() => {
           location.assign('/orders');
+        }, 1000);
+    }
+  } catch (err) {
+    console.log(err)
+    document.getElementById("spinner").style.display="none";
+    showAlert('error', err.response.data.message,3);
+  }
+};
+
+export const deleteO1 =async(TransactionID)=>{
+  try {
+    document.getElementById("spinner").style.display="flex";
+    const res = await axios({
+      method: 'Delete',
+      url:'api/agents/order',
+      data: {TransactionID}
+    });
+
+    if (res.data.status === 'success') {
+      showAlert('success', 'Deleted successful.');
+        window.setTimeout(() => {
+          location.assign('/agent-orders');
+        }, 1000);
+    }
+  } catch (err) {
+    console.log(err)
+    document.getElementById("spinner").style.display="none";
+    showAlert('error', err.response.data.message,3);
+  }
+};
+
+export const statusChange = async(TransactionID)=>{
+  try {
+    document.getElementById("spinner").style.display="flex";
+    const res = await axios({
+      method: 'Put',
+      url:'api/agents/order',
+      data: {TransactionID}
+    });
+
+    if (res.data.status === 'success') {
+      showAlert('success', 'Changed successful.');
+      window.setTimeout(() => {
+          location.assign('/agent-orders');
+        }, 1000);
+    }
+  } catch (err) {
+    console.log(err)
+    document.getElementById("spinner").style.display="none";
+    showAlert('error', err.response.data.message,3);
+  }
+};
+
+export const confirm = async(TransactionID)=>{
+  try {
+    document.getElementById("spinner").style.display="flex";
+    const res = await axios({
+      method: 'Post',
+      url:'api/agents/order',
+      data: {TransactionID}
+    });
+
+    if (res.data.status === 'success') {
+      showAlert('success', 'Order Added.');
+      window.setTimeout(() => {
+          location.assign('/agent-orders');
         }, 1000);
     }
   } catch (err) {

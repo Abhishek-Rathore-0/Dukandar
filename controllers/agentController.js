@@ -2,6 +2,8 @@ const multer = require('multer');
 const sharp = require('sharp');
 const Agent = require('./../models/agentModel');
 
+const Order = require('../models/orderModel');
+
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
 
@@ -60,3 +62,60 @@ exports.update = catchAsync(async (req, res, next)=>{
     }
   });
 });
+
+exports.delorder = catchAsync(async(req, res, next)=>{
+  
+  const TransactionID = req.body.TransactionID;
+
+  const Order1 = await Order.find({TransactionID});
+  
+  if (Order1.length == 0) {
+    return next(new AppError('Please check your TransactionID.', 400));
+  }
+  else if(Order1[0].Delivered == true){
+    return next(new AppError('Cannot be deleted.', 400));
+  }
+  else{
+    await Order.deleteMany({TransactionID:TransactionID});
+  }
+
+  res.status(200).json({status: 'success'});
+})
+
+exports.updateorder = catchAsync(async(req, res, next)=>{
+  
+  const TransactionID = req.body.TransactionID;
+
+  const Order1 = await Order.find({TransactionID});
+  if (Order1.length == 0) {
+    return next(new AppError('Please check your TransactionID.', 400));
+  }
+  else{
+    const Order2 = await Order.find({TransactionID,Status:"pending"});
+    if(Order2.length==0)
+      await Order.updateMany({TransactionID,Status:"success"}, {Delivered:true},{})
+    else
+      return next(new AppError('First, Accept the order.', 400));
+  }
+
+  res.status(200).json({status: 'success'});
+})
+
+exports.updateorder1 = catchAsync(async(req, res, next)=>{
+  
+  const TransactionID = req.body.TransactionID;
+
+  const Order1 = await Order.find({TransactionID});
+  if (Order1.length == 0) {
+    return next(new AppError('Please check your TransactionID.', 400));
+  }
+  else{
+    const Order2 = await Order.find({TransactionID,Status:"success"});
+    if(Order2.length==0)
+      await Order.updateMany({TransactionID},{Status:"success"},{})
+    else
+      return next(new AppError('Please try again! ', 400));
+  }
+
+  res.status(200).json({status: 'success'});
+})

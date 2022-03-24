@@ -97,7 +97,7 @@ exports.isLoggedIn = async (req, res, next) => {
       }
     
       res.locals.agent = currentAgent;
-        
+      req.agent=currentAgent;
       return next();
     
     } catch (err) {
