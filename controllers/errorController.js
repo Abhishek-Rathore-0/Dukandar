@@ -1,5 +1,10 @@
 const AppError = require('./../utils/appError');
 
+const { promisify } = require('util');
+const jwt = require('jsonwebtoken');
+const User = require('./../models/userModel');
+const Agent = require('./../models/agentModel');
+
 const handleCastErrorDB = err => {
   const message = `Invalid ${err.path}: ${err.value}.`;
   return new AppError(message, 400);
@@ -21,13 +26,13 @@ const handleValidationErrorDB = err => {
 };
 
 const handleJWTError = () =>
-  new AppError('Invalid token. Please log in again!', 401);
+  new AppError('Please log in first.', 401);
 
 const handleJWTExpiredError = () =>
-  new AppError('Your token has expired! Please log in again.', 401);
+  new AppError('Please log in first.', 401);
 
-const sendError = (err, req, res) => {
-   
+const sendError = async(err, req, res) => {
+  await check(req, res);
   if (req.originalUrl.startsWith('/api')) {
     
     return res.status(err.statusCode).json({
@@ -40,9 +45,14 @@ const sendError = (err, req, res) => {
   // B) RENDERED WEBSITE
   
   if (err.isOperational) {
+    let user="";
+    if(req.originalUrl.includes("agent")){
+      user="_agent";
+    }
     return res.status(err.statusCode).render('error', {
       title: 'Something went wrong!',
-      msg: err.message
+      msg: err.message,
+      user
     });
   }
   // B) Programming or other unknown error: don't leak error details
@@ -56,7 +66,46 @@ const sendError = (err, req, res) => {
     
 };
 
-module.exports = (err, req, res, next) => {
+const check = async( req, res) => {
+  res.locals.user ='';
+  res.locals.agent='';
+
+  if (req.cookies.jwt) {
+    try { 
+      
+      //verify token
+      const decoded = await promisify(jwt.verify)(
+        req.cookies.jwt,
+        process.env.JWT_SECRET
+      );
+  
+      //Check if user exists
+      const currentUser = await User.findById(decoded.id); 
+      if (currentUser) {
+        //Check if user changed password after the token was issued
+        if (!currentUser.changedPasswordAfter(decoded.iat)) {
+          req.user = currentUser;
+          res.locals.user = currentUser;
+        }
+      }
+      
+      //Check if agent exists
+      const currentAgent = await Agent.findById(decoded.id);
+      if (currentAgent) {
+        //Check if Agent changed password after the token was issued
+        if (!currentAgent.changedPasswordAfter(decoded.iat)) {
+          res.locals.agent = currentAgent;
+          req.agent=currentAgent;  
+        }
+      }
+      
+    } catch (err) {
+        console.log(err);
+    }
+  }  
+};
+
+module.exports = async(err, req, res, next) => {
     // console.log(err.stack);
   
     err.statusCode = err.statusCode || 500;
@@ -72,5 +121,5 @@ module.exports = (err, req, res, next) => {
     if (error.name === 'JsonWebTokenError') error = handleJWTError();
     if (error.name === 'TokenExpiredError') error = handleJWTExpiredError();
 
-    sendError(error , req, res);
+    await sendError(error , req, res);
 };

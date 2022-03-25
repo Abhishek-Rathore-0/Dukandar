@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <%- include('partials/head') %> 
 <body style="background-color: white">
+    <%- include('partials'+user+'/navbar',{location:"-"}) %>     
+    
     <div class="error">
         <div class="error__title">
-            <h2 class="heading-secondary heading-secondary--error">
+            <h2 class="heading-secondary heading-secondary--error mt-5">
                 Uh oh! Something went wrong!
             </h2>
         </div>
-        <div class="error__msg">
+        <div class="error__msg mt-2">
             <%=msg%>
         </div>
     </div>    

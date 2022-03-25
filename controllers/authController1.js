@@ -124,7 +124,7 @@ exports.protect = catchAsync(async (req, res, next) => {
   if (!currentAgent) {
     return next(
       new AppError(
-        'The Agent belonging to this token does no longer exist.',
+        'Please login first',
         401
       )
     );
