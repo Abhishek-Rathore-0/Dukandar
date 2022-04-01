@@ -112,10 +112,11 @@ export const signup = async (name, email, password, route, urla="") => {
       window.setTimeout(() => {
         location.assign('/');
       }, 1000);
-    }
+    }  
   } catch (err) {
     document.getElementById("spinner").style.display="none";
-    showAlert('error', err.response.data.message);
+    if(err.response.data.message.includes("Duplicate field value"))
+      showAlert('error', "You are already registered please Login.");
   }
 }; 
 
