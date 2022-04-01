@@ -177,7 +177,7 @@ exports.agentdashboard = async(req, res, next) =>{
     let checker = [];
     let monthcheck = [0,0,0,0,0,0,0,0,0,0,0,0]
     let orderCount = 0;
-    let orderdata = await Order.find({ShopID:req.agent._id});
+    let orderdata = await Order.find({ShopID:req.agent._id,Delivered:true});
     let user = [];
 
     let categories = [];
@@ -185,7 +185,6 @@ exports.agentdashboard = async(req, res, next) =>{
         categories.push(product.name);
         checker.push(0);
     }
-    console.log(orderdata);
     for(let data of orderdata){
         //console.log(data.OrderDate.toISOString().slice(5,7));
         if(transid!=data.TransactionID){
