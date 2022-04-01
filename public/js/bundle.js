@@ -9059,7 +9059,7 @@ var signup = /*#__PURE__*/function () {
             _context5.prev = 9;
             _context5.t0 = _context5["catch"](1);
             document.getElementById("spinner").style.display = "none";
-            if (_context5.t0.response.data.message.includes("Duplicate field value")) (0, _alert.showAlert)('error', "You are already registered please Login.");
+            if (_context5.t0.response.data.message.includes("Duplicate field value")) (0, _alert.showAlert)('error', "You are already registered please Login.");else (0, _alert.showAlert)('error', _context5.t0.response.data.message);
 
           case 13:
           case "end":
@@ -10489,7 +10489,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "7133" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "7416" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

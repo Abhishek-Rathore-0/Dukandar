@@ -117,6 +117,8 @@ export const signup = async (name, email, password, route, urla="") => {
     document.getElementById("spinner").style.display="none";
     if(err.response.data.message.includes("Duplicate field value"))
       showAlert('error', "You are already registered please Login.");
+    else
+    showAlert('error', err.response.data.message);
   }
 }; 
 

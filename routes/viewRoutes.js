@@ -22,7 +22,6 @@ router.get("/agent-account", authController1.protect, viewsController.agentaccou
 router.get("/agent-products", authController1.protect, productController.getAll, viewsController.products);
 router.get("/agent-dashboard", authController1.protect, productController.getAll, viewsController.agentdashboard);
 router.get("/agent-orders", authController1.protect, productController.getAll, viewsController.orders_admin);
-
 router.get("/add-product", authController1.protect, viewsController.addproduct);
 
 module.exports = router;
