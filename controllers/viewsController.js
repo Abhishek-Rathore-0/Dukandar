@@ -46,9 +46,11 @@ exports.productpage = async(req, res, next)=>{
             if(product.length !=0 ){    
                 let products = await ProductModel.find({shopId:product[0].shopId});
                 let shop = await AgentModel.find({_id:product[0].shopId});
+                let shops = await AgentModel.find({});
                 return res.status(200).render('product',{
                     title: product[0].name,
                     shop:shop[0],
+                    shops,
                     product:product[0],
                     products
                 });

@@ -27,7 +27,7 @@
       </div>
     </section>
 
-    <h1 id="featured-stores-heading">Popular Stationery Stores</h1>
+    <h1 id="featured-stores-heading" class="mt-3">Popular Stationery Stores</h1>
     <div id="featured-stores" style="overflow: auto;">
       <% for(let agent of Agents){ if(agent.category.includes("Books")){ %>
         <div class="card mx-2" onclick="location.href='/shop/<%=agent._id%>'" style="display:inline-block;border-radius: 15px;min-width: 235px !important;cursor: pointer;">
@@ -84,7 +84,7 @@
     </div>
 
 
-    <footer>
+    <footer class="mt-5">
         <%- include('partials/footer') %>
     </footer>   
     <input type="hidden" id="proId">
