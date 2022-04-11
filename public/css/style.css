@@ -1,3 +1,8 @@
+body
+{
+  font-family: 'Playfair Display', serif;
+}
+
 .inp {
   border: none;
   color: #495057 !important ;

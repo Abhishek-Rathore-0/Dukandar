@@ -88,7 +88,7 @@ const check = async( req, res) => {
         //Check if user changed password after the token was issued
         if (!currentUser.changedPasswordAfter(decoded.iat)) {
           req.user = currentUser;
-          res.locals.user = currentUser;
+          res.locals.user = "";
         }
       }
       
@@ -97,7 +97,7 @@ const check = async( req, res) => {
       if (currentAgent) {
         //Check if Agent changed password after the token was issued
         if (!currentAgent.changedPasswordAfter(decoded.iat)) {
-          res.locals.agent = currentAgent;
+          res.locals.agent = "_agent";
           req.agent=currentAgent;  
         }
       }
