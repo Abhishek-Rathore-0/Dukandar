@@ -149,65 +149,70 @@ exports.deleteCart = async(req, res, next)=>{
 
 exports.addorder = catchAsync(async(req, res, next)=>{
   const UserID = req.user.id;
-  const cartItem = await Cart.find({UserID});
-  const Ordercount = (await Order.find({UserID})).length;
-  let random = Math.floor((Math.random() * 1000) + 1);
-  if (cartItem.length == 0) {
-    return next(new AppError('Please add items to cart to order.', 400));
-  }
-  else{
-    
-    let arrayy = [];
-    for (let cart of cartItem) {
-      let cartProduct = await Product.find({ _id: cart.ProductID });
-      arrayy.push(cartProduct);
+  let user = await User.find({_id:UserID});
+  if(user[0].mobile != undefined && user[0].location != undefined)
+  {
+    const cartItem = await Cart.find({UserID});
+    const Ordercount = (await Order.find({UserID})).length;
+    let random = Math.floor((Math.random() * 1000) + 1);
+    if (cartItem.length == 0) {
+      return next(new AppError('Please add items to cart to order.', 400));
     }
-    
-    let agentp = await AgentModel.find({_id:arrayy[0][0].shopId});
-    let shop = agentp[0];
-    
-    let subtotal = 0;
-    let i = 0;
-    for (let arr of arrayy) {
-      subtotal = subtotal + arr[0].price * cartItem[i].Quantity;
-      i++;
-    }
-
-    let shipping = 100;
-    if (subtotal >= 1000 || subtotal == 0) shipping = 0;
-    let tax = subtotal / 10;
-    finaltotal = subtotal + shipping + tax;
-    
-    i=0;
-    for (let arr of arrayy) {
-      const ProductID = arr[0]._id;
-      const ShopID = shop._id;
-      const Quantity = cartItem[i].Quantity;
-      const Date1 = new Date().toISOString().slice(0, 10);
-      const TransactionID = UserID+(1+Ordercount)+random;
-      const PaymentMode = "--";
-      const prod= await Product.find({_id:arr[0]._id});
-      const Price=prod[0].price;
-      const Status ="pending"
+    else{
       
-      const NewOrder = new Order({
-        UserID,
-        ProductID,
-        ShopID,
-        Quantity,
-        OrderDate: Date1,
-        TransactionID,
-        PaymentMode,
-        Price,
-        Total: finaltotal,
-        Status
-      });
-      await NewOrder.save();
-      i++;
+      let arrayy = [];
+      for (let cart of cartItem) {
+        let cartProduct = await Product.find({ _id: cart.ProductID });
+        arrayy.push(cartProduct);
+      }
+      
+      let agentp = await AgentModel.find({_id:arrayy[0][0].shopId});
+      let shop = agentp[0];
+      
+      let subtotal = 0;
+      let i = 0;
+      for (let arr of arrayy) {
+        subtotal = subtotal + arr[0].price * cartItem[i].Quantity;
+        i++;
+      }
+
+      let shipping = 100;
+      if (subtotal >= 1000 || subtotal == 0) shipping = 0;
+      let tax = subtotal / 10;
+      finaltotal = subtotal + shipping + tax;
+      
+      i=0;
+      for (let arr of arrayy) {
+        const ProductID = arr[0]._id;
+        const ShopID = shop._id;
+        const Quantity = cartItem[i].Quantity;
+        const Date1 = new Date().toISOString().slice(0, 10);
+        const TransactionID = UserID+(1+Ordercount)+random;
+        const PaymentMode = "--";
+        const prod= await Product.find({_id:arr[0]._id});
+        const Price=prod[0].price;
+        const Status ="pending"
+        
+        const NewOrder = new Order({
+          UserID,
+          ProductID,
+          ShopID,
+          Quantity,
+          OrderDate: Date1,
+          TransactionID,
+          PaymentMode,
+          Price,
+          Total: finaltotal,
+          Status
+        });
+        await NewOrder.save();
+        i++;
+      }
     }
+    //await Cart.deleteMany({ UserID: UserID });
+    return res.status(200).json({status: 'success'});
   }
-  await Cart.deleteMany({ UserID: UserID });
-  res.status(200).json({status: 'success'});
+  return next(new AppError('Please add your address and mobile no.', 400));
 })
 
 exports.delorder = catchAsync(async(req, res, next)=>{
