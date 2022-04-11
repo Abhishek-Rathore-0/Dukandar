@@ -190,3 +190,18 @@ export const updateu = async(data) =>{
     showAlert('error', err.response.data.message);
   }
 }
+
+export const fshop = async(field) =>{
+  try {
+    if(field!="")
+      window.setTimeout(() => {
+          location.assign('/shop?shop[regex]='+field);
+      }, 100);
+    else
+      window.setTimeout(() => {
+        location.assign('/shop');
+      }, 100);
+  } catch (err) {
+    showAlert('error', err);
+  }
+}

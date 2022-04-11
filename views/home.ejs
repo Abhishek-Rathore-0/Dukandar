@@ -1,62 +1,51 @@
 <!DOCTYPE html>
 <%- include('partials/head') %> 
 <body style="background-color: white">
-    <%- include('partials/navbar',{location:"home"}) %>     
+    <%- include('partials/navbar',{location:"shop"}) %>     
     <div class="container col-lg-8 col-md-12 col-sm-12 mb-5 mt-4">
-        <div class="row">
-        
-            <% for(let product of Products) {%>
-            <div class="col-sm-4 col-xl-4 mb-4 ms-0">
-              <!-- card body -->
-                <div class="card h-100" style="border-radius: 20px; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
-                    <form class="addc" style="display: inline !important;">
-                    <div class="img text-center d-block mt-2 mb-4" style="height: 110px;">
-                        <img src="/image/products/<%=product.images[0]%>" class="card-img-top p-3" style="width: 100px;height: 100px;" alt="Store Image"><br>
-                    </div>
-                    <div class="card-body" style="border-radius: 20%;">
-                        <div class="d-flex justify-content-between">
-                            <h4 class="card-title" style="font-size: 105%;"><%=product.name %></h4>
-                            <h5 class="card-text fw-bold text-end;"> ₹<%= product.price %> </h5>
-                        </div>
-                        
-                        <p class="card-text" style="font-size: 80%;"> <%= product.description %> </p>
-                    
-                        <div class="card-footer" onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'">
-                            <button type="button" class="btn" style="width: 100%;" onclick="fill('<%=product._id%>');"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
-                        </div>
-                    </div>
-                    </form>
-                </div>
-            </div>
-            <% } %> 
-        </div>
+      
+      <h1 id="featured-stores-heading" class="mt-4 mb-3">Shops NearBY</h1>
           
+      <div class="container-fluid mb-4">
+        <div class="d-flex">
+          <input type="hidden" id="checkfshop" value="<%-query.shop?query.shop.regex:''%>">
+          
+          <input class="form-control me-2" id="valuefshop" type="search" placeholder="Search" aria-label="Search" value="<%-query.shop?query.shop.regex:''%>">
+          <button class="btn btn-outline-success"id="searchfshop" type="submit">Search</button>
+        </div>
+      </div>
+          
+      <div class="row">
+        
+        <%let count=0;for(let agent of Agents){ count=count+1; %>
+      
+        <div class="col-sm-4 col-xl-4 mb-4 ms-0">
+          <!-- card body -->
+            <div class="card h-100" onclick="location.href='/shop/<%=agent._id%>'" style="border-radius: 20px; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;cursor: pointer;">
+            
+                <div class="img text-center d-block mt-2" style="height: 150px;">
+                  <img src="/image/agents/<%=agent.photo %>" class="card-img-top p-2" style="width: 234px;height: 160px;" alt="Store Image"><br>
+                </div>
+                <div class="card-body d-flex justify-content-center align-items-center">
+                  <h4 class="card-title text-center" style="font-size: 105%;"><%=agent.shop %></h4>
+                </div>                
+              
+            </div>
+        </div>
+        <% } %>  
+      </div>
     </div>
     
-
-    <%if(!user) {%>
-        <section class="container col-lg-8 col-md-12 col-sm-12 mb-5 mt-5">
-          <div class="row mt-5">
-            <div class="col-sm-12" style="text-align: center">
-              <h1 class="text-center text-uppercase" style="font-size: 50px">
-                Sign UP and Get Started
-              </h1>
-            </div>
-          </div>
-          <div class="row d-flex justify-content-center">
-            <div class="col-sm-6 text-center mt-5 d-flex">
-              <div class="col-6 mx-auto">
-                <a class="signUp" href="#login" data-bs-toggle="modal">Login</a>
-              </div>
-              <div class="col-6 mx-auto">
-                <a class="signUp" href="#signup" data-bs-toggle="modal">SignUp</a>
-                 </div>
-            </div>
-          </div>
-        </section>
-        <%}%>
-
-
+    <% if(count==0){ %>        
+    
+      <div class="container col-lg-8 col-md-12 col-sm-12 mb-5 mt-4">
+        <div class="d-flex flex-column text-center" style="width: 100%;height:25vh;line-height: 65vh;text-align: center;">
+          <span style="font-size: 4.2vh;display: inline-block;vertical-align: middle;line-height: normal;">No shops available!</span>
+         
+        </div>
+      </div>
+    
+    <%} %> 
 
     <footer>
         <%- include('partials/footer') %>

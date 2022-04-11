@@ -1,5 +1,5 @@
 import '@babel/polyfill';
-import {login,logout,signup,signup1,updatea,updateu,forgetp,resetp} from './login';
+import {login,logout,signup,signup1,updatea,updateu,forgetp,resetp,fshop} from './login';
 import {showAlert} from './alert';
 import {addProduct,updateProduct,deleteproduct,sortingandsearch} from './product';
 import {addC,updateC,deleteC,empty_cart,addO,deleteO,deleteO1,statusChange,confirm} from './cart';
@@ -19,6 +19,7 @@ const sort1 = document.getElementById('sort1');
 const sort2 = document.getElementById('sort2');
 const OrderBtn = document.getElementById('OrderBtn');
 const searchbtn = document.querySelector('.search');
+const searchfshop = document.querySelector('#searchfshop');
 const user_update = document.querySelector('.form-udate');
 const deleteorder = document.getElementById('DelteOrdeR');
 
@@ -42,6 +43,14 @@ if(sort1 || sort2 || searchbtn){
         ss();
     });
 }
+
+if(searchfshop)
+    searchfshop.addEventListener('click',e=>{
+        let strsearch = document.getElementById("valuefshop").value;  
+        let checkfshop = document.getElementById("checkfshop").value;  
+        if(checkfshop!=strsearch)
+            fshop(strsearch);
+    })  
 
 if(loginform)
     loginform.addEventListener('submit', e=>{

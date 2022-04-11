@@ -6,6 +6,7 @@ const Order = require('../models/orderModel');
 
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
+const APIFeatures = require('./../utils/apiFeatures');
 
 const multerStorage = multer.memoryStorage();
 
@@ -118,4 +119,28 @@ exports.updateorder1 = catchAsync(async(req, res, next)=>{
   }
 
   res.status(200).json({status: 'success'});
+})
+
+exports.getAll = catchAsync(async(req, res, next) =>{
+  let features;
+    
+  if(req.user && req.user.city){
+    features = new APIFeatures(Agent.find({"city":req.user.city}), req.query)
+      .filter()
+      .sort()
+      .limitFields()
+      .paginate();
+  }else{
+    features = new APIFeatures(Agent.find({}), req.query)
+      .filter()
+      .sort()
+      .limitFields()
+      .paginate();
+  }
+  const doc = await features.query;
+    
+  res.locals.Agents = doc;
+  res.locals.query = req.query;  
+
+  next();
 })

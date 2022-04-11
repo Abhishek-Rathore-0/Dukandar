@@ -4,6 +4,7 @@ const viewsController = require('../controllers/viewsController');
 const authController = require('../controllers/authController');
 const authController1 = require('../controllers/authController1');
 const productController = require('../controllers/productController');
+const agentController = require('../controllers/agentController');
 
 const router = express.Router();
 
@@ -11,7 +12,7 @@ router.get("/", authController.isLoggedIn, productController.getAll, viewsContro
 router.get("/account",authController.protect, viewsController.account);
 router.get("/cart",authController.protect, viewsController.cart);
 router.get("/orders",authController.protect, viewsController.orders);
-router.get("/shop", authController.isLoggedIn, productController.getAll, viewsController.index);
+router.get("/shop", authController.isLoggedIn, productController.getAll, agentController.getAll , viewsController.index);
 router.get("/shop/:id", authController.isLoggedIn, viewsController.shop);
 router.get("/product/:id", authController.isLoggedIn, viewsController.productpage);
 router.get("/resetPassword/:token",authController.isLoggedIn,viewsController.forget)

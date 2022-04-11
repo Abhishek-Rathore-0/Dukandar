@@ -8,14 +8,15 @@ const ObjectId = require('mongoose').Types.ObjectId;
 const crypto = require('crypto');
 
 exports.home = async(req, res, next) => { 
-    res.render("home",{
-        title: 'Home'
-    });
-}
-exports.index = async(req, res, next) => {
-     res.render('index',{
+    
+    res.render('index',{
         title:'Digital Dukaan'
     })
+}
+exports.index = async(req, res, next) => {
+    res.render("home",{
+        title: 'Home'
+    }); 
 }
 
 exports.shop = async(req, res, next)=>{

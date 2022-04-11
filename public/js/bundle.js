@@ -8789,7 +8789,7 @@ exports.showAlert = showAlert;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.updateu = exports.updatea = exports.signup1 = exports.signup = exports.resetp = exports.logout = exports.login = exports.forgetp = void 0;
+exports.updateu = exports.updatea = exports.signup1 = exports.signup = exports.resetp = exports.logout = exports.login = exports.fshop = exports.forgetp = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -9228,6 +9228,37 @@ var updateu = /*#__PURE__*/function () {
 }();
 
 exports.updateu = updateu;
+
+var fshop = /*#__PURE__*/function () {
+  var _ref9 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee9(field) {
+    return regeneratorRuntime.wrap(function _callee9$(_context9) {
+      while (1) {
+        switch (_context9.prev = _context9.next) {
+          case 0:
+            try {
+              if (field != "") window.setTimeout(function () {
+                location.assign('/shop?shop[regex]=' + field);
+              }, 100);else window.setTimeout(function () {
+                location.assign('/shop');
+              }, 100);
+            } catch (err) {
+              (0, _alert.showAlert)('error', err);
+            }
+
+          case 1:
+          case "end":
+            return _context9.stop();
+        }
+      }
+    }, _callee9);
+  }));
+
+  return function fshop(_x16) {
+    return _ref9.apply(this, arguments);
+  };
+}();
+
+exports.fshop = fshop;
 },{"axios":"../../node_modules/axios/index.js","./alert":"alert.js"}],"product.js":[function(require,module,exports) {
 "use strict";
 
@@ -10206,6 +10237,7 @@ var sort1 = document.getElementById('sort1');
 var sort2 = document.getElementById('sort2');
 var OrderBtn = document.getElementById('OrderBtn');
 var searchbtn = document.querySelector('.search');
+var searchfshop = document.querySelector('#searchfshop');
 var user_update = document.querySelector('.form-udate');
 var deleteorder = document.getElementById('DelteOrdeR');
 
@@ -10227,6 +10259,11 @@ if (sort1 || sort2 || searchbtn) {
   });
 }
 
+if (searchfshop) searchfshop.addEventListener('click', function (e) {
+  var strsearch = document.getElementById("valuefshop").value;
+  var checkfshop = document.getElementById("checkfshop").value;
+  if (checkfshop != strsearch) (0, _login.fshop)(strsearch);
+});
 if (loginform) loginform.addEventListener('submit', function (e) {
   e.preventDefault();
   var email = document.getElementById('email').value;
@@ -10489,7 +10526,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "7567" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "4131" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
