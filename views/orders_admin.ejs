@@ -38,7 +38,7 @@
                     <th scope="col" class="p-3">#</th>
                     <th scope="col" class="p-3">Name</th>
                     <th scope="col" class="p-3">Date</th>
-                    <th scope="col" class="p-3">TransactionID</th>
+                    <th scope="col" class="p-3">Mobile no</th>
                     <th scope="col" class="p-3">Amount</th>
                     <th scope="col" class="p-3">Delivery Status</th>
                     <th scope="col"><input type="button" id="deletebutton" class="btn btn-danger btn-sm m-1" style="color: white;width: 100%;" value="Delete" onclick="fill('<%-OrderList[i].TransactionID%>')">
@@ -54,7 +54,12 @@
                       <% } %> 
                     <% } %> 
                     <td><%=OrderList[i].OrderDate.toString().slice(4,15); %></td>
-                    <td><%=OrderList[i].TransactionID%></td>
+                    <% for(let u of user) { %>
+                      <%if(u._id == OrderList[i].UserID ){ %>
+                        <td><%=u.mobile %></td>
+                      <% } %> 
+                    <% } %>
+                    <!-- <td><%=OrderList[i].TransactionID%></td> -->
                     <td>₹<%=OrderList[i].Total %></td>
                       
                       <% if(OrderList[i].Delivered==false) {%>
