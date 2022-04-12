@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+    <%- include('partials/head') %> 
+<body>
+    
+    <%- include('partials/navbar',{location:"home"}) %>
+    <%- include('partials/scrollToTop')%>
+
+    <h1>About Us</h1>
+    <p>Samaan Mart is an online business listing platform, built with a vision to empower the small businesses around us by enabling them to have a strong digital presence. Our attempt is to connect these businesses with their prospective customers through the online medium so that they can cope up with the ongoing digital revolution.</p>
+
+    <footer class="mt-5">
+        <%- include('partials/footer') %>
+    </footer>   
+    <input type="hidden" id="proId">
+    <input type="hidden" id="aid">
+  <script>
+    function fill(proId){
+      document.getElementById("proId").value=proId;
+    }
+    function fill1(aid){
+      document.getElementById("aid").value=aid;
+    }
+  </script>
+
+</body>
+</html>
