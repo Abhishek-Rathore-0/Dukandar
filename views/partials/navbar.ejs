@@ -18,11 +18,17 @@ opacity: .65;" id="spinner">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <% let menu=["home","shop","cart","orders"] %> 
         <ul class="navbar-nav mx-1 me-auto mb-2 mb-lg-0">
+          <% let menu=["home","shop"] %> 
           <% for (let m of menu){ %> 
             <li class="nav-item mx-1 d-flex justify-content-center">
               <a class="nav-link <%-location==m?'active':''%>" style="max-width:fit-content;" aria-current="page" href="<%-m=='home'?'/':'/'+m%>"><%=m%></a>
+            </li>
+          <%}%>
+          <% menu=["cart","orders"] %> 
+          <% for (let m of menu){ %> 
+            <li class="nav-item mx-1 d-flex justify-content-center">
+              <a class="nav-link <%-location==m?'active':''%> <%-!user?' disabled':''%>"" style="max-width:fit-content;" aria-current="page" href="<%-m=='home'?'/':'/'+m%>"><%=m%></a>
             </li>
           <%}%>
         </ul>
