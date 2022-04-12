@@ -41,7 +41,7 @@
 
     <h1 id="featured-stores-heading" class="mt-4">Popular General Stores</h1>
     <div id="featured-stores" style="overflow: auto;">
-      <%let count=0; for(let agent of Agents){ if(count < 5 ){ count++; %>
+      <%let count=0; for(let agent of Agents){ if(count < 6 ){ count++; %>
         <div class="card mx-2 mb-2" onclick="location.href='/shop/<%=agent._id%>'" style="display:inline-block;border-radius: 15px;min-width: 235px !important;cursor: pointer;">
           <div class="img text-center d-block mt-2" style="height: 150px;">
             <img src="/image/agents/<%=agent.photo %>" class="card-img-top p-2" style="width: 234px;height: 160px;" alt="Store Image"><br>

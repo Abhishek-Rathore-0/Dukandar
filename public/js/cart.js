@@ -10,7 +10,7 @@ export const addC = async (id,urla="") => {
     });
 
     if (res.data.status === 'success') {
-      showAlert('success',"Added succesful",1);
+      showAlert('success',"Added successfully",1);
     }
   } catch (err) {
     showAlert('error', err.response.data.message,2);
@@ -89,7 +89,7 @@ export const addO =async()=>{
 
     if (res.data.status === 'success') {
       document.getElementById("spinner").style.display="none";
-      showAlert('success', 'Ordered successful.');
+      showAlert('success', 'Ordered Successfully');
         window.setTimeout(() => {
           location.assign('/orders');
         }, 1200);
@@ -112,7 +112,7 @@ export const deleteO =async(TransactionID)=>{
     });
 
     if (res.data.status === 'success') {
-      showAlert('success', 'Deleted successful.');
+      showAlert('success', 'Deleted Successfully');
         window.setTimeout(() => {
           location.assign('/orders');
         }, 1000);
@@ -134,7 +134,7 @@ export const deleteO1 =async(TransactionID)=>{
     });
 
     if (res.data.status === 'success') {
-      showAlert('success', 'Deleted successful.');
+      showAlert('success', 'Deleted Successfully');
         window.setTimeout(() => {
           location.assign('/agent-orders');
         }, 1000);
@@ -156,7 +156,7 @@ export const statusChange = async(TransactionID)=>{
     });
 
     if (res.data.status === 'success') {
-      showAlert('success', 'Changed successful.');
+      showAlert('success', 'Changed Successfully');
       window.setTimeout(() => {
           location.assign('/agent-orders');
         }, 1000);
@@ -178,7 +178,7 @@ export const confirm = async(TransactionID)=>{
     });
 
     if (res.data.status === 'success') {
-      showAlert('success', 'Order Added.');
+      showAlert('success', 'Order Added');
       window.setTimeout(() => {
           location.assign('/agent-orders');
         }, 1000);
