@@ -257,3 +257,20 @@ exports.addproduct = async(req, res, next) =>{
       });
 }
 
+exports.termcondition = async(req, res, next) =>{
+    res.status(200).render('t&c',{
+        title: 'Terms and Conditions',
+      });
+}
+
+exports.faq = async(req, res, next) =>{
+    res.status(200).render('faq',{
+        title: 'FAQ',
+      });
+}
+
+exports.about = async(req, res, next) =>{
+    res.status(200).render('about',{
+        title: 'About Us',
+      });
+}

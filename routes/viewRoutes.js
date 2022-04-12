@@ -9,6 +9,10 @@ const agentController = require('../controllers/agentController');
 const router = express.Router();
 
 router.get("/", authController.isLoggedIn, productController.getAll, viewsController.home);
+router.get("/t&c", authController.isLoggedIn, viewsController.termcondition);
+router.get("/faq", authController.isLoggedIn, viewsController.faq);
+router.get("/about", authController.isLoggedIn, viewsController.about);
+
 router.get("/account",authController.protect, viewsController.account);
 router.get("/cart",authController.protect, viewsController.cart);
 router.get("/orders",authController.protect, viewsController.orders);
@@ -16,6 +20,7 @@ router.get("/shop", authController.isLoggedIn, productController.getAll, agentCo
 router.get("/shop/:id", authController.isLoggedIn, viewsController.shop);
 router.get("/product/:id", authController.isLoggedIn, viewsController.productpage);
 router.get("/resetPassword/:token",authController.isLoggedIn,viewsController.forget)
+
 
 router.get("/agent",authController1.isLoggedIn, viewsController.shopkeeper);
 router.get("/agent-signup",authController1.isLoggedIn, viewsController.signup);
