@@ -9,7 +9,18 @@ const crypto = require('crypto');
 const Product = require('../models/productModel');
 
 exports.home = async(req, res, next) => { 
-    let orders = await Order.find({});
+    let orders;
+    if(req.user && req.user.city){
+        const agent =await AgentModel.find({"city":req.user.city});
+        let id=[];
+        for (let a of agent){
+            id.push(a._id);
+        }
+        orders = await Order.find({ShopID:id});
+    } else{
+        orders = await Order.find({});
+    }
+    // orders = await Order.find({});
     
     let dict= {};
     for(let order of orders){
