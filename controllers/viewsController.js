@@ -6,9 +6,30 @@ const UserModel = require('../models/userModel');
 const AppError = require('./../utils/appError');
 const ObjectId = require('mongoose').Types.ObjectId;
 const crypto = require('crypto');
+const Product = require('../models/productModel');
 
 exports.home = async(req, res, next) => { 
+    let orders = await Order.find({});
     
+    let dict= {};
+    for(let order of orders){
+        if(dict[order.ProductID]==undefined){
+            dict[order.ProductID]=order.Quantity;}
+        else{
+            dict[order.ProductID]=dict[order.ProductID]+order.Quantity;}
+    }
+
+    var items = Object.keys(dict).map((key) => { return [key, dict[key]]});
+    items.sort((first, second) => { return first[1] - second[1] });
+    var keys = items.map((e) => { return e[0] });
+    keys.reverse();
+    
+    let tproduct=[];
+    for(let key of keys){
+        tproduct.push((await Product.find({_id:key}))[0] );
+    }
+    res.locals.tproduct=tproduct;
+
     res.render('index',{
         title:'Samaan Mart'
     })

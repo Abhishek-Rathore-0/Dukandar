@@ -80,7 +80,7 @@
    
     <h1 id="featured-stores-heading" class="mt-4">Trending Products</h1>
     <div id="featured-stores" style="overflow: auto;">
-      <% count=0; for(let product of Products){ if(count < 10){ count++; %>
+      <% count=0; for(let product of tproduct){ if(count < 10){ count++; %>
         <div class="card mx-2 mb-2 text-center" style="display:inline-block;border-radius: 20px;min-width: 240px !important;">
           <div onclick="location.href='/product/<%=product._id%>'" style="cursor:pointer;">
             <h4 class="card-title" style="font-size: 105%; padding: 10px;"><%=product.name %></h4>
