@@ -59,7 +59,7 @@ export const resetp= async(token,password,urla)=>{
     });
     if (res.data.status = 'success'){
       document.getElementById("spinner").style.display="none";
-      showAlert('success', 'Successful changed');
+      showAlert('success', 'Changed Successfully');
       window.setTimeout(() => {
         location.assign('/');
       }, 400);
@@ -108,7 +108,7 @@ export const signup = async (name, email, password, route, urla="") => {
 
     if (res.data.status === 'success') {
       document.getElementById("spinner").style.display="none";
-      showAlert('success', 'Created successfully.');
+      showAlert('success', 'Account Created Successfully!');
       window.setTimeout(() => {
         location.assign('/');
       }, 1000);
@@ -116,7 +116,7 @@ export const signup = async (name, email, password, route, urla="") => {
   } catch (err) {
     document.getElementById("spinner").style.display="none";
     if(err.response.data.message.includes("Duplicate field value"))
-      showAlert('error', "You are already registered please Login.");
+      showAlert('error', "You are already registered! Please Login.");
     else
     showAlert('error', err.response.data.message);
   }
@@ -133,7 +133,7 @@ export const signup1 = async(data, route) =>{
     
     if (res.data.status === 'success') {
       document.getElementById("spinner").style.display="none";
-      showAlert('success', 'Craeted successful.');
+      showAlert('success', 'Account Created Successfully!');
       window.setTimeout(() => {
         location.assign('/agent');
       }, 1100);
@@ -158,7 +158,7 @@ export const updatea = async(data) =>{
     
     if (res.data.status === 'success') {  
       document.getElementById("spinner").style.display="none";
-      showAlert('success', 'Changed successful.');
+      showAlert('success', 'Changed Successfully');
       window.setTimeout(() => {
         location.assign('/agent-account');
       }, 1000);
@@ -180,7 +180,7 @@ export const updateu = async(data) =>{
     
     if (res.data.status === 'success') {  
       document.getElementById("spinner").style.display="none";
-      showAlert('success', 'Changed successful.');
+      showAlert('success', 'Changed Successfully');
       window.setTimeout(() => {
         location.assign('/account');
       }, 1000);

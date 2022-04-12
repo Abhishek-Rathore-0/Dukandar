@@ -34,7 +34,7 @@ export const updateProduct = async(data) =>{
     
     if (res.data.status === 'success') {  
       document.getElementById("spinner").style.display="none";
-      showAlert('success', 'Update Successfully');
+      showAlert('success', 'Updated Successfully');
       window.setTimeout(() => {
         location.assign('/agent-products');
       }, 1200);
@@ -67,7 +67,7 @@ export const deleteproduct = async(id) =>{
     });
     document.getElementById("spinner").style.display="none";
     if (res.data.status === 'success') {  
-      showAlert('success', 'Delete Successfully');
+      showAlert('success', 'Deleted Successfully');
       window.setTimeout(() => {
         location.assign('/agent-products');
       }, 1200);
