@@ -63,16 +63,23 @@
                     <td>₹<%=OrderList[i].Total %></td>
                       
                       <% if(OrderList[i].Delivered==false) {%>
-                        <td> <select name="status" id="<%-'statusD'+OrderList[i].TransactionID%>" style="background-color: #343a40; color: white; border: none; outline: none;">
+                        <td rowspan="2"> <select name="status" id="<%-'statusD'+OrderList[i].TransactionID%>" style="background-color: #343a40; color: white; border: none; outline: none;">
                             <option value="pending" <%-OrderList[i].Delivered?'':'select'%>>Pending</option>
                             <option value="delivered" <%-OrderList[i].Delivered?'select':''%>>Delivered</option>
                         </select> </td>
                       <% }else{ %> 
-                        <td>Delivered</td>
+                        <td rowspan="2">Delivered</td>
                       <% } %>                
-                      <td>
+                      <td rowspan="2">
                         <input type="button"  class="btn btn-success btn-sm updaToDelivery" class="display:inline-block;" value="Update" onclick="fill('<%-OrderList[i].TransactionID%>')">
                       </td>
+                    </tr>
+                    <tr>
+                      <td colspan="5" class="text-center"> <% for(let u of user) { %>
+                        <%if(u._id == OrderList[i].UserID ){ %>
+                          Address :&nbsp <%=u.location %>
+                        <% } %> 
+                      <% } %></td>
                     </tr>
                     <tr>
                     <td colspan="7">
