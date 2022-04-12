@@ -84,14 +84,17 @@ exports.addCart = async(req, res, next)=>{
 
         if (cartfind.length == 0) {
             const cartItems = await Cart.find({UserID: userid});
+            const product2 = await Product.find({_id:id});
+            let user = await User.find({_id:userid});
+            let agent = await AgentModel.find({_id:product2[0].shopId});
+            if(user[0].city!=agent[0].city)
+              return next(new AppError('This shop isnot available at your location.',400));
+
             if(cartItems.length !=0){
                 const product1 = await Product.find({_id:cartItems[0].ProductID});
-                const product2 = await Product.find({_id:id});
                 if(product1[0].shopId != product2[0].shopId)
-                    return next(new AppError('Please empty your cart to order from that shop.', 400));
-                    
+                    return next(new AppError('Please empty your cart to order from that shop.', 400));        
             }
-
             const cartobject = new Cart({
                 UserID: userid,
                 ProductID: id,
