@@ -10,7 +10,7 @@ const crypto = require('crypto');
 exports.home = async(req, res, next) => { 
     
     res.render('index',{
-        title:'Digital Dukaan'
+        title:'Samaan Mart'
     })
 }
 exports.index = async(req, res, next) => {
@@ -35,7 +35,7 @@ exports.shop = async(req, res, next)=>{
             }      
         }
     }
-    return next(new AppError("Something went wrong",400));     
+    return next(new AppError("Something went wrong!",400));     
 }
 
 exports.productpage = async(req, res, next)=>{
@@ -58,7 +58,7 @@ exports.productpage = async(req, res, next)=>{
             }      
         }
     }
-    return next(new AppError("Something went wrong",400));     
+    return next(new AppError("Something went wrong!",400));     
 }
 
 exports.cart= async(req, res, next) => {
@@ -92,7 +92,7 @@ exports.cart= async(req, res, next) => {
     count = (await Cart.find({ UserID: req.user.id })).length;
 
     res.render('cart',{
-        title:'cart',
+        title:'Cart',
         count,
         cartItem: cartItem,
         arrayy: arrayy,
@@ -164,7 +164,7 @@ exports.shopkeeper = async(req, res, next) => {
 
 exports.signup = async(req, res, next) => { 
     res.status(200).render("signup",{
-        title: 'SIgnup'
+        title: 'SignUp'
     });
 }
 
