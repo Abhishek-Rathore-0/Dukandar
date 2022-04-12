@@ -25,7 +25,7 @@ opacity: .65;" id="spinner">
               <a class="nav-link <%-location==m?'active':''%>" style="max-width:fit-content;" aria-current="page" href="<%-m=='home'?'/':'/'+m%>"><%=m%></a>
             </li>
           <%}%>
-          <% menu=["cart","orders"] %> 
+          <% menu=["cart","orders","account"] %> 
           <% for (let m of menu){ %> 
             <li class="nav-item mx-1 d-flex justify-content-center">
               <a class="nav-link <%-location==m?'active':''%> <%-!user?' disabled':''%>"" style="max-width:fit-content;" aria-current="page" href="<%-m=='home'?'/':'/'+m%>"><%=m%></a>

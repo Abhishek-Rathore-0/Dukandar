@@ -18,12 +18,12 @@
                 <img src="/image/agents/<%=Agents[a].photo%>" class="mt-3" style="position:absolute;width: 100%;min-height: 90%;" alt="..." onclick="location.href='/shop/<%=Agents[a]._id%>'"/>
             </div>
           <%}%> 
-          <% }else %>
+          <% }else{ %>
           <% for(let a=0;a<l;a++){    %>   
             <div class="carousel-item <%-a==0?'active':'' %> " style="cursor: pointer; position:relative;height:35vmax;">
                 <img src="/image/agents/<%=Agents[a].photo%>" class="mt-3" style="position:absolute;width: 100%;min-height: 90%;" alt="..." onclick="location.href='/shop/<%=Agents[a]._id%>'"/>
             </div>
-          <%}%> 
+          <%}}%> 
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
