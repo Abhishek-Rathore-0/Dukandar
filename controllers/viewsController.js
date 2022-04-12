@@ -25,11 +25,21 @@ exports.home = async(req, res, next) => {
     keys.reverse();
     
     let tproduct=[];
+    let tshopkey=[];
+    let tshop=[];
     for(let key of keys){
-        tproduct.push((await Product.find({_id:key}))[0] );
+        let product= await Product.find({_id:key});
+        tproduct.push(product[0]);
+        if(!tshopkey.includes(product[0].shopId))
+        tshopkey.push(product[0].shopId);
     }
-    res.locals.tproduct=tproduct;
+    for(let key of tshopkey){
+        tshop.push((await AgentModel.find({_id:key}))[0]);
+    }
 
+    res.locals.tproduct=tproduct;
+    res.locals.tshop=tshop;
+   
     res.render('index',{
         title:'Samaan Mart'
     })
