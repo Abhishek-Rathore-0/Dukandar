@@ -11,19 +11,17 @@
     <section class="container col-lg-8 col-md-12 col-sm-12 mt-4">
       <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
-          <% let l = Agents.length;%> 
-          <% if(l>2){ %>
-          <% for(let a in [0,1,2]){ %>   
-            <div class="carousel-item <%-a==0?'active':'' %> " style="cursor: pointer; position:relative;height:35vmax;">
+          <% let l = Agents.length; let b=[];let no=0;%> 
+          <% for(let a=0;a<l&&a<4;a++){ %>
+            <% do{ no=Math.floor(Math.random() *l); }while(b.includes(no));%>
+            <% b.push(no);} %>  
+          
+          <%for(let a of b){ %>
+            <div class="carousel-item <%-a==b[0]?'active':'' %> " style="cursor: pointer; position:relative;height:35vmax;">
                 <img src="/image/agents/<%=Agents[a].photo%>" class="mt-3" style="position:absolute;width: 100%;min-height: 90%;" alt="..." onclick="location.href='/shop/<%=Agents[a]._id%>'"/>
             </div>
           <%}%> 
-          <% }else{ %>
-          <% for(let a=0;a<l;a++){    %>   
-            <div class="carousel-item <%-a==0?'active':'' %> " style="cursor: pointer; position:relative;height:35vmax;">
-                <img src="/image/agents/<%=Agents[a].photo%>" class="mt-3" style="position:absolute;width: 100%;min-height: 90%;" alt="..." onclick="location.href='/shop/<%=Agents[a]._id%>'"/>
-            </div>
-          <%}}%> 
+           
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
