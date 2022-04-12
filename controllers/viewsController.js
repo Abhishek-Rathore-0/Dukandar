@@ -46,7 +46,7 @@ exports.home = async(req, res, next) => {
 }
 exports.index = async(req, res, next) => {
     res.render("home",{
-        title: 'Home'
+        title: 'Shops'
     }); 
 }
 

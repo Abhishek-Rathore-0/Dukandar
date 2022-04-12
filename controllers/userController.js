@@ -17,7 +17,7 @@ const multerFilter = (req, file, cb) => {
   if (file.mimetype.startsWith('image')) {
     cb(null, true);
   } else {
-    cb(new AppError('Not an image! Please upload only images.', 400), false);
+    cb(new AppError('Not an image! Please upload images only.', 400), false);
   }
 };
 
@@ -88,7 +88,7 @@ exports.addCart = async(req, res, next)=>{
             let user = await User.find({_id:userid});
             let agent = await AgentModel.find({_id:product2[0].shopId});
             if(user[0].city!=agent[0].city)
-              return next(new AppError('This shop isnot available at your location.',400));
+              return next(new AppError('Sorry! This shop is not available at your location.',400));
 
             if(cartItems.length !=0){
                 const product1 = await Product.find({_id:cartItems[0].ProductID});
@@ -123,7 +123,7 @@ exports.editCart = async(req, res, next)=>{
     const { Quantity} = req.body;
     
     if (Quantity<0 && Quantity>10) {
-        return next(new AppError('Quantity is between in range of 0 to 10 at one order.', 400));
+        return next(new AppError('Quantity must be between 0 and 10.', 400));
       }
     
     const Cartput = await Cart.findOneAndUpdate(
@@ -162,7 +162,7 @@ exports.addorder = catchAsync(async(req, res, next)=>{
     const Ordercount = (await Order.find({UserID})).length;
     let random = Math.floor((Math.random() * 1000) + 1);
     if (cartItem.length == 0) {
-      return next(new AppError('Please add items to cart to order.', 400));
+      return next(new AppError('Please add items to the cart to order.', 400));
     }
     else{
       
