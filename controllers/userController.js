@@ -52,8 +52,11 @@ const filterObj = (obj, ...allowedFields) => {
 
 exports.update = catchAsync(async (req, res, next)=>{
     const filteredBody = filterObj(req.body, 'name', 'email', 'location', 'mobile', 'photo', 'city');
-    
     if (req.file) filteredBody.photo = req.file.filename;
+    
+    if(filteredBody.city != req.user.city){
+      await Cart.deleteMany({UserID: req.user.id});
+    }
     //Update user document
     const updateduser= await User.findByIdAndUpdate(req.user.id, filteredBody, {
       new: true,
@@ -140,7 +143,7 @@ exports.deleteCartItem = async(req, res, next)=>{
 }
 
 exports.deleteCart = async(req, res, next)=>{
-    const cartItem = await Cart.deleteMany({
+    await Cart.deleteMany({
         UserID: req.user.id
     });
 
