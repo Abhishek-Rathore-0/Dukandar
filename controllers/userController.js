@@ -75,7 +75,11 @@ exports.update = catchAsync(async (req, res, next)=>{
 exports.addCart = async(req, res, next)=>{
     const userid = req.user.id;
     if (userid) {
-        const {id} = req.params;
+      let user = await User.find({_id:userid});
+      if(user[0].mobile == undefined || user[0].location == undefined)
+        return next(new AppError('Please complete your profile first.', 400));
+        
+          const {id} = req.params;
         
         const cartfind = await Cart.find({
             UserID: userid,
