@@ -8932,7 +8932,7 @@ var resetp = /*#__PURE__*/function () {
 
             if (res.data.status = 'success') {
               document.getElementById("spinner").style.display = "none";
-              (0, _alert.showAlert)('success', 'Successful changed');
+              (0, _alert.showAlert)('success', 'Changed Successfully');
               window.setTimeout(function () {
                 location.assign('/');
               }, 400);
@@ -9046,9 +9046,9 @@ var signup = /*#__PURE__*/function () {
 
             if (res.data.status === 'success') {
               document.getElementById("spinner").style.display = "none";
-              (0, _alert.showAlert)('success', 'Created successfully.');
+              (0, _alert.showAlert)('success', 'Account Created Successfully!');
               window.setTimeout(function () {
-                location.assign('/');
+                location.assign('/account');
               }, 1000);
             }
 
@@ -9059,7 +9059,7 @@ var signup = /*#__PURE__*/function () {
             _context5.prev = 9;
             _context5.t0 = _context5["catch"](1);
             document.getElementById("spinner").style.display = "none";
-            if (_context5.t0.response.data.message.includes("Duplicate field value")) (0, _alert.showAlert)('error', "You are already registered please Login.");else (0, _alert.showAlert)('error', _context5.t0.response.data.message);
+            if (_context5.t0.response.data.message.includes("Duplicate field value")) (0, _alert.showAlert)('error', "You are already registered! Please Login.");else (0, _alert.showAlert)('error', _context5.t0.response.data.message);
 
           case 13:
           case "end":
@@ -9097,7 +9097,7 @@ var signup1 = /*#__PURE__*/function () {
 
             if (res.data.status === 'success') {
               document.getElementById("spinner").style.display = "none";
-              (0, _alert.showAlert)('success', 'Craeted successful.');
+              (0, _alert.showAlert)('success', 'Account Created Successfully!');
               window.setTimeout(function () {
                 location.assign('/agent');
               }, 1100);
@@ -9148,7 +9148,7 @@ var updatea = /*#__PURE__*/function () {
 
             if (res.data.status === 'success') {
               document.getElementById("spinner").style.display = "none";
-              (0, _alert.showAlert)('success', 'Changed successful.');
+              (0, _alert.showAlert)('success', 'Changed Successfully');
               window.setTimeout(function () {
                 location.assign('/agent-account');
               }, 1000);
@@ -9199,7 +9199,7 @@ var updateu = /*#__PURE__*/function () {
 
             if (res.data.status === 'success') {
               document.getElementById("spinner").style.display = "none";
-              (0, _alert.showAlert)('success', 'Changed successful.');
+              (0, _alert.showAlert)('success', 'Changed Successfully');
               window.setTimeout(function () {
                 location.assign('/account');
               }, 1000);
@@ -9349,7 +9349,7 @@ var updateProduct = /*#__PURE__*/function () {
 
             if (res.data.status === 'success') {
               document.getElementById("spinner").style.display = "none";
-              (0, _alert.showAlert)('success', 'Update Successfully');
+              (0, _alert.showAlert)('success', 'Updated Successfully');
               window.setTimeout(function () {
                 location.assign('/agent-products');
               }, 1200);
@@ -9431,7 +9431,7 @@ var deleteproduct = /*#__PURE__*/function () {
             document.getElementById("spinner").style.display = "none";
 
             if (res.data.status === 'success') {
-              (0, _alert.showAlert)('success', 'Delete Successfully');
+              (0, _alert.showAlert)('success', 'Deleted Successfully');
               window.setTimeout(function () {
                 location.assign('/agent-products');
               }, 1200);
@@ -9503,7 +9503,7 @@ var addC = /*#__PURE__*/function () {
             res = _context.sent;
 
             if (res.data.status === 'success') {
-              (0, _alert.showAlert)('success', "Added succesful", 1);
+              (0, _alert.showAlert)('success', "Added successfully", 1);
             }
 
             _context.next = 11;
@@ -9698,7 +9698,7 @@ var addO = /*#__PURE__*/function () {
 
             if (res.data.status === 'success') {
               document.getElementById("spinner").style.display = "none";
-              (0, _alert.showAlert)('success', 'Ordered successful.');
+              (0, _alert.showAlert)('success', 'Ordered Successfully');
               window.setTimeout(function () {
                 location.assign('/orders');
               }, 1200);
@@ -9752,7 +9752,7 @@ var deleteO = /*#__PURE__*/function () {
             res = _context6.sent;
 
             if (res.data.status === 'success') {
-              (0, _alert.showAlert)('success', 'Deleted successful.');
+              (0, _alert.showAlert)('success', 'Deleted Successfully');
               window.setTimeout(function () {
                 location.assign('/orders');
               }, 1000);
@@ -9805,7 +9805,7 @@ var deleteO1 = /*#__PURE__*/function () {
             res = _context7.sent;
 
             if (res.data.status === 'success') {
-              (0, _alert.showAlert)('success', 'Deleted successful.');
+              (0, _alert.showAlert)('success', 'Deleted Successfully');
               window.setTimeout(function () {
                 location.assign('/agent-orders');
               }, 1000);
@@ -9858,7 +9858,7 @@ var statusChange = /*#__PURE__*/function () {
             res = _context8.sent;
 
             if (res.data.status === 'success') {
-              (0, _alert.showAlert)('success', 'Changed successful.');
+              (0, _alert.showAlert)('success', 'Changed Successfully');
               window.setTimeout(function () {
                 location.assign('/agent-orders');
               }, 1000);
@@ -9911,7 +9911,7 @@ var confirm = /*#__PURE__*/function () {
             res = _context9.sent;
 
             if (res.data.status === 'success') {
-              (0, _alert.showAlert)('success', 'Order Added.');
+              (0, _alert.showAlert)('success', 'Order Added');
               window.setTimeout(function () {
                 location.assign('/agent-orders');
               }, 1000);
@@ -10526,7 +10526,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "4131" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "6061" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

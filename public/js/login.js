@@ -110,7 +110,7 @@ export const signup = async (name, email, password, route, urla="") => {
       document.getElementById("spinner").style.display="none";
       showAlert('success', 'Account Created Successfully!');
       window.setTimeout(() => {
-        location.assign('/');
+        location.assign('/account');
       }, 1000);
     }  
   } catch (err) {
