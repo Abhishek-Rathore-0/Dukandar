@@ -50,7 +50,7 @@
             <tbody>
               <% let i=1; %> 
               <% for(let product of Products){ %> 
-                <tr onclick="fill('<%=product.id%>','<%=product.name%>','<%=product.description%>','<%=product.price%>','<%=product.quantity%>','<%=product.category%>');" data-bs-target="#updatep" data-bs-toggle="modal" data-bs-dismiss="modal">
+                <tr onclick="fill('<%=product.id%>','<%=product.name%>','<%=product.description%>','<%=product.price%>','<%=product.quantity%>','<%=product.category%>');" data-bs-target="#updatep" data-bs-toggle="modal" data-bs-dismiss="modal" style="cursor: pointer;">
                   <th scope="row"><span class="no"><%=i %> </span></th>
                   
                   <td style="text-transform: capitalize;"><%=product.category %> </td>
@@ -68,13 +68,15 @@
             </table>
           </div>   
         </div>
-    
-    <input
+    <div class="text-center">
+      <input
       type="button"
       class="btn btn-success mx-5"
       value="Add Product"
       onclick="location.href='/add-product'"
-    />  
+      />
+    </div>
+      
 
     <div class="modal fade" id="updatep" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
       <div class="modal-dialog modal-dialog-centered rounded-0" style="max-width: 700px;">
