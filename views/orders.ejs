@@ -23,7 +23,7 @@
                 <div class="row g-0 border_t" style="border-bottom-right-radius: 20px;border-bottom-left-radius: 20px; background: #343a40; color: white; padding:20px;">
                   <%if(OrderList[i-1].Status=="pending"){%>
                       <div>Want to cancel this Order - 
-                        <div id="DelteOrdeR" style="cursor: pointer;font-size: 18px;display: inline;" onclick="fill('<%-OrderList[i-1].TransactionID%>')">Cancel</div>
+                        <div id="DelteOrdeR" style="cursor: pointer;font-size: 18px;display: inline; text-decoration: underline;" onclick="fill('<%-OrderList[i-1].TransactionID%>')">Cancel</div>
                       </div>
                   <%}else if(OrderList[i-1].Delivered==false) {%>
                     <div class="d-flex justify-content-between px-2">
@@ -110,7 +110,7 @@
               <div class="row g-0 border_t" style="border-bottom-right-radius: 20px;border-bottom-left-radius: 20px; background: #343a40; color: white; padding:20px;">
                 <%if(OrderList[i-1].Status=="pending"){%>
                   <div>Want to cancel this Order - 
-                    <div id="DelteOrdeR" style="cursor: pointer;font-size: 18px;display: inline;" onclick="fill('<%-OrderList[i-1].TransactionID%>')">Cancel</div>
+                    <div id="DelteOrdeR" style="cursor: pointer;font-size: 18px;display: inline; text-decoration: underline;" onclick="fill('<%-OrderList[i-1].TransactionID%>')" class="button">Cancel</div>
                   </div>
               <%}else if(OrderList[i-1].Delivered==false) {%>
                 <div class="d-flex justify-content-between px-2">

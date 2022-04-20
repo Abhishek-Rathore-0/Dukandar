@@ -219,7 +219,7 @@ exports.addorder = catchAsync(async(req, res, next)=>{
         i++;
       }
     }
-    //await Cart.deleteMany({ UserID: UserID });
+    await Cart.deleteMany({ UserID: UserID });
     return res.status(200).json({status: 'success'});
   }
   return next(new AppError('Please add your address and mobile no.', 400));
